@@ -1,0 +1,5519 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico" />
+<link rel="alternate" href="http://developer.android.com/" hreflang="en" />
+<link rel="alternate" href="http://developer.android.com/intl/es/" hreflang="es" />
+<link rel="alternate" href="http://developer.android.com/intl/id/" hreflang="id" />
+<link rel="alternate" href="http://developer.android.com/intl/ja/" hreflang="ja" />
+<link rel="alternate" href="http://developer.android.com/intl/ko/" hreflang="ko" />
+<link rel="alternate" href="http://developer.android.com/intl/pt-br/" hreflang="pt-br" />
+<link rel="alternate" href="http://developer.android.com/intl/ru/" hreflang="ru" />
+<link rel="alternate" href="http://developer.android.com/intl/vi/" hreflang="vi" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-cn/" hreflang="zh-cn" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-tw/" hreflang="zh-tw" />
+
+
+<title>R.attr - Android SDK | Android Developers
+</title>
+
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+  title="roboto">
+
+<link href="../../../../assets/css/default.css?v=16" rel="stylesheet" type="text/css">
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "../../../../";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</script>
+<script src="../../../../assets/js/docs.js?v=17" type="text/javascript"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+</head>
+
+<body class="gc-documentation develop reference api apilevel-">
+<div id="doc-api-level" class="" style="display:none"></div>
+
+
+  
+  <a name="top"></a>
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div class="dac-header " id="header">
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="javascript:;" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        <a class="dac-header-logo" href="../../../../index.html">
+          <img class="dac-header-logo-image" src="../../../../assets/images/android_logo.png"
+              srcset="../../../../assets/images/android_logo@2x.png 2x"
+              width="32" height="36" alt="Android" /> Developers
+          </a>
+
+        <ul class="dac-header-tabs">
+          <li>
+          <a class="dac-header-tab" href="../../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../../distribute/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          </li>
+        </ul>
+
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+
+        
+        
+        
+  <form data-search class="dac-header-search">
+    <button class="dac-header-search-close" data-search-close>
+      <i class="dac-sprite dac-back-arrow"></i>
+    </button>
+
+    <div class="dac-header-search-inner">
+      <i class="dac-sprite dac-search-white dac-header-search-icon"></i>
+      <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" class="dac-header-search-input" placeholder="Search" />
+      <button class="dac-header-search-clear dac-hidden" data-search-clear>
+        <i class="dac-sprite dac-close-black"></i>
+      </button>
+    </div>
+  </form>
+
+        
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+  </div> <!--end header-wrapper -->
+
+  
+  <!-- Navigation-->
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+
+    <div class="dac-nav-sidebar" data-swap data-dynamic="false" data-transition-speed="300" data-dac-nav>
+      <div data-swap-container>
+        
+  
+    <a class="dac-nav-back-button dac-swap-section dac-up dac-no-anim" data-swap-button href="javascript:;">
+      <i class="dac-sprite dac-nav-back"></i> <span class="dac-nav-back-title">Back</span>
+    </a>
+    <div class="dac-nav-sub dac-swap-section dac-right dac-active" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      
+        
+  <!-- Fullscreen toggler -->
+  <button data-fullscreen class="dac-nav-fullscreen">
+    <i class="dac-sprite dac-fullscreen"></i>
+  </button>
+
+  <script>$('[data-fullscreen]').dacFullscreen();</script>
+  <!-- End: Fullscreen toggler -->
+
+  
+    <div id="devdoc-nav">
+      <div id="api-nav-header">
+        <div id="api-level-toggle">
+          <label for="apiLevelCheckbox" class="disabled"
+                 title="Select your target API level to dim unavailable APIs">API level: </label>
+          <div class="select-wrapper">
+            <select id="apiLevelSelector">
+              <!-- option elements added by buildApiLevelSelector() -->
+            </select>
+          </div>
+        </div><!-- end toggle -->
+        <div id="api-nav-title">Android APIs</div>
+      </div><!-- end nav header -->
+      <script>
+        var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24' ];
+        buildApiLevelSelector();
+      </script>
+
+      <div class="dac-reference-nav" data-reference-tree>
+        <ul class="dac-reference-nav-list" data-reference-namespaces>
+          
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/package-summary.html">android</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/accessibilityservice/package-summary.html">android.accessibilityservice</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../../reference/android/accounts/package-summary.html">android.accounts</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../../reference/android/animation/package-summary.html">android.animation</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/annotation/package-summary.html">android.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/app/package-summary.html">android.app</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/android/app/admin/package-summary.html">android.app.admin</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/app/assist/package-summary.html">android.app.assist</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/android/app/backup/package-summary.html">android.app.backup</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/app/job/package-summary.html">android.app.job</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/app/usage/package-summary.html">android.app.usage</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/appwidget/package-summary.html">android.appwidget</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../../reference/android/bluetooth/package-summary.html">android.bluetooth</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/bluetooth/le/package-summary.html">android.bluetooth.le</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/content/package-summary.html">android.content</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/content/pm/package-summary.html">android.content.pm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/content/res/package-summary.html">android.content.res</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/database/package-summary.html">android.database</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/database/sqlite/package-summary.html">android.database.sqlite</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/databinding/package-summary.html">android.databinding</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../../reference/android/drm/package-summary.html">android.drm</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/gesture/package-summary.html">android.gesture</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/graphics/package-summary.html">android.graphics</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/graphics/drawable/package-summary.html">android.graphics.drawable</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/graphics/drawable/shapes/package-summary.html">android.graphics.drawable.shapes</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/graphics/pdf/package-summary.html">android.graphics.pdf</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/hardware/package-summary.html">android.hardware</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/hardware/camera2/package-summary.html">android.hardware.camera2</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/hardware/camera2/params/package-summary.html">android.hardware.camera2.params</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../../reference/android/hardware/display/package-summary.html">android.hardware.display</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/hardware/fingerprint/package-summary.html">android.hardware.fingerprint</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/hardware/input/package-summary.html">android.hardware.input</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../../reference/android/hardware/usb/package-summary.html">android.hardware.usb</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/lang/package-summary.html">android.icu.lang</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/math/package-summary.html">android.icu.math</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/text/package-summary.html">android.icu.text</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/util/package-summary.html">android.icu.util</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/inputmethodservice/package-summary.html">android.inputmethodservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/location/package-summary.html">android.location</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/media/package-summary.html">android.media</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/media/audiofx/package-summary.html">android.media.audiofx</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/browse/package-summary.html">android.media.browse</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/media/effect/package-summary.html">android.media.effect</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/media/midi/package-summary.html">android.media.midi</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/projection/package-summary.html">android.media.projection</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/session/package-summary.html">android.media.session</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/tv/package-summary.html">android.media.tv</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../../reference/android/mtp/package-summary.html">android.mtp</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/net/package-summary.html">android.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/net/http/package-summary.html">android.net.http</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/net/nsd/package-summary.html">android.net.nsd</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../../reference/android/net/rtp/package-summary.html">android.net.rtp</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/net/sip/package-summary.html">android.net.sip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/net/wifi/package-summary.html">android.net.wifi</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/net/wifi/p2p/package-summary.html">android.net.wifi.p2p</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/net/wifi/p2p/nsd/package-summary.html">android.net.wifi.p2p.nsd</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/nfc/package-summary.html">android.nfc</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/nfc/cardemulation/package-summary.html">android.nfc.cardemulation</a></li>
+    <li class="api apilevel-10">
+  <a href="../../../../reference/android/nfc/tech/package-summary.html">android.nfc.tech</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/opengl/package-summary.html">android.opengl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/os/package-summary.html">android.os</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/os/health/package-summary.html">android.os.health</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/os/storage/package-summary.html">android.os.storage</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/preference/package-summary.html">android.preference</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/print/package-summary.html">android.print</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/print/pdf/package-summary.html">android.print.pdf</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/printservice/package-summary.html">android.printservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/provider/package-summary.html">android.provider</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../../reference/android/renderscript/package-summary.html">android.renderscript</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/sax/package-summary.html">android.sax</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/security/package-summary.html">android.security</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/security/keystore/package-summary.html">android.security.keystore</a></li>
+    <li class="api apilevel-22">
+  <a href="../../../../reference/android/service/carrier/package-summary.html">android.service.carrier</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/service/chooser/package-summary.html">android.service.chooser</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../../reference/android/service/dreams/package-summary.html">android.service.dreams</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/service/media/package-summary.html">android.service.media</a></li>
+    <li class="api apilevel-18">
+  <a href="../../../../reference/android/service/notification/package-summary.html">android.service.notification</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/service/quicksettings/package-summary.html">android.service.quicksettings</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/service/restrictions/package-summary.html">android.service.restrictions</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/service/textservice/package-summary.html">android.service.textservice</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/service/voice/package-summary.html">android.service.voice</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/service/vr/package-summary.html">android.service.vr</a></li>
+    <li class="api apilevel-7">
+  <a href="../../../../reference/android/service/wallpaper/package-summary.html">android.service.wallpaper</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/speech/package-summary.html">android.speech</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/speech/tts/package-summary.html">android.speech.tts</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/annotation/package-summary.html">android.support.annotation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/annotations/package-summary.html">android.support.annotations</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/app/recommendation/package-summary.html">android.support.app.recommendation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/customtabs/package-summary.html">android.support.customtabs</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../reference/android/support/design/package-summary.html">android.support.design</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/design/widget/package-summary.html">android.support.design.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/graphics/drawable/package-summary.html">android.support.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/multidex/package-summary.html">android.support.multidex</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/percent/package-summary.html">android.support.percent</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/provider/package-summary.html">android.support.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v13/app/package-summary.html">android.support.v13.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v13/view/package-summary.html">android.support.v13.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v14/preference/package-summary.html">android.support.v14.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/package-summary.html">android.support.v17.leanback</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/app/package-summary.html">android.support.v17.leanback.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/database/package-summary.html">android.support.v17.leanback.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/graphics/package-summary.html">android.support.v17.leanback.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/system/package-summary.html">android.support.v17.leanback.system</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/widget/package-summary.html">android.support.v17.leanback.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/widget/picker/package-summary.html">android.support.v17.leanback.widget.picker</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/preference/package-summary.html">android.support.v17.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/package-summary.html">android.support.v4</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/accessibilityservice/package-summary.html">android.support.v4.accessibilityservice</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/app/package-summary.html">android.support.v4.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/content/package-summary.html">android.support.v4.content</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/content/pm/package-summary.html">android.support.v4.content.pm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/content/res/package-summary.html">android.support.v4.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/database/package-summary.html">android.support.v4.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/graphics/package-summary.html">android.support.v4.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/graphics/drawable/package-summary.html">android.support.v4.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/hardware/display/package-summary.html">android.support.v4.hardware.display</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/hardware/fingerprint/package-summary.html">android.support.v4.hardware.fingerprint</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/media/package-summary.html">android.support.v4.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/media/session/package-summary.html">android.support.v4.media.session</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/net/package-summary.html">android.support.v4.net</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/os/package-summary.html">android.support.v4.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/print/package-summary.html">android.support.v4.print</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/provider/package-summary.html">android.support.v4.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/text/package-summary.html">android.support.v4.text</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/util/package-summary.html">android.support.v4.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/view/package-summary.html">android.support.v4.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/view/accessibility/package-summary.html">android.support.v4.view.accessibility</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/view/animation/package-summary.html">android.support.v4.view.animation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/widget/package-summary.html">android.support.v4.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/app/package-summary.html">android.support.v7.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/appcompat/package-summary.html">android.support.v7.appcompat</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/cardview/package-summary.html">android.support.v7.cardview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/content/res/package-summary.html">android.support.v7.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/graphics/package-summary.html">android.support.v7.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/graphics/drawable/package-summary.html">android.support.v7.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/gridlayout/package-summary.html">android.support.v7.gridlayout</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/media/package-summary.html">android.support.v7.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/mediarouter/package-summary.html">android.support.v7.mediarouter</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/palette/package-summary.html">android.support.v7.palette</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/preference/package-summary.html">android.support.v7.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/recyclerview/package-summary.html">android.support.v7.recyclerview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/util/package-summary.html">android.support.v7.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/view/package-summary.html">android.support.v7.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/widget/package-summary.html">android.support.v7.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/widget/helper/package-summary.html">android.support.v7.widget.helper</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/widget/util/package-summary.html">android.support.v7.widget.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v8/renderscript/package-summary.html">android.support.v8.renderscript</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/system/package-summary.html">android.system</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/telecom/package-summary.html">android.telecom</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/telephony/package-summary.html">android.telephony</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../../reference/android/telephony/cdma/package-summary.html">android.telephony.cdma</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/telephony/gsm/package-summary.html">android.telephony.gsm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/package-summary.html">android.test</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/mock/package-summary.html">android.test.mock</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/suitebuilder/package-summary.html">android.test.suitebuilder</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/suitebuilder/annotation/package-summary.html">android.test.suitebuilder.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/package-summary.html">android.text</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/text/format/package-summary.html">android.text.format</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/method/package-summary.html">android.text.method</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/style/package-summary.html">android.text.style</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/util/package-summary.html">android.text.util</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/transition/package-summary.html">android.transition</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/util/package-summary.html">android.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/view/package-summary.html">android.view</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/view/accessibility/package-summary.html">android.view.accessibility</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/view/animation/package-summary.html">android.view.animation</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/view/inputmethod/package-summary.html">android.view.inputmethod</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/view/textservice/package-summary.html">android.view.textservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/webkit/package-summary.html">android.webkit</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/widget/package-summary.html">android.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/backup/package-summary.html">com.android.internal.backup</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/logging/package-summary.html">com.android.internal.logging</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/os/package-summary.html">com.android.internal.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/statusbar/package-summary.html">com.android.internal.statusbar</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/widget/package-summary.html">com.android.internal.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/test/runner/package-summary.html">com.android.test.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/dalvik/annotation/package-summary.html">dalvik.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/dalvik/bytecode/package-summary.html">dalvik.bytecode</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/dalvik/system/package-summary.html">dalvik.system</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/awt/font/package-summary.html">java.awt.font</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/java/beans/package-summary.html">java.beans</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/io/package-summary.html">java.io</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/package-summary.html">java.lang</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/annotation/package-summary.html">java.lang.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/ref/package-summary.html">java.lang.ref</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/reflect/package-summary.html">java.lang.reflect</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/math/package-summary.html">java.math</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/net/package-summary.html">java.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/package-summary.html">java.nio</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/channels/package-summary.html">java.nio.channels</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/channels/spi/package-summary.html">java.nio.channels.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/charset/package-summary.html">java.nio.charset</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/charset/spi/package-summary.html">java.nio.charset.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/package-summary.html">java.security</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/acl/package-summary.html">java.security.acl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/cert/package-summary.html">java.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/interfaces/package-summary.html">java.security.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/spec/package-summary.html">java.security.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/sql/package-summary.html">java.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/text/package-summary.html">java.text</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/package-summary.html">java.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/concurrent/package-summary.html">java.util.concurrent</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/concurrent/atomic/package-summary.html">java.util.concurrent.atomic</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/concurrent/locks/package-summary.html">java.util.concurrent.locks</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/java/util/function/package-summary.html">java.util.function</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/jar/package-summary.html">java.util.jar</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/logging/package-summary.html">java.util.logging</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/prefs/package-summary.html">java.util.prefs</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/regex/package-summary.html">java.util.regex</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/java/util/stream/package-summary.html">java.util.stream</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/zip/package-summary.html">java.util.zip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/crypto/package-summary.html">javax.crypto</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/crypto/interfaces/package-summary.html">javax.crypto.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/crypto/spec/package-summary.html">javax.crypto.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/microedition/khronos/egl/package-summary.html">javax.microedition.khronos.egl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/microedition/khronos/opengles/package-summary.html">javax.microedition.khronos.opengles</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/net/package-summary.html">javax.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/net/ssl/package-summary.html">javax.net.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/package-summary.html">javax.security.auth</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/callback/package-summary.html">javax.security.auth.callback</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/login/package-summary.html">javax.security.auth.login</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/x500/package-summary.html">javax.security.auth.x500</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/cert/package-summary.html">javax.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/sql/package-summary.html">javax.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/xml/package-summary.html">javax.xml</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/datatype/package-summary.html">javax.xml.datatype</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/namespace/package-summary.html">javax.xml.namespace</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/xml/parsers/package-summary.html">javax.xml.parsers</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/package-summary.html">javax.xml.transform</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/dom/package-summary.html">javax.xml.transform.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/sax/package-summary.html">javax.xml.transform.sax</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/stream/package-summary.html">javax.xml.transform.stream</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/validation/package-summary.html">javax.xml.validation</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/xpath/package-summary.html">javax.xml.xpath</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/junit/framework/package-summary.html">junit.framework</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/junit/runner/package-summary.html">junit.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/conn/package-summary.html">org.apache.http.conn</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/conn/scheme/package-summary.html">org.apache.http.conn.scheme</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/conn/ssl/package-summary.html">org.apache.http.conn.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/params/package-summary.html">org.apache.http.params</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/json/package-summary.html">org.json</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/w3c/dom/package-summary.html">org.w3c.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/org/w3c/dom/ls/package-summary.html">org.w3c.dom.ls</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xml/sax/package-summary.html">org.xml.sax</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xml/sax/ext/package-summary.html">org.xml.sax.ext</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xml/sax/helpers/package-summary.html">org.xml.sax.helpers</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xmlpull/v1/package-summary.html">org.xmlpull.v1</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xmlpull/v1/sax2/package-summary.html">org.xmlpull.v1.sax2</a></li>
+        </ul>
+
+        
+        <ul data-reference-resources>
+          
+          
+          
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.html">R</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.anim.html">R.anim</a></li>
+          <li class="selected api apilevel-"><a href="../../../../reference/android/support/design/R.attr.html">R.attr</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.color.html">R.color</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.dimen.html">R.dimen</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.drawable.html">R.drawable</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.id.html">R.id</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.integer.html">R.integer</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.layout.html">R.layout</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.string.html">R.string</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.style.html">R.style</a></li>
+          <li class="api apilevel-"><a href="../../../../reference/android/support/design/R.styleable.html">R.styleable</a></li>
+      </ul>
+    </li>
+          
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  
+
+      
+    </div>
+  
+
+        <ul id="dac-main-navigation" class="dac-nav-list dac-swap-section dac-left dac-no-anim">
+        <li class="dac-nav-item home">
+          <a class="dac-nav-link" href="../../../../index.html">Home</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary about">
+            <li class="dac-nav-item versions">
+              <a class="dac-nav-link" href="../../../../about/versions/marshmallow/index.html">Android</a>
+            </li>
+            <li class="dac-nav-item wear">
+              <a class="dac-nav-link" href="../../../../wear/index.html">Wear</a>
+            </li>
+            <li class="dac-nav-item tv">
+              <a class="dac-nav-link" href="../../../../tv/index.html">TV</a>
+            </li>
+            <li class="dac-nav-item auto">
+              <a class="dac-nav-link" href="../../../../auto/index.html">Auto</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item design">
+          <a class="dac-nav-link" href="../../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+        </li>
+        <li class="dac-nav-item develop">
+          <a class="dac-nav-link" href="../../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary develop">
+            <li class="dac-nav-item training">
+              <a class="dac-nav-link" href="../../../../training/index.html"
+                 zh-tw-lang="訓練課程"
+                 zh-cn-lang="培训"
+                 ru-lang="Курсы"
+                 ko-lang="교육"
+                 ja-lang="トレーニング"
+                 es-lang="Capacitación">Training</a>
+            </li>
+            <li class="dac-nav-item guide">
+              <a class="dac-nav-link" href="../../../../guide/index.html"
+                 zh-tw-lang="API 指南"
+                 zh-cn-lang="API 指南"
+                 ru-lang="Руководства по API"
+                 ko-lang="API 가이드"
+                 ja-lang="API ガイド"
+                 es-lang="Guías de la API">API Guides</a>
+            </li>
+            <li class="dac-nav-item reference">
+              <a class="dac-nav-link" href="../../../../reference/packages.html"
+                 zh-tw-lang="參考資源"
+                 zh-cn-lang="参考"
+                 ru-lang="Справочник"
+                 ko-lang="참조문서"
+                 ja-lang="リファレンス"
+                 es-lang="Referencia">Reference</a>
+            </li>
+            <li class="dac-nav-item tools">
+              <a class="dac-nav-link" href="../../../../sdk/index.html"
+                 zh-tw-lang="相關工具"
+                 zh-cn-lang="工具"
+                 ru-lang="Инструменты"
+                 ko-lang="도구"
+                 ja-lang="ツール"
+                 es-lang="Herramientas">Tools</a></li>
+            <li class="dac-nav-item google">
+              <a class="dac-nav-link" href="../../../../google/index.html">Google Services</a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="dac-nav-item distribute">
+          <a class="dac-nav-link" href="../../../../distribute/googleplay/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary distribute">
+            <li class="dac-nav-item googleplay">
+              <a class="dac-nav-link" href="../../../../distribute/googleplay/index.html">Google Play</a></li>
+            <li class="dac-nav-item essentials">
+              <a class="dac-nav-link" href="../../../../distribute/essentials/index.html">Essentials</a></li>
+            <li class="dac-nav-item users">
+              <a class="dac-nav-link" href="../../../../distribute/users/index.html">Get Users</a></li>
+            <li class="dac-nav-item engage">
+              <a class="dac-nav-link" href="../../../../distribute/engage/index.html">Engage &amp; Retain</a></li>
+            <li class="dac-nav-item monetize">
+              <a class="dac-nav-link" href="../../../../distribute/monetize/index.html">Earn</a>
+            </li>
+            <li class="dac-nav-item analyze">
+              <a class="dac-nav-link" href="../../../../distribute/analyze/index.html">Analyze</a>
+            </li>
+            <li class="dac-nav-item stories">
+              <a class="dac-nav-link" href="../../../../distribute/stories/index.html">Stories</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item preview">
+          <a class="dac-nav-link" href="../../../../preview/index.html">Preview</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end navigation-->
+  
+
+<!-- Nav Setup -->
+<script>$('[data-dac-nav]').dacNav();</script>
+
+
+
+  
+    
+  <div class="wrap clearfix" id="body-content">
+
+  
+
+  
+  <div id="search-results" class="dac-search-results">
+    <div id="dac-search-results-history" class="dac-search-results-history">
+      <div class="wrap dac-search-results-history-wrap">
+        <div class="cols">
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Most visited</h2>
+            <div class="resource-flow-layout" data-history-query="history:most/visited" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Recently visited</h2>
+            <div class="resource-flow-layout cols" data-history-query="history:recent" data-allow-duplicates="true" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dac-search-results-content" class="dac-search-results-content">
+      <div class="dac-search-results-metadata wrap">
+        <div class="dac-search-results-for">
+          <h2>Results for <span id="search-results-for"></span></h2>
+        </div>
+
+        <div id="dac-search-results-hero"></div>
+
+        <div class="dac-search-results-hero cols">
+          <div id="dac-search-results-reference" class="col-3of6 col-tablet-1of2 col-mobile-1of1">
+            <div class="suggest-card reference no-display">
+              <ul class="dac-search-results-reference">
+              </ul>
+            </div>
+          </div>
+          <div id="dac-custom-search-results"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+<div id="naMessage"></div>
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  
+  
+
+</div>
+
+
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+
+
+  <a href="#lfields">Fields</a>
+  
+
+
+
+  &#124; <a href="#pubctors">Ctors</a>
+  
+
+
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+</div><!-- end api-info-block -->
+
+<div class="api apilevel-" id="jd-content">
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<h1 class="api-title">R.attr</h1>
+<p>
+<code class="api-signature">
+  public
+  static
+  final
+  
+  class
+  R.attr
+</code>
+<br>
+
+
+<code class="api-signature">
+  
+    extends <a href="../../../../reference/java/lang/Object.html">Object</a>
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+</p><table class="jd-inheritance-table">
+
+
+  <tr>
+    
+    <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../reference/java/lang/Object.html">java.lang.Object</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="1" class="jd-inheritance-class-cell">android.support.design.R.attr
+    </td>
+  </tr>
+  
+
+</table>
+  
+
+    
+
+<br><hr>
+
+
+
+
+
+
+
+
+<h2 class="api-section">Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="responsive properties">
+<tr><th colspan="2"><h3>Fields</h3></th></tr>
+
+
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#backgroundTint">backgroundTint</a></code>
+      <p>Background for the FloatingActionButton
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#backgroundTintMode">backgroundTintMode</a></code>
+      <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#behavior_hideable">behavior_hideable</a></code>
+      <p>Whether this bottom sheet can be hidden by dragging it further downwards
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#behavior_overlapTop">behavior_overlapTop</a></code>
+      <p>The amount that the scrolling view should overlap the bottom of any AppBarLayout
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#behavior_peekHeight">behavior_peekHeight</a></code>
+      <p>The height of the bottom sheet when it is collapsed.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#behavior_skipCollapsed">behavior_skipCollapsed</a></code>
+      <p>Skip the collapsed state once expanded; no effect unless it is hideable
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#borderWidth">borderWidth</a></code>
+      <p>The width of the border around the FAB.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#bottomSheetDialogTheme">bottomSheetDialogTheme</a></code>
+      <p>Theme to use for modal bottom sheet dialogs spawned from this theme.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#bottomSheetStyle">bottomSheetStyle</a></code>
+      <p>Style to use for modal bottom sheets in this theme.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#collapsedTitleGravity">collapsedTitleGravity</a></code>
+      <p>Specifies how the title should be positioned when collapsed.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#collapsedTitleTextAppearance">collapsedTitleTextAppearance</a></code>
+      <p>The text appearance of the CollapsingToolbarLayouts title when it is fully
+ 'collapsed'
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#contentScrim">contentScrim</a></code>
+      <p>The drawable to use as a scrim on top of the CollapsingToolbarLayouts content when
+ it has been scrolled sufficiently off screen.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#counterEnabled">counterEnabled</a></code>
+      <p>Whether the layout is laid out as if the character counter will be displayed
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#counterMaxLength">counterMaxLength</a></code>
+      <p>The max length to display in the character counter
+ <p>May be an integer value, such as "<code>100</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#counterOverflowTextAppearance">counterOverflowTextAppearance</a></code>
+      <p>TextAppearance of the character counter when the text is longer than the max
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#counterTextAppearance">counterTextAppearance</a></code>
+      <p>TextAppearance of the character counter
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#elevation">elevation</a></code>
+      <p>Deprecated.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#errorEnabled">errorEnabled</a></code>
+      <p>Whether the layout is laid out as if an error will be displayed
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#errorTextAppearance">errorTextAppearance</a></code>
+      <p>TextAppearance of any error message displayed
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expanded">expanded</a></code>
+      <p>The initial expanded state for the AppBarLayout.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleGravity">expandedTitleGravity</a></code>
+      <p>Specifies how the title should be positioned when expanded.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleMargin">expandedTitleMargin</a></code>
+      <p>Specifies extra space on the start, top, end and bottom
+ sides of the the expanded title text.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleMarginBottom">expandedTitleMarginBottom</a></code>
+      <p>Specifies extra space on the bottom side of the the expanded title text.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleMarginEnd">expandedTitleMarginEnd</a></code>
+      <p>Specifies extra space on the end side of the the expanded title text.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleMarginStart">expandedTitleMarginStart</a></code>
+      <p>Specifies extra space on the start side of the the expanded title text.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleMarginTop">expandedTitleMarginTop</a></code>
+      <p>Specifies extra space on the top side of the the expanded title text.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#expandedTitleTextAppearance">expandedTitleTextAppearance</a></code>
+      <p>The text appearance of the CollapsingToolbarLayout's title when it is fully
+ 'expanded'
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#fabSize">fabSize</a></code>
+      <p>Size for the FAB.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#foregroundInsidePadding">foregroundInsidePadding</a></code>
+      <p><p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#headerLayout">headerLayout</a></code>
+      <p>Layout resource to inflate as the header
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#hintAnimationEnabled">hintAnimationEnabled</a></code>
+      <p>Whether to animate hint state changes.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#hintEnabled">hintEnabled</a></code>
+      <p>Whether the layout's floating label functionality is enabled
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#hintTextAppearance">hintTextAppearance</a></code>
+      <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#insetForeground">insetForeground</a></code>
+      <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#itemBackground">itemBackground</a></code>
+      <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#itemIconTint">itemIconTint</a></code>
+      <p><p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#itemTextAppearance">itemTextAppearance</a></code>
+      <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#itemTextColor">itemTextColor</a></code>
+      <p><p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#keylines">keylines</a></code>
+      <p>A reference to an array of integers representing the
+ locations of horizontal keylines in dp from the starting edge.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_anchor">layout_anchor</a></code>
+      <p>The id of an anchor view that this view should position relative to.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_anchorGravity">layout_anchorGravity</a></code>
+      <p>Specifies how an object should position relative to an anchor, on both the X and Y axes,
+ within its parent's bounds.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_behavior">layout_behavior</a></code>
+      <p>The class name of a Behavior class defining special runtime behavior
+ for this child view.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_collapseMode">layout_collapseMode</a></code>
+      <p><p>Must be one of the following constant values.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_collapseParallaxMultiplier">layout_collapseParallaxMultiplier</a></code>
+      <p>The multiplier used when layout_collapseMode is set to 'parallax'.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_keyline">layout_keyline</a></code>
+      <p>The index of a keyline this view should position relative to.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_scrollFlags">layout_scrollFlags</a></code>
+      <p><p>Must be one or more (separated by '|') of the following constant values.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#layout_scrollInterpolator">layout_scrollInterpolator</a></code>
+      <p>An interpolator to use when scrolling this View.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#maxActionInlineWidth">maxActionInlineWidth</a></code>
+      <p><p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#menu">menu</a></code>
+      <p>The menu resource to inflate and populate items from.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#pressedTranslationZ">pressedTranslationZ</a></code>
+      <p>TranslationZ value for the FAB when pressed
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#rippleColor">rippleColor</a></code>
+      <p>Ripple color for the FAB.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#scrimAnimationDuration">scrimAnimationDuration</a></code>
+      <p>Specifies the duration used for scrim visibility animations.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#scrimVisibleHeightTrigger">scrimVisibleHeightTrigger</a></code>
+      <p>Specifies the amount of visible height in pixels used to define when to trigger a
+ scrim visibility change.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#state_collapsed">state_collapsed</a></code>
+      <p>State value for <code><a href="../../../../reference/android/support/design/widget/AppBarLayout.html">AppBarLayout</a></code> set when the view
+ has been collapsed.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#state_collapsible">state_collapsible</a></code>
+      <p>State value for <code><a href="../../../../reference/android/support/design/widget/AppBarLayout.html">AppBarLayout</a></code> set when the view
+ has children which are capable of being collapsed.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#statusBarBackground">statusBarBackground</a></code>
+      <p>Drawable to display behind the status bar when the view is set to draw behind it.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#statusBarScrim">statusBarScrim</a></code>
+      <p>The drawable to use as a scrim for the status bar content when the
+ CollapsingToolbarLayout has been scrolled sufficiently off screen.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabBackground">tabBackground</a></code>
+      <p>Reference to a background to be applied to tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabContentStart">tabContentStart</a></code>
+      <p>Position in the Y axis from the starting edge that tabs should be positioned from.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabGravity">tabGravity</a></code>
+      <p>Gravity constant for tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabIndicatorColor">tabIndicatorColor</a></code>
+      <p>Color of the indicator used to show the currently selected tab.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabIndicatorHeight">tabIndicatorHeight</a></code>
+      <p>Height of the indicator used to show the currently selected tab.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabMaxWidth">tabMaxWidth</a></code>
+      <p>The maximum width for tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabMinWidth">tabMinWidth</a></code>
+      <p>The minimum width for tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabMode">tabMode</a></code>
+      <p>The behavior mode for the Tabs in this layout
+ <p>Must be one of the following constant values.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabPadding">tabPadding</a></code>
+      <p>The preferred padding along all edges of tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabPaddingBottom">tabPaddingBottom</a></code>
+      <p>The preferred padding along the bottom edge of tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabPaddingEnd">tabPaddingEnd</a></code>
+      <p>The preferred padding along the end edge of tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabPaddingStart">tabPaddingStart</a></code>
+      <p>The preferred padding along the start edge of tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabPaddingTop">tabPaddingTop</a></code>
+      <p>The preferred padding along the top edge of tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabSelectedTextColor">tabSelectedTextColor</a></code>
+      <p>The text color to be applied to the currently selected tab.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabTextAppearance">tabTextAppearance</a></code>
+      <p>A reference to a TextAppearance style to be applied to tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#tabTextColor">tabTextColor</a></code>
+      <p>The default text color to be applied to tabs.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#textColorError">textColorError</a></code>
+      <p>Text color used to indicate an error has occurred.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#title">title</a></code>
+      <p>The title to show when titleEnabled is set to true.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#titleEnabled">titleEnabled</a></code>
+      <p>Whether the CollapsingToolbarLayout should draw its own shrinking/growing title.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#toolbarId">toolbarId</a></code>
+      <p>The id of the primary Toolbar child that you wish to use for the purpose of collapsing.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-" >
+    <td><code>
+    public
+    static
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="../../../../reference/android/support/design/R.attr.html#useCompatPadding">useCompatPadding</a></code>
+      <p>Enable compat padding.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="responsive constructors">
+<tr><th colspan="2"><h3>Public constructors</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-" >
+  
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/support/design/R.attr.html#R.attr()">R.attr</a>()
+      </code>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="methods inhtable">
+<tr><th><h3>Inherited methods</h3></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="../../../../reference/java/lang/Object.html">java.lang.Object</a>
+  
+</code>
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/java/lang/Object.html">Object</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#clone()">clone</a>()
+      </code>
+      
+        <p>Creates and returns a copy of this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#equals(java.lang.Object)">equals</a>(<a href="../../../../reference/java/lang/Object.html">Object</a> obj)
+      </code>
+      
+        <p>Indicates whether some other object is "equal to" this one.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#finalize()">finalize</a>()
+      </code>
+      
+        <p>Called by the garbage collector on an object when garbage collection
+ determines that there are no more references to the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../../reference/java/lang/Class.html">Class</a>&lt;?&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#getClass()">getClass</a>()
+      </code>
+      
+        <p>Returns the runtime class of this <code>Object</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#hashCode()">hashCode</a>()
+      </code>
+      
+        <p>Returns a hash code value for the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#notify()">notify</a>()
+      </code>
+      
+        <p>Wakes up a single thread that is waiting on this object's
+ monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll</a>()
+      </code>
+      
+        <p>Wakes up all threads that are waiting on this object's monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#toString()">toString</a>()
+      </code>
+      
+        <p>Returns a string representation of the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#wait(long, int)">wait</a>(long millis, int nanos)
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or
+ some other thread interrupts the current thread, or a certain
+ amount of real time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#wait(long)">wait</a>(long millis)
+      </code>
+      
+        <p>Causes the current thread to wait until either another thread invokes the
+ <code><a href="../../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or a
+ specified amount of time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#wait()">wait</a>()
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2 class="api-section">Fields</h2>
+
+
+
+
+<A NAME="backgroundTint"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">backgroundTint</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int backgroundTint</pre>
+    
+    
+
+    
+  <p>Background for the FloatingActionButton
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+ <p>May be a string value, using '\\;' to escape characters such as
+ '\\n' or '\\uxxxx' for a unicode character;
+ <p>May be an integer value, such as "<code>100</code>".
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+ <p>May be a floating point value, such as "<code>1.2</code>".
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+ <p>May be a fractional value, which is a floating point number appended with
+ either % or %p, such as "<code>14.5%</code>".
+ The % suffix always means a percentage of the base size;
+ the optional %p suffix provides a size relative to some parent container.
+</p>
+
+    
+</div>
+
+
+
+<A NAME="backgroundTintMode"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">backgroundTintMode</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int backgroundTintMode</pre>
+    
+    
+
+    
+  <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+ <p>May be a string value, using '\\;' to escape characters such as
+ '\\n' or '\\uxxxx' for a unicode character;
+ <p>May be an integer value, such as "<code>100</code>".
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+ <p>May be a floating point value, such as "<code>1.2</code>".
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+ <p>May be a fractional value, which is a floating point number appended with
+ either % or %p, such as "<code>14.5%</code>".
+ The % suffix always means a percentage of the base size;
+ the optional %p suffix provides a size relative to some parent container.
+</p>
+
+    
+</div>
+
+
+
+<A NAME="behavior_hideable"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">behavior_hideable</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int behavior_hideable</pre>
+    
+    
+
+    
+  <p>Whether this bottom sheet can be hidden by dragging it further downwards
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="behavior_overlapTop"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">behavior_overlapTop</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int behavior_overlapTop</pre>
+    
+    
+
+    
+  <p>The amount that the scrolling view should overlap the bottom of any AppBarLayout
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="behavior_peekHeight"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">behavior_peekHeight</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int behavior_peekHeight</pre>
+    
+    
+
+    
+  <p>The height of the bottom sheet when it is collapsed.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="behavior_skipCollapsed"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">behavior_skipCollapsed</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int behavior_skipCollapsed</pre>
+    
+    
+
+    
+  <p>Skip the collapsed state once expanded; no effect unless it is hideable
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="borderWidth"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">borderWidth</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int borderWidth</pre>
+    
+    
+
+    
+  <p>The width of the border around the FAB.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="bottomSheetDialogTheme"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">bottomSheetDialogTheme</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int bottomSheetDialogTheme</pre>
+    
+    
+
+    
+  <p>Theme to use for modal bottom sheet dialogs spawned from this theme.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="bottomSheetStyle"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">bottomSheetStyle</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int bottomSheetStyle</pre>
+    
+    
+
+    
+  <p>Style to use for modal bottom sheets in this theme.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="collapsedTitleGravity"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">collapsedTitleGravity</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int collapsedTitleGravity</pre>
+    
+    
+
+    
+  <p>Specifies how the title should be positioned when collapsed.
+ <p>Must be one or more (separated by '|') of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>bottom</td><td>50</td><td>Push title to the bottom of its container, not changing its size.</td></tr>
+ <tr><td>center</td><td>11</td><td>Place the title in the center of its container in both the vertical and horizontal axis, not changing its size.</td></tr>
+ <tr><td>center_horizontal</td><td>1</td><td>Place title in the horizontal center of its container, not changing its size.</td></tr>
+ <tr><td>center_vertical</td><td>10</td><td>Place title in the vertical center of its container, not changing its size.</td></tr>
+ <tr><td>end</td><td>800005</td><td>Push title to the end of its container, not changing its size.</td></tr>
+ <tr><td>fill_vertical</td><td>70</td><td>Grow the vertical size of the title if needed so it completely fills its container.</td></tr>
+ <tr><td>left</td><td>3</td><td>Push title to the left of its container, not changing its size.</td></tr>
+ <tr><td>right</td><td>5</td><td>Push title to the right of its container, not changing its size.</td></tr>
+ <tr><td>start</td><td>800003</td><td>Push title to the beginning of its container, not changing its size.</td></tr>
+ <tr><td>top</td><td>30</td><td>Push title to the top of its container, not changing its size.</td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="collapsedTitleTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">collapsedTitleTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int collapsedTitleTextAppearance</pre>
+    
+    
+
+    
+  <p>The text appearance of the CollapsingToolbarLayouts title when it is fully
+ 'collapsed'
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="contentScrim"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">contentScrim</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int contentScrim</pre>
+    
+    
+
+    
+  <p>The drawable to use as a scrim on top of the CollapsingToolbarLayouts content when
+ it has been scrolled sufficiently off screen.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="counterEnabled"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">counterEnabled</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int counterEnabled</pre>
+    
+    
+
+    
+  <p>Whether the layout is laid out as if the character counter will be displayed
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="counterMaxLength"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">counterMaxLength</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int counterMaxLength</pre>
+    
+    
+
+    
+  <p>The max length to display in the character counter
+ <p>May be an integer value, such as "<code>100</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="counterOverflowTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">counterOverflowTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int counterOverflowTextAppearance</pre>
+    
+    
+
+    
+  <p>TextAppearance of the character counter when the text is longer than the max
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="counterTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">counterTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int counterTextAppearance</pre>
+    
+    
+
+    
+  <p>TextAppearance of the character counter
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="elevation"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">elevation</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int elevation</pre>
+    
+    
+
+    
+  <p>Deprecated. Elevation is now controlled via a state list animator.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+ <p>May be a string value, using '\\;' to escape characters such as
+ '\\n' or '\\uxxxx' for a unicode character;
+ <p>May be an integer value, such as "<code>100</code>".
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+ <p>May be a floating point value, such as "<code>1.2</code>".
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+ <p>May be a fractional value, which is a floating point number appended with
+ either % or %p, such as "<code>14.5%</code>".
+ The % suffix always means a percentage of the base size;
+ the optional %p suffix provides a size relative to some parent container.
+</p>
+
+    
+</div>
+
+
+
+<A NAME="errorEnabled"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">errorEnabled</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int errorEnabled</pre>
+    
+    
+
+    
+  <p>Whether the layout is laid out as if an error will be displayed
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="errorTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">errorTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int errorTextAppearance</pre>
+    
+    
+
+    
+  <p>TextAppearance of any error message displayed
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expanded"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expanded</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expanded</pre>
+    
+    
+
+    
+  <p>The initial expanded state for the AppBarLayout. This only takes effect when this
+ view is a direct child of a CoordinatorLayout.
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleGravity"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleGravity</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleGravity</pre>
+    
+    
+
+    
+  <p>Specifies how the title should be positioned when expanded.
+ <p>Must be one or more (separated by '|') of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>bottom</td><td>50</td><td>Push title to the bottom of its container, not changing its size.</td></tr>
+ <tr><td>center</td><td>11</td><td>Place the title in the center of its container in both the vertical and horizontal axis, not changing its size.</td></tr>
+ <tr><td>center_horizontal</td><td>1</td><td>Place title in the horizontal center of its container, not changing its size.</td></tr>
+ <tr><td>center_vertical</td><td>10</td><td>Place title in the vertical center of its container, not changing its size.</td></tr>
+ <tr><td>end</td><td>800005</td><td>Push title to the end of its container, not changing its size.</td></tr>
+ <tr><td>fill_vertical</td><td>70</td><td>Grow the vertical size of the title if needed so it completely fills its container.</td></tr>
+ <tr><td>left</td><td>3</td><td>Push title to the left of its container, not changing its size.</td></tr>
+ <tr><td>right</td><td>5</td><td>Push title to the right of its container, not changing its size.</td></tr>
+ <tr><td>start</td><td>800003</td><td>Push title to the beginning of its container, not changing its size.</td></tr>
+ <tr><td>top</td><td>30</td><td>Push title to the top of its container, not changing its size.</td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleMargin"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleMargin</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleMargin</pre>
+    
+    
+
+    
+  <p>Specifies extra space on the start, top, end and bottom
+ sides of the the expanded title text. Margin values should be positive.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleMarginBottom"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleMarginBottom</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleMarginBottom</pre>
+    
+    
+
+    
+  <p>Specifies extra space on the bottom side of the the expanded title text.
+ Margin values should be positive.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleMarginEnd"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleMarginEnd</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleMarginEnd</pre>
+    
+    
+
+    
+  <p>Specifies extra space on the end side of the the expanded title text.
+ Margin values should be positive.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleMarginStart"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleMarginStart</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleMarginStart</pre>
+    
+    
+
+    
+  <p>Specifies extra space on the start side of the the expanded title text.
+ Margin values should be positive.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleMarginTop"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleMarginTop</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleMarginTop</pre>
+    
+    
+
+    
+  <p>Specifies extra space on the top side of the the expanded title text.
+ Margin values should be positive.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="expandedTitleTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">expandedTitleTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int expandedTitleTextAppearance</pre>
+    
+    
+
+    
+  <p>The text appearance of the CollapsingToolbarLayout's title when it is fully
+ 'expanded'
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="fabSize"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">fabSize</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int fabSize</pre>
+    
+    
+
+    
+  <p>Size for the FAB.
+ <p>Must be one of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>auto</td><td>ffffffff</td><td>A size which will change based on the window size.</td></tr>
+ <tr><td>mini</td><td>1</td><td>The mini sized button.</td></tr>
+ <tr><td>normal</td><td>0</td><td>The normal sized button.</td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="foregroundInsidePadding"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">foregroundInsidePadding</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int foregroundInsidePadding</pre>
+    
+    
+
+    
+  <p><p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="headerLayout"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">headerLayout</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int headerLayout</pre>
+    
+    
+
+    
+  <p>Layout resource to inflate as the header
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="hintAnimationEnabled"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">hintAnimationEnabled</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int hintAnimationEnabled</pre>
+    
+    
+
+    
+  <p>Whether to animate hint state changes.
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="hintEnabled"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">hintEnabled</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int hintEnabled</pre>
+    
+    
+
+    
+  <p>Whether the layout's floating label functionality is enabled
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="hintTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">hintTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int hintTextAppearance</pre>
+    
+    
+
+    
+  <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="insetForeground"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">insetForeground</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int insetForeground</pre>
+    
+    
+
+    
+  <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="itemBackground"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">itemBackground</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int itemBackground</pre>
+    
+    
+
+    
+  <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="itemIconTint"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">itemIconTint</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int itemIconTint</pre>
+    
+    
+
+    
+  <p><p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="itemTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">itemTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int itemTextAppearance</pre>
+    
+    
+
+    
+  <p><p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="itemTextColor"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">itemTextColor</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int itemTextColor</pre>
+    
+    
+
+    
+  <p><p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="keylines"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">keylines</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int keylines</pre>
+    
+    
+
+    
+  <p>A reference to an array of integers representing the
+ locations of horizontal keylines in dp from the starting edge.
+ Child views can refer to these keylines for alignment using
+ layout_keyline="index" where index is a 0-based index into
+ this array.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_anchor"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_anchor</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_anchor</pre>
+    
+    
+
+    
+  <p>The id of an anchor view that this view should position relative to.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_anchorGravity"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_anchorGravity</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_anchorGravity</pre>
+    
+    
+
+    
+  <p>Specifies how an object should position relative to an anchor, on both the X and Y axes,
+ within its parent's bounds.
+ <p>Must be one or more (separated by '|') of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>bottom</td><td>50</td><td>Push object to the bottom of its container, not changing its size.</td></tr>
+ <tr><td>center</td><td>11</td><td>Place the object in the center of its container in both the vertical and horizontal axis, not changing its size.</td></tr>
+ <tr><td>center_horizontal</td><td>1</td><td>Place object in the horizontal center of its container, not changing its size.</td></tr>
+ <tr><td>center_vertical</td><td>10</td><td>Place object in the vertical center of its container, not changing its size.</td></tr>
+ <tr><td>clip_horizontal</td><td>8</td><td>Additional option that can be set to have the left and/or right edges of
+ the child clipped to its container's bounds.
+ The clip will be based on the horizontal gravity: a left gravity will clip the right
+ edge, a right gravity will clip the left edge, and neither will clip both edges.</td></tr>
+ <tr><td>clip_vertical</td><td>80</td><td>Additional option that can be set to have the top and/or bottom edges of
+ the child clipped to its container's bounds.
+ The clip will be based on the vertical gravity: a top gravity will clip the bottom
+ edge, a bottom gravity will clip the top edge, and neither will clip both edges.</td></tr>
+ <tr><td>end</td><td>800005</td><td>Push object to the end of its container, not changing its size.</td></tr>
+ <tr><td>fill</td><td>77</td><td>Grow the horizontal and vertical size of the object if needed so it completely fills its container.</td></tr>
+ <tr><td>fill_horizontal</td><td>7</td><td>Grow the horizontal size of the object if needed so it completely fills its container.</td></tr>
+ <tr><td>fill_vertical</td><td>70</td><td>Grow the vertical size of the object if needed so it completely fills its container.</td></tr>
+ <tr><td>left</td><td>3</td><td>Push object to the left of its container, not changing its size.</td></tr>
+ <tr><td>right</td><td>5</td><td>Push object to the right of its container, not changing its size.</td></tr>
+ <tr><td>start</td><td>800003</td><td>Push object to the beginning of its container, not changing its size.</td></tr>
+ <tr><td>top</td><td>30</td><td>Push object to the top of its container, not changing its size.</td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_behavior"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_behavior</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_behavior</pre>
+    
+    
+
+    
+  <p>The class name of a Behavior class defining special runtime behavior
+ for this child view.
+ <p>May be a string value, using '\\;' to escape characters such as
+ '\\n' or '\\uxxxx' for a unicode character;
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_collapseMode"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_collapseMode</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_collapseMode</pre>
+    
+    
+
+    
+  <p><p>Must be one of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>none</td><td>0</td><td>The view will act as normal with no collapsing behavior.</td></tr>
+ <tr><td>parallax</td><td>2</td><td>The view will scroll in a parallax fashion. See the
+ layout_collapseParallaxMultiplier attribute to change the multiplier.</td></tr>
+ <tr><td>pin</td><td>1</td><td>The view will pin in place.</td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_collapseParallaxMultiplier"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_collapseParallaxMultiplier</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_collapseParallaxMultiplier</pre>
+    
+    
+
+    
+  <p>The multiplier used when layout_collapseMode is set to 'parallax'. The value should
+ be between 0.0 and 1.0.
+ <p>May be a floating point value, such as "<code>1.2</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_keyline"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_keyline</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_keyline</pre>
+    
+    
+
+    
+  <p>The index of a keyline this view should position relative to.
+ android:layout_gravity will affect how the view aligns to the
+ specified keyline.
+ <p>May be an integer value, such as "<code>100</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_scrollFlags"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_scrollFlags</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_scrollFlags</pre>
+    
+    
+
+    
+  <p><p>Must be one or more (separated by '|') of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>enterAlways</td><td>4</td><td>When entering (scrolling on screen) the view will scroll on any downwards
+ scroll event, regardless of whether the scrolling view is also scrolling. This
+ is commonly referred to as the 'quick return' pattern.</td></tr>
+ <tr><td>enterAlwaysCollapsed</td><td>8</td><td>An additional flag for 'enterAlways' which modifies the returning view to
+ only initially scroll back to it's collapsed height. Once the scrolling view has
+ reached the end of it's scroll range, the remainder of this view will be scrolled
+ into view.</td></tr>
+ <tr><td>exitUntilCollapsed</td><td>2</td><td>When exiting (scrolling off screen) the view will be scrolled until it is
+ 'collapsed'. The collapsed height is defined by the view's minimum height.</td></tr>
+ <tr><td>scroll</td><td>1</td><td>The view will be scroll in direct relation to scroll events. This flag needs to be
+ set for any of the other flags to take effect. If any sibling views
+ before this one do not have this flag, then this value has no effect.</td></tr>
+ <tr><td>snap</td><td>10</td><td>Upon a scroll ending, if the view is only partially visible then it will be
+ snapped and scrolled to it's closest edge.</td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="layout_scrollInterpolator"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">layout_scrollInterpolator</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int layout_scrollInterpolator</pre>
+    
+    
+
+    
+  <p>An interpolator to use when scrolling this View. Only takes effect when View
+ is scrollable.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="maxActionInlineWidth"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">maxActionInlineWidth</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int maxActionInlineWidth</pre>
+    
+    
+
+    
+  <p><p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="menu"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">menu</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int menu</pre>
+    
+    
+
+    
+  <p>The menu resource to inflate and populate items from.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="pressedTranslationZ"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">pressedTranslationZ</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int pressedTranslationZ</pre>
+    
+    
+
+    
+  <p>TranslationZ value for the FAB when pressed
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="rippleColor"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">rippleColor</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int rippleColor</pre>
+    
+    
+
+    
+  <p>Ripple color for the FAB.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="scrimAnimationDuration"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">scrimAnimationDuration</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int scrimAnimationDuration</pre>
+    
+    
+
+    
+  <p>Specifies the duration used for scrim visibility animations.
+ <p>May be an integer value, such as "<code>100</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="scrimVisibleHeightTrigger"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">scrimVisibleHeightTrigger</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int scrimVisibleHeightTrigger</pre>
+    
+    
+
+    
+  <p>Specifies the amount of visible height in pixels used to define when to trigger a
+ scrim visibility change.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="state_collapsed"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">state_collapsed</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int state_collapsed</pre>
+    
+    
+
+    
+  <p>State value for <code><a href="../../../../reference/android/support/design/widget/AppBarLayout.html">AppBarLayout</a></code> set when the view
+ has been collapsed.
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="state_collapsible"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">state_collapsible</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int state_collapsible</pre>
+    
+    
+
+    
+  <p>State value for <code><a href="../../../../reference/android/support/design/widget/AppBarLayout.html">AppBarLayout</a></code> set when the view
+ has children which are capable of being collapsed.
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="statusBarBackground"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">statusBarBackground</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int statusBarBackground</pre>
+    
+    
+
+    
+  <p>Drawable to display behind the status bar when the view is set to draw behind it.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="statusBarScrim"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">statusBarScrim</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int statusBarScrim</pre>
+    
+    
+
+    
+  <p>The drawable to use as a scrim for the status bar content when the
+ CollapsingToolbarLayout has been scrolled sufficiently off screen. Only works on
+ Lollipop with the correct setup.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabBackground"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabBackground</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabBackground</pre>
+    
+    
+
+    
+  <p>Reference to a background to be applied to tabs.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabContentStart"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabContentStart</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabContentStart</pre>
+    
+    
+
+    
+  <p>Position in the Y axis from the starting edge that tabs should be positioned from.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabGravity"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabGravity</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabGravity</pre>
+    
+    
+
+    
+  <p>Gravity constant for tabs.
+ <p>Must be one of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>center</td><td>1</td><td></td></tr>
+ <tr><td>fill</td><td>0</td><td></td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabIndicatorColor"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabIndicatorColor</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabIndicatorColor</pre>
+    
+    
+
+    
+  <p>Color of the indicator used to show the currently selected tab.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabIndicatorHeight"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabIndicatorHeight</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabIndicatorHeight</pre>
+    
+    
+
+    
+  <p>Height of the indicator used to show the currently selected tab.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabMaxWidth"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabMaxWidth</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabMaxWidth</pre>
+    
+    
+
+    
+  <p>The maximum width for tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabMinWidth"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabMinWidth</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabMinWidth</pre>
+    
+    
+
+    
+  <p>The minimum width for tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabMode"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabMode</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabMode</pre>
+    
+    
+
+    
+  <p>The behavior mode for the Tabs in this layout
+ <p>Must be one of the following constant values.</p>
+ <table>
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <colgroup align="left" />
+ <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+ <tr><td>fixed</td><td>1</td><td></td></tr>
+ <tr><td>scrollable</td><td>0</td><td></td></tr>
+ </table>
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabPadding"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabPadding</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabPadding</pre>
+    
+    
+
+    
+  <p>The preferred padding along all edges of tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabPaddingBottom"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabPaddingBottom</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabPaddingBottom</pre>
+    
+    
+
+    
+  <p>The preferred padding along the bottom edge of tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabPaddingEnd"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabPaddingEnd</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabPaddingEnd</pre>
+    
+    
+
+    
+  <p>The preferred padding along the end edge of tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabPaddingStart"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabPaddingStart</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabPaddingStart</pre>
+    
+    
+
+    
+  <p>The preferred padding along the start edge of tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabPaddingTop"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabPaddingTop</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabPaddingTop</pre>
+    
+    
+
+    
+  <p>The preferred padding along the top edge of tabs.
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabSelectedTextColor"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabSelectedTextColor</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabSelectedTextColor</pre>
+    
+    
+
+    
+  <p>The text color to be applied to the currently selected tab.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabTextAppearance"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabTextAppearance</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabTextAppearance</pre>
+    
+    
+
+    
+  <p>A reference to a TextAppearance style to be applied to tabs.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="tabTextColor"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">tabTextColor</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int tabTextColor</pre>
+    
+    
+
+    
+  <p>The default text color to be applied to tabs.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="textColorError"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">textColorError</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int textColorError</pre>
+    
+    
+
+    
+  <p>Text color used to indicate an error has occurred.
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="title"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">title</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int title</pre>
+    
+    
+
+    
+  <p>The title to show when titleEnabled is set to true.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+ <p>May be a string value, using '\\;' to escape characters such as
+ '\\n' or '\\uxxxx' for a unicode character;
+ <p>May be an integer value, such as "<code>100</code>".
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+ <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+ "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code", or
+ "<code>#<i>aarrggbb</i></code>".
+ <p>May be a floating point value, such as "<code>1.2</code>".
+ <p>May be a dimension value, which is a floating point number appended with a
+ unit such as "<code>14.5sp</code>".
+ Available units are: px (pixels), dp (density-independent pixels),
+ sp (scaled pixels based on preferred font size), in (inches), and
+ mm (millimeters).
+ <p>May be a fractional value, which is a floating point number appended with
+ either % or %p, such as "<code>14.5%</code>".
+ The % suffix always means a percentage of the base size;
+ the optional %p suffix provides a size relative to some parent container.
+</p>
+
+    
+</div>
+
+
+
+<A NAME="titleEnabled"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">titleEnabled</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int titleEnabled</pre>
+    
+    
+
+    
+  <p>Whether the CollapsingToolbarLayout should draw its own shrinking/growing title.
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="toolbarId"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">toolbarId</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int toolbarId</pre>
+    
+    
+
+    
+  <p>The id of the primary Toolbar child that you wish to use for the purpose of collapsing.
+ This Toolbar descendant view does not need to be a direct child of the layout.
+ If you do not set this, the first direct Toolbar child found will be used.
+ <p>May be a reference to another resource, in the form
+ "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+ attribute in the form
+ "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+</p>
+
+    
+</div>
+
+
+
+<A NAME="useCompatPadding"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">useCompatPadding</h3>
+    <div class="api-level">
+      
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int useCompatPadding</pre>
+    
+    
+
+    
+  <p>Enable compat padding.
+ <p>May be a boolean value, such as "<code>true</code>" or
+ "<code>false</code>".
+</p>
+
+    
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2 class="api-section">Public constructors</h2>
+
+
+
+<A NAME="R.attr()"></A>
+
+<div class="api apilevel-">
+    <h3 class="api-name">R.attr</h3>
+    <div class="api-level">
+      <div></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+R.attr ()</pre>
+    
+    
+
+    
+  <p></p>
+
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</div><!-- end jd-content -->
+
+
+
+
+
+<div class="wrap">
+  <div class="dac-footer">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" id="newsletter" data-modal-toggle="newsletter" href="javascript:;">Get news &amp; tips <span
+          class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i></span></a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</a>
+          <a class="dac-footer-contact-link" href="/support.html">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-button-social dac-youtube dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><i class="dac-sprite dac-youtube"></i></a>
+          <a class="dac-button-social dac-gplus dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers"><i class="dac-sprite dac-gplus"></i></a>
+          <a class="dac-button-social dac-twitter dac-footer-social-link" href="https://twitter.com/AndroidDev"><i class="dac-sprite dac-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+
+    
+      <p class="dac-footer-copyright">
+        
+  Except as noted, this content is licensed under <a
+  href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
+  For details and restrictions, see the <a href="../../../../license.html">
+  Content License</a>.
+
+      </p>
+      <p class="dac-footer-build">
+        
+  
+    Android 6.0&nbsp;r1 &mdash;
+  
+  <script src="../../../../timestamp.js" type="text/javascript"></script>
+  <script>document.write(BUILD_TIMESTAMP)</script>
+
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="/about/android.html">About Android</a>
+      <a href="/auto/index.html">Auto</a>
+      <a href="/tv/index.html">TV</a>
+      <a href="/wear/index.html">Wear</a>
+      <a href="/legal.html">Legal</a>
+
+      <span id="language" class="locales">
+        <select name="language" onchange="changeLangPref(this.value, true)">
+          <option value="en" selected="selected">English</option>
+          <option value="es">Español</option>
+          <option value="in">Bahasa Indonesia</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt-br">Português Brasileiro</option>
+          <option value="ru">Русский</option>
+          <option value="vi">tiếng Việt</option>
+          <option value="zh-cn">中文（简体)</option>
+          <option value="zh-tw">中文（繁體)</option>
+        </select>
+      </span>
+    </p>
+  </div>
+</div>
+<!-- end footer -->
+
+
+
+  
+
+
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.title"></h2>
+            <p class="dac-modal-header-subtitle" data-t="newsletter.requiredHint"></p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.successTitle">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <input type="hidden" name="entry.935454734" data-newsletter-language>
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel" data-t="newsletter.name">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel" data-t="newsletter.email">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel" data-t="newsletter.company">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel" data-t="newsletter.appUrl">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend"><span data-t="newsletter.business.label">Which best describes your business:</span><span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label" data-t="newsletter.business.apps">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label" data-t="newsletter.business.games">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label" data-t="newsletter.business.both">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside"><span data-t="newsletter.confirmMailingList"></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside"><span data-t="newsletter.privacyPolicy" data-t-html></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message" data-t="newsletter.successDetails"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end newsletter modal -->
+
+<!-- start reset language header modal -->
+<div data-modal="langform" class="dac-modal" id="langform">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title"></h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+            <fieldset class="dac-form-fieldset">
+              <div class="cols">
+                <div class="col-2of2 langform-leftCol">
+                  <p id="resetLangText"></p>
+                  <p id="resetLangCta"></p>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+              <button class="button dac-primary dac-modal-action lang yes" data-t="newsletter.resetLangButtonYes" data-modal-toggle></button>
+              <button class="button dac-primary dac-modal-action lang no" data-t="newsletter.resetLangButtonNo" data-modal-toggle></button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- end langreset modal -->
+
+
+</div> <!-- end body-content --> 
+
+
+
+
+<script src="https://developer.android.com/ytblogger_lists_unified.js" defer></script>
+<script src="/jd_lists_unified_en.js?v=17" defer></script>
+<script src="/reference/lists.js?v=17" defer></script>
+<script src="/reference/gcm_lists.js?v=17" defer></script>
+<script src="/reference/gms_lists.js?v=17" defer></script>
+<script>
+  // Load localized metadata.
+  (function(lang) {
+    if (lang === 'en') { return; }
+
+    // Write it to the document so it gets evaluated before DOMContentReady.
+    document.write('<script src="/jd_lists_unified_' + lang + '.js?v=14" defer></' + 'script>');
+  })(getLangPref())
+</script>
+
+
+</body>
+</html>

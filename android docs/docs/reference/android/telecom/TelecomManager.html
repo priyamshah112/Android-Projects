@@ -1,0 +1,4673 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<link rel="alternate" href="http://developer.android.com/" hreflang="en" />
+<link rel="alternate" href="http://developer.android.com/intl/es/" hreflang="es" />
+<link rel="alternate" href="http://developer.android.com/intl/id/" hreflang="id" />
+<link rel="alternate" href="http://developer.android.com/intl/ja/" hreflang="ja" />
+<link rel="alternate" href="http://developer.android.com/intl/ko/" hreflang="ko" />
+<link rel="alternate" href="http://developer.android.com/intl/pt-br/" hreflang="pt-br" />
+<link rel="alternate" href="http://developer.android.com/intl/ru/" hreflang="ru" />
+<link rel="alternate" href="http://developer.android.com/intl/vi/" hreflang="vi" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-cn/" hreflang="zh-cn" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-tw/" hreflang="zh-tw" />
+
+
+<title>TelecomManager - Android SDK | Android Developers
+</title>
+
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+  title="roboto">
+
+<link href="../../../assets/css/default.css?v=16" rel="stylesheet" type="text/css">
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "../../../";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</script>
+<script src="../../../assets/js/docs.js?v=17" type="text/javascript"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+</head>
+
+<body class="gc-documentation develop reference api apilevel-21">
+<div id="doc-api-level" class="21" style="display:none"></div>
+
+
+  
+  <a name="top"></a>
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div class="dac-header " id="header">
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="javascript:;" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        <a class="dac-header-logo" href="../../../index.html">
+          <img class="dac-header-logo-image" src="../../../assets/images/android_logo.png"
+              srcset="../../../assets/images/android_logo@2x.png 2x"
+              width="32" height="36" alt="Android" /> Developers
+          </a>
+
+        <ul class="dac-header-tabs">
+          <li>
+          <a class="dac-header-tab" href="../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../distribute/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          </li>
+        </ul>
+
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+
+        
+        
+        
+  <form data-search class="dac-header-search">
+    <button class="dac-header-search-close" data-search-close>
+      <i class="dac-sprite dac-back-arrow"></i>
+    </button>
+
+    <div class="dac-header-search-inner">
+      <i class="dac-sprite dac-search-white dac-header-search-icon"></i>
+      <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" class="dac-header-search-input" placeholder="Search" />
+      <button class="dac-header-search-clear dac-hidden" data-search-clear>
+        <i class="dac-sprite dac-close-black"></i>
+      </button>
+    </div>
+  </form>
+
+        
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+  </div> <!--end header-wrapper -->
+
+  
+  <!-- Navigation-->
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+
+    <div class="dac-nav-sidebar" data-swap data-dynamic="false" data-transition-speed="300" data-dac-nav>
+      <div data-swap-container>
+        
+  
+    <a class="dac-nav-back-button dac-swap-section dac-up dac-no-anim" data-swap-button href="javascript:;">
+      <i class="dac-sprite dac-nav-back"></i> <span class="dac-nav-back-title">Back</span>
+    </a>
+    <div class="dac-nav-sub dac-swap-section dac-right dac-active" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      
+        
+  <!-- Fullscreen toggler -->
+  <button data-fullscreen class="dac-nav-fullscreen">
+    <i class="dac-sprite dac-fullscreen"></i>
+  </button>
+
+  <script>$('[data-fullscreen]').dacFullscreen();</script>
+  <!-- End: Fullscreen toggler -->
+
+  
+    <div id="devdoc-nav">
+      <div id="api-nav-header">
+        <div id="api-level-toggle">
+          <label for="apiLevelCheckbox" class="disabled"
+                 title="Select your target API level to dim unavailable APIs">API level: </label>
+          <div class="select-wrapper">
+            <select id="apiLevelSelector">
+              <!-- option elements added by buildApiLevelSelector() -->
+            </select>
+          </div>
+        </div><!-- end toggle -->
+        <div id="api-nav-title">Android APIs</div>
+      </div><!-- end nav header -->
+      <script>
+        var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24' ];
+        buildApiLevelSelector();
+      </script>
+
+      <div class="dac-reference-nav" data-reference-tree>
+        <ul class="dac-reference-nav-list" data-reference-namespaces>
+          
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/package-summary.html">android</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/accessibilityservice/package-summary.html">android.accessibilityservice</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/accounts/package-summary.html">android.accounts</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/animation/package-summary.html">android.animation</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/annotation/package-summary.html">android.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/app/package-summary.html">android.app</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/android/app/admin/package-summary.html">android.app.admin</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/app/assist/package-summary.html">android.app.assist</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/android/app/backup/package-summary.html">android.app.backup</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/app/job/package-summary.html">android.app.job</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/app/usage/package-summary.html">android.app.usage</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/appwidget/package-summary.html">android.appwidget</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/bluetooth/package-summary.html">android.bluetooth</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/bluetooth/le/package-summary.html">android.bluetooth.le</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/package-summary.html">android.content</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/pm/package-summary.html">android.content.pm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/res/package-summary.html">android.content.res</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/database/package-summary.html">android.database</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/database/sqlite/package-summary.html">android.database.sqlite</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/databinding/package-summary.html">android.databinding</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/drm/package-summary.html">android.drm</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/gesture/package-summary.html">android.gesture</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/package-summary.html">android.graphics</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/drawable/package-summary.html">android.graphics.drawable</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/drawable/shapes/package-summary.html">android.graphics.drawable.shapes</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/graphics/pdf/package-summary.html">android.graphics.pdf</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/hardware/package-summary.html">android.hardware</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/hardware/camera2/package-summary.html">android.hardware.camera2</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/hardware/camera2/params/package-summary.html">android.hardware.camera2.params</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../reference/android/hardware/display/package-summary.html">android.hardware.display</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/hardware/fingerprint/package-summary.html">android.hardware.fingerprint</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/hardware/input/package-summary.html">android.hardware.input</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/hardware/usb/package-summary.html">android.hardware.usb</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/lang/package-summary.html">android.icu.lang</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/math/package-summary.html">android.icu.math</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/text/package-summary.html">android.icu.text</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/util/package-summary.html">android.icu.util</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/inputmethodservice/package-summary.html">android.inputmethodservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/location/package-summary.html">android.location</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/media/package-summary.html">android.media</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/media/audiofx/package-summary.html">android.media.audiofx</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/browse/package-summary.html">android.media.browse</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/media/effect/package-summary.html">android.media.effect</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/media/midi/package-summary.html">android.media.midi</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/projection/package-summary.html">android.media.projection</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/session/package-summary.html">android.media.session</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/tv/package-summary.html">android.media.tv</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/mtp/package-summary.html">android.mtp</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/package-summary.html">android.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/http/package-summary.html">android.net.http</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/net/nsd/package-summary.html">android.net.nsd</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/net/rtp/package-summary.html">android.net.rtp</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/net/sip/package-summary.html">android.net.sip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/wifi/package-summary.html">android.net.wifi</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/net/wifi/p2p/package-summary.html">android.net.wifi.p2p</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/net/wifi/p2p/nsd/package-summary.html">android.net.wifi.p2p.nsd</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/nfc/package-summary.html">android.nfc</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/nfc/cardemulation/package-summary.html">android.nfc.cardemulation</a></li>
+    <li class="api apilevel-10">
+  <a href="../../../reference/android/nfc/tech/package-summary.html">android.nfc.tech</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/opengl/package-summary.html">android.opengl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/os/package-summary.html">android.os</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/os/health/package-summary.html">android.os.health</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/os/storage/package-summary.html">android.os.storage</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/preference/package-summary.html">android.preference</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/print/package-summary.html">android.print</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/print/pdf/package-summary.html">android.print.pdf</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/printservice/package-summary.html">android.printservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/provider/package-summary.html">android.provider</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/renderscript/package-summary.html">android.renderscript</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/sax/package-summary.html">android.sax</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/security/package-summary.html">android.security</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/security/keystore/package-summary.html">android.security.keystore</a></li>
+    <li class="api apilevel-22">
+  <a href="../../../reference/android/service/carrier/package-summary.html">android.service.carrier</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/service/chooser/package-summary.html">android.service.chooser</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../reference/android/service/dreams/package-summary.html">android.service.dreams</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/media/package-summary.html">android.service.media</a></li>
+    <li class="api apilevel-18">
+  <a href="../../../reference/android/service/notification/package-summary.html">android.service.notification</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/service/quicksettings/package-summary.html">android.service.quicksettings</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/restrictions/package-summary.html">android.service.restrictions</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/service/textservice/package-summary.html">android.service.textservice</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/voice/package-summary.html">android.service.voice</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/service/vr/package-summary.html">android.service.vr</a></li>
+    <li class="api apilevel-7">
+  <a href="../../../reference/android/service/wallpaper/package-summary.html">android.service.wallpaper</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/speech/package-summary.html">android.speech</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/speech/tts/package-summary.html">android.speech.tts</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/annotation/package-summary.html">android.support.annotation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/annotations/package-summary.html">android.support.annotations</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/app/recommendation/package-summary.html">android.support.app.recommendation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/customtabs/package-summary.html">android.support.customtabs</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/design/package-summary.html">android.support.design</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/design/widget/package-summary.html">android.support.design.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/graphics/drawable/package-summary.html">android.support.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/multidex/package-summary.html">android.support.multidex</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/percent/package-summary.html">android.support.percent</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/provider/package-summary.html">android.support.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v13/app/package-summary.html">android.support.v13.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v13/view/package-summary.html">android.support.v13.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v14/preference/package-summary.html">android.support.v14.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/package-summary.html">android.support.v17.leanback</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/app/package-summary.html">android.support.v17.leanback.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/database/package-summary.html">android.support.v17.leanback.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/graphics/package-summary.html">android.support.v17.leanback.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/system/package-summary.html">android.support.v17.leanback.system</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/widget/package-summary.html">android.support.v17.leanback.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/widget/picker/package-summary.html">android.support.v17.leanback.widget.picker</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/preference/package-summary.html">android.support.v17.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/package-summary.html">android.support.v4</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/accessibilityservice/package-summary.html">android.support.v4.accessibilityservice</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/app/package-summary.html">android.support.v4.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/package-summary.html">android.support.v4.content</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/pm/package-summary.html">android.support.v4.content.pm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/res/package-summary.html">android.support.v4.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/database/package-summary.html">android.support.v4.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/graphics/package-summary.html">android.support.v4.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/graphics/drawable/package-summary.html">android.support.v4.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/hardware/display/package-summary.html">android.support.v4.hardware.display</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/hardware/fingerprint/package-summary.html">android.support.v4.hardware.fingerprint</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/media/package-summary.html">android.support.v4.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/media/session/package-summary.html">android.support.v4.media.session</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/net/package-summary.html">android.support.v4.net</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/os/package-summary.html">android.support.v4.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/print/package-summary.html">android.support.v4.print</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/provider/package-summary.html">android.support.v4.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/text/package-summary.html">android.support.v4.text</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/util/package-summary.html">android.support.v4.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/package-summary.html">android.support.v4.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/accessibility/package-summary.html">android.support.v4.view.accessibility</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/animation/package-summary.html">android.support.v4.view.animation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/widget/package-summary.html">android.support.v4.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/app/package-summary.html">android.support.v7.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/appcompat/package-summary.html">android.support.v7.appcompat</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/cardview/package-summary.html">android.support.v7.cardview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/content/res/package-summary.html">android.support.v7.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/graphics/package-summary.html">android.support.v7.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/graphics/drawable/package-summary.html">android.support.v7.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/gridlayout/package-summary.html">android.support.v7.gridlayout</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/media/package-summary.html">android.support.v7.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/mediarouter/package-summary.html">android.support.v7.mediarouter</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/palette/package-summary.html">android.support.v7.palette</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/preference/package-summary.html">android.support.v7.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/recyclerview/package-summary.html">android.support.v7.recyclerview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/util/package-summary.html">android.support.v7.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/view/package-summary.html">android.support.v7.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/package-summary.html">android.support.v7.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/helper/package-summary.html">android.support.v7.widget.helper</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/util/package-summary.html">android.support.v7.widget.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v8/renderscript/package-summary.html">android.support.v8.renderscript</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/system/package-summary.html">android.system</a></li>
+    <li class="selected api apilevel-21">
+  <a href="../../../reference/android/telecom/package-summary.html">android.telecom</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/telephony/package-summary.html">android.telephony</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/telephony/cdma/package-summary.html">android.telephony.cdma</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/telephony/gsm/package-summary.html">android.telephony.gsm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/package-summary.html">android.test</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/mock/package-summary.html">android.test.mock</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/suitebuilder/package-summary.html">android.test.suitebuilder</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/suitebuilder/annotation/package-summary.html">android.test.suitebuilder.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/package-summary.html">android.text</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/text/format/package-summary.html">android.text.format</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/method/package-summary.html">android.text.method</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/style/package-summary.html">android.text.style</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/util/package-summary.html">android.text.util</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/transition/package-summary.html">android.transition</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/util/package-summary.html">android.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/view/package-summary.html">android.view</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/view/accessibility/package-summary.html">android.view.accessibility</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/view/animation/package-summary.html">android.view.animation</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/view/inputmethod/package-summary.html">android.view.inputmethod</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/view/textservice/package-summary.html">android.view.textservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/webkit/package-summary.html">android.webkit</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/widget/package-summary.html">android.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/backup/package-summary.html">com.android.internal.backup</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/logging/package-summary.html">com.android.internal.logging</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/os/package-summary.html">com.android.internal.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/statusbar/package-summary.html">com.android.internal.statusbar</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/widget/package-summary.html">com.android.internal.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/test/runner/package-summary.html">com.android.test.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/annotation/package-summary.html">dalvik.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/bytecode/package-summary.html">dalvik.bytecode</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/system/package-summary.html">dalvik.system</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/awt/font/package-summary.html">java.awt.font</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/java/beans/package-summary.html">java.beans</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/io/package-summary.html">java.io</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/package-summary.html">java.lang</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/annotation/package-summary.html">java.lang.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/ref/package-summary.html">java.lang.ref</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/reflect/package-summary.html">java.lang.reflect</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/math/package-summary.html">java.math</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/net/package-summary.html">java.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/package-summary.html">java.nio</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/channels/package-summary.html">java.nio.channels</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/channels/spi/package-summary.html">java.nio.channels.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/charset/package-summary.html">java.nio.charset</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/charset/spi/package-summary.html">java.nio.charset.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/package-summary.html">java.security</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/acl/package-summary.html">java.security.acl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/cert/package-summary.html">java.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/interfaces/package-summary.html">java.security.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/spec/package-summary.html">java.security.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/sql/package-summary.html">java.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/text/package-summary.html">java.text</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/package-summary.html">java.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/package-summary.html">java.util.concurrent</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/atomic/package-summary.html">java.util.concurrent.atomic</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/locks/package-summary.html">java.util.concurrent.locks</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/java/util/function/package-summary.html">java.util.function</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/jar/package-summary.html">java.util.jar</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/logging/package-summary.html">java.util.logging</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/prefs/package-summary.html">java.util.prefs</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/regex/package-summary.html">java.util.regex</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/java/util/stream/package-summary.html">java.util.stream</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/zip/package-summary.html">java.util.zip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/package-summary.html">javax.crypto</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/interfaces/package-summary.html">javax.crypto.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/spec/package-summary.html">javax.crypto.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/microedition/khronos/egl/package-summary.html">javax.microedition.khronos.egl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/microedition/khronos/opengles/package-summary.html">javax.microedition.khronos.opengles</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/net/package-summary.html">javax.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/net/ssl/package-summary.html">javax.net.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/package-summary.html">javax.security.auth</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/callback/package-summary.html">javax.security.auth.callback</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/login/package-summary.html">javax.security.auth.login</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/x500/package-summary.html">javax.security.auth.x500</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/cert/package-summary.html">javax.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/sql/package-summary.html">javax.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/xml/package-summary.html">javax.xml</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/datatype/package-summary.html">javax.xml.datatype</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/namespace/package-summary.html">javax.xml.namespace</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/xml/parsers/package-summary.html">javax.xml.parsers</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/package-summary.html">javax.xml.transform</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/dom/package-summary.html">javax.xml.transform.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/sax/package-summary.html">javax.xml.transform.sax</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/stream/package-summary.html">javax.xml.transform.stream</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/validation/package-summary.html">javax.xml.validation</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/xpath/package-summary.html">javax.xml.xpath</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/junit/framework/package-summary.html">junit.framework</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/junit/runner/package-summary.html">junit.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/package-summary.html">org.apache.http.conn</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/scheme/package-summary.html">org.apache.http.conn.scheme</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/ssl/package-summary.html">org.apache.http.conn.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/params/package-summary.html">org.apache.http.params</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/json/package-summary.html">org.json</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/w3c/dom/package-summary.html">org.w3c.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/org/w3c/dom/ls/package-summary.html">org.w3c.dom.ls</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/package-summary.html">org.xml.sax</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/ext/package-summary.html">org.xml.sax.ext</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/helpers/package-summary.html">org.xml.sax.helpers</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xmlpull/v1/package-summary.html">org.xmlpull.v1</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xmlpull/v1/sax2/package-summary.html">org.xmlpull.v1.sax2</a></li>
+        </ul>
+
+        
+        <ul data-reference-resources>
+          
+          
+          
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Call.html">Call</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Call.Callback.html">Call.Callback</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Call.Details.html">Call.Details</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/CallAudioState.html">CallAudioState</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/telecom/CallScreeningService.html">CallScreeningService</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/telecom/CallScreeningService.CallResponse.html">CallScreeningService.CallResponse</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/telecom/CallScreeningService.CallResponse.Builder.html">CallScreeningService.CallResponse.Builder</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Conference.html">Conference</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Conferenceable.html">Conferenceable</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Connection.html">Connection</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/Connection.VideoProvider.html">Connection.VideoProvider</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/ConnectionRequest.html">ConnectionRequest</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/DisconnectCause.html">DisconnectCause</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/GatewayInfo.html">GatewayInfo</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/InCallService.VideoCall.html">InCallService.VideoCall</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/InCallService.VideoCall.Callback.html">InCallService.VideoCall.Callback</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/PhoneAccount.Builder.html">PhoneAccount.Builder</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/RemoteConference.html">RemoteConference</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/RemoteConference.Callback.html">RemoteConference.Callback</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/RemoteConnection.html">RemoteConnection</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/RemoteConnection.Callback.html">RemoteConnection.Callback</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/RemoteConnection.VideoProvider.html">RemoteConnection.VideoProvider</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/RemoteConnection.VideoProvider.Callback.html">RemoteConnection.VideoProvider.Callback</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/StatusHints.html">StatusHints</a></li>
+          <li class="selected api apilevel-21"><a href="../../../reference/android/telecom/TelecomManager.html">TelecomManager</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/VideoProfile.html">VideoProfile</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/telecom/VideoProfile.CameraCapabilities.html">VideoProfile.CameraCapabilities</a></li>
+      </ul>
+    </li>
+          
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  
+
+      
+    </div>
+  
+
+        <ul id="dac-main-navigation" class="dac-nav-list dac-swap-section dac-left dac-no-anim">
+        <li class="dac-nav-item home">
+          <a class="dac-nav-link" href="../../../index.html">Home</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary about">
+            <li class="dac-nav-item versions">
+              <a class="dac-nav-link" href="../../../about/versions/marshmallow/index.html">Android</a>
+            </li>
+            <li class="dac-nav-item wear">
+              <a class="dac-nav-link" href="../../../wear/index.html">Wear</a>
+            </li>
+            <li class="dac-nav-item tv">
+              <a class="dac-nav-link" href="../../../tv/index.html">TV</a>
+            </li>
+            <li class="dac-nav-item auto">
+              <a class="dac-nav-link" href="../../../auto/index.html">Auto</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item design">
+          <a class="dac-nav-link" href="../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+        </li>
+        <li class="dac-nav-item develop">
+          <a class="dac-nav-link" href="../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary develop">
+            <li class="dac-nav-item training">
+              <a class="dac-nav-link" href="../../../training/index.html"
+                 zh-tw-lang="訓練課程"
+                 zh-cn-lang="培训"
+                 ru-lang="Курсы"
+                 ko-lang="교육"
+                 ja-lang="トレーニング"
+                 es-lang="Capacitación">Training</a>
+            </li>
+            <li class="dac-nav-item guide">
+              <a class="dac-nav-link" href="../../../guide/index.html"
+                 zh-tw-lang="API 指南"
+                 zh-cn-lang="API 指南"
+                 ru-lang="Руководства по API"
+                 ko-lang="API 가이드"
+                 ja-lang="API ガイド"
+                 es-lang="Guías de la API">API Guides</a>
+            </li>
+            <li class="dac-nav-item reference">
+              <a class="dac-nav-link" href="../../../reference/packages.html"
+                 zh-tw-lang="參考資源"
+                 zh-cn-lang="参考"
+                 ru-lang="Справочник"
+                 ko-lang="참조문서"
+                 ja-lang="リファレンス"
+                 es-lang="Referencia">Reference</a>
+            </li>
+            <li class="dac-nav-item tools">
+              <a class="dac-nav-link" href="../../../sdk/index.html"
+                 zh-tw-lang="相關工具"
+                 zh-cn-lang="工具"
+                 ru-lang="Инструменты"
+                 ko-lang="도구"
+                 ja-lang="ツール"
+                 es-lang="Herramientas">Tools</a></li>
+            <li class="dac-nav-item google">
+              <a class="dac-nav-link" href="../../../google/index.html">Google Services</a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="dac-nav-item distribute">
+          <a class="dac-nav-link" href="../../../distribute/googleplay/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary distribute">
+            <li class="dac-nav-item googleplay">
+              <a class="dac-nav-link" href="../../../distribute/googleplay/index.html">Google Play</a></li>
+            <li class="dac-nav-item essentials">
+              <a class="dac-nav-link" href="../../../distribute/essentials/index.html">Essentials</a></li>
+            <li class="dac-nav-item users">
+              <a class="dac-nav-link" href="../../../distribute/users/index.html">Get Users</a></li>
+            <li class="dac-nav-item engage">
+              <a class="dac-nav-link" href="../../../distribute/engage/index.html">Engage &amp; Retain</a></li>
+            <li class="dac-nav-item monetize">
+              <a class="dac-nav-link" href="../../../distribute/monetize/index.html">Earn</a>
+            </li>
+            <li class="dac-nav-item analyze">
+              <a class="dac-nav-link" href="../../../distribute/analyze/index.html">Analyze</a>
+            </li>
+            <li class="dac-nav-item stories">
+              <a class="dac-nav-link" href="../../../distribute/stories/index.html">Stories</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item preview">
+          <a class="dac-nav-link" href="../../../preview/index.html">Preview</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end navigation-->
+  
+
+<!-- Nav Setup -->
+<script>$('[data-dac-nav]').dacNav();</script>
+
+
+
+  
+    
+  <div class="wrap clearfix" id="body-content">
+
+  
+
+  
+  <div id="search-results" class="dac-search-results">
+    <div id="dac-search-results-history" class="dac-search-results-history">
+      <div class="wrap dac-search-results-history-wrap">
+        <div class="cols">
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Most visited</h2>
+            <div class="resource-flow-layout" data-history-query="history:most/visited" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Recently visited</h2>
+            <div class="resource-flow-layout cols" data-history-query="history:recent" data-allow-duplicates="true" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dac-search-results-content" class="dac-search-results-content">
+      <div class="dac-search-results-metadata wrap">
+        <div class="dac-search-results-for">
+          <h2>Results for <span id="search-results-for"></span></h2>
+        </div>
+
+        <div id="dac-search-results-hero"></div>
+
+        <div class="dac-search-results-hero cols">
+          <div id="dac-search-results-reference" class="col-3of6 col-tablet-1of2 col-mobile-1of1">
+            <div class="suggest-card reference no-display">
+              <ul class="dac-search-results-reference">
+              </ul>
+            </div>
+          </div>
+          <div id="dac-custom-search-results"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+<div id="naMessage"></div>
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+  
+  
+
+</div>
+
+
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+  <a href="#constants">Constants</a>
+  
+
+
+
+
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+</div><!-- end api-info-block -->
+
+<div class="api apilevel-21" id="jd-content">
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<h1 class="api-title">TelecomManager</h1>
+<p>
+<code class="api-signature">
+  public
+  
+  
+  
+  class
+  TelecomManager
+</code>
+<br>
+
+
+<code class="api-signature">
+  
+    extends <a href="../../../reference/java/lang/Object.html">Object</a>
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+</p><table class="jd-inheritance-table">
+
+
+  <tr>
+    
+    <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../reference/java/lang/Object.html">java.lang.Object</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="1" class="jd-inheritance-class-cell">android.telecom.TelecomManager
+    </td>
+  </tr>
+  
+
+</table>
+  
+
+    
+
+<br><hr>
+
+
+  <p>Provides access to information about active calls and registration/call-management functionality.
+ Apps can use methods in this class to determine the current call state.
+ <p>
+ Apps do not instantiate this class directly; instead, they retrieve a reference to an instance
+ through <code><a href="../../../reference/android/content/Context.html#getSystemService(java.lang.Class<T>)">Context.getSystemService(Context.TELECOM_SERVICE)</a></code>.
+ <p>
+ Note that access to some telecom information is permission-protected. Your app cannot access the
+ protected information or gain access to protected functionality unless it has the appropriate
+ permissions declared in its manifest file. Where permissions apply, they are noted in the method
+ descriptions.
+</p>
+
+
+
+
+
+
+
+<h2 class="api-section">Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="responsive constants">
+<tr><th colspan="2"><h3>Constants</h3></th></tr>
+
+
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER">ACTION_CHANGE_DEFAULT_DIALER</a></code>
+          <p>Activity action: Shows a dialog asking the user whether or not they want to replace the
+ current default Dialer with the one specified in
+ <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME">EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS">ACTION_CHANGE_PHONE_ACCOUNTS</a></code>
+          <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the settings page used to configure
+ <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> preferences.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_CONFIGURE_PHONE_ACCOUNT">ACTION_CONFIGURE_PHONE_ACCOUNT</a></code>
+          <p>An <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action sent by the telecom framework to start a
+ configuration dialog for a registered <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_DEFAULT_DIALER_CHANGED">ACTION_DEFAULT_DIALER_CHANGED</a></code>
+          <p>Broadcast intent action indicating that the current default dialer has changed.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_INCOMING_CALL">ACTION_INCOMING_CALL</a></code>
+          <p>Activity action: Starts the UI for handing an incoming call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_SHOW_CALL_ACCESSIBILITY_SETTINGS">ACTION_SHOW_CALL_ACCESSIBILITY_SETTINGS</a></code>
+          <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the call accessibility settings page.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_SHOW_CALL_SETTINGS">ACTION_SHOW_CALL_SETTINGS</a></code>
+          <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the call settings page.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_SHOW_MISSED_CALLS_NOTIFICATION">ACTION_SHOW_MISSED_CALLS_NOTIFICATION</a></code>
+          <p>Broadcast intent action for letting custom component know to show the missed call
+ notification.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_SHOW_RESPOND_VIA_SMS_SETTINGS">ACTION_SHOW_RESPOND_VIA_SMS_SETTINGS</a></code>
+          <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the respond via SMS settings page.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code>char</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#DTMF_CHARACTER_PAUSE">DTMF_CHARACTER_PAUSE</a></code>
+          <p>The dual tone multi-frequency signaling character sent to indicate the dialing system should
+ pause for a predefined period.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code>char</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#DTMF_CHARACTER_WAIT">DTMF_CHARACTER_WAIT</a></code>
+          <p>The dual-tone multi-frequency signaling character sent to indicate the dialing system should
+ wait for user confirmation before proceeding.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CALL_BACK_NUMBER">EXTRA_CALL_BACK_NUMBER</a></code>
+          <p>The number which the party on the other side of the line will see (and use to return the
+ call).
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CALL_DISCONNECT_CAUSE">EXTRA_CALL_DISCONNECT_CAUSE</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/telephony/TelephonyManager.html#ACTION_PHONE_STATE_CHANGED">ACTION_PHONE_STATE_CHANGED</a></code>
+ containing the disconnect code.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CALL_DISCONNECT_MESSAGE">EXTRA_CALL_DISCONNECT_MESSAGE</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/telephony/TelephonyManager.html#ACTION_PHONE_STATE_CHANGED">ACTION_PHONE_STATE_CHANGED</a></code>
+ containing the disconnect message.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CALL_SUBJECT">EXTRA_CALL_SUBJECT</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> containing a string call
+ subject which will be associated with an outgoing call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME">EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</a></code>
+          <p>Extra value used to provide the package name for <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER">ACTION_CHANGE_DEFAULT_DIALER</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_INCOMING_CALL_ADDRESS">EXTRA_INCOMING_CALL_ADDRESS</a></code>
+          <p>The extra used by a <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> to provide the handle of the caller that
+ has initiated a new incoming call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_INCOMING_CALL_EXTRAS">EXTRA_INCOMING_CALL_EXTRAS</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_INCOMING_CALL">ACTION_INCOMING_CALL</a></code> containing a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> which contains
+ metadata about the call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_NOTIFICATION_COUNT">EXTRA_NOTIFICATION_COUNT</a></code>
+          <p>The number of calls associated with the notification.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_NOTIFICATION_PHONE_NUMBER">EXTRA_NOTIFICATION_PHONE_NUMBER</a></code>
+          <p>The number associated with the missed calls.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_OUTGOING_CALL_EXTRAS">EXTRA_OUTGOING_CALL_EXTRAS</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> and
+ <code><a href="../../../reference/android/content/Intent.html#ACTION_DIAL">ACTION_DIAL</a></code> <code>Intent</code> containing a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code>
+ which contains metadata about the call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_PHONE_ACCOUNT_HANDLE">EXTRA_PHONE_ACCOUNT_HANDLE</a></code>
+          <p>The extra used with an <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> and
+ <code><a href="../../../reference/android/content/Intent.html#ACTION_DIAL">ACTION_DIAL</a></code> <code>Intent</code> to specify a
+ <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> to use when making the call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_START_CALL_WITH_SPEAKERPHONE">EXTRA_START_CALL_WITH_SPEAKERPHONE</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> containing a boolean that
+ determines whether the speakerphone should be automatically turned on for an outgoing call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_START_CALL_WITH_VIDEO_STATE">EXTRA_START_CALL_WITH_VIDEO_STATE</a></code>
+          <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> containing an integer that
+ determines the desired video state for an outgoing call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#GATEWAY_ORIGINAL_ADDRESS">GATEWAY_ORIGINAL_ADDRESS</a></code>
+          <p>An optional <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> intent extra corresponding to the
+ original address to dial for the call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#GATEWAY_PROVIDER_PACKAGE">GATEWAY_PROVIDER_PACKAGE</a></code>
+          <p>An optional <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> intent extra denoting the
+ package name of the app specifying an alternative gateway for the call.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#METADATA_IN_CALL_SERVICE_RINGING">METADATA_IN_CALL_SERVICE_RINGING</a></code>
+          <p>A boolean meta-data value indicating whether an <code><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></code> implements ringing.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#METADATA_IN_CALL_SERVICE_UI">METADATA_IN_CALL_SERVICE_UI</a></code>
+          <p>A boolean meta-data value indicating whether an <code><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></code> implements an
+ in-call user interface.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#PRESENTATION_ALLOWED">PRESENTATION_ALLOWED</a></code>
+          <p>Indicates that the address or number of a call is allowed to be displayed for caller ID.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#PRESENTATION_PAYPHONE">PRESENTATION_PAYPHONE</a></code>
+          <p>Indicates that the address or number of a call belongs to a pay phone.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#PRESENTATION_RESTRICTED">PRESENTATION_RESTRICTED</a></code>
+          <p>Indicates that the address or number of a call is blocked by the other party.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/telecom/TelecomManager.html#PRESENTATION_UNKNOWN">PRESENTATION_UNKNOWN</a></code>
+          <p>Indicates that the address or number of a call is not specified or known by the carrier.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="responsive methods">
+<tr><th colspan="2"><h3>Public methods</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#addNewIncomingCall(android.telecom.PhoneAccountHandle, android.os.Bundle)">addNewIncomingCall</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> phoneAccount, <a href="../../../reference/android/os/Bundle.html">Bundle</a> extras)
+      </code>
+      
+        <p>Registers a new incoming call.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#cancelMissedCallsNotification()">cancelMissedCallsNotification</a>()
+      </code>
+      
+        <p>Removes the missed-call notification if one is present.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/content/Intent.html">Intent</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#createManageBlockedNumbersIntent()">createManageBlockedNumbersIntent</a>()
+      </code>
+      
+        <p>Creates the <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> which can be used with <code><a href="../../../reference/android/content/Context.html#startActivity(android.content.Intent)">startActivity(Intent)</a></code> to
+ launch the activity to manage blocked numbers.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/net/Uri.html">Uri</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getAdnUriForPhoneAccount(android.telecom.PhoneAccountHandle)">getAdnUriForPhoneAccount</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)
+      </code>
+      
+        <p>Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">MODIFY_PHONE_STATE</a></code>
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/util/List.html">List</a>&lt;<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a>&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getCallCapablePhoneAccounts()">getCallCapablePhoneAccounts</a>()
+      </code>
+      
+        <p>Returns a list of <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>s which can be used to make and receive phone
+ calls.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getDefaultDialerPackage()">getDefaultDialerPackage</a>()
+      </code>
+      
+        <p>Used to determine the currently selected default dialer package.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getDefaultOutgoingPhoneAccount(java.lang.String)">getDefaultOutgoingPhoneAccount</a>(<a href="../../../reference/java/lang/String.html">String</a> uriScheme)
+      </code>
+      
+        <p>Return the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> which will be used to place outgoing calls to addresses with
+ the specified <code>uriScheme</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getLine1Number(android.telecom.PhoneAccountHandle)">getLine1Number</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)
+      </code>
+      
+        <p>Return the line 1 phone number for given phone account.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getPhoneAccount(android.telecom.PhoneAccountHandle)">getPhoneAccount</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> account)
+      </code>
+      
+        <p>Return the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> for a specified <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getSimCallManager()">getSimCallManager</a>()
+      </code>
+      
+        <p>Returns the current SIM call manager.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#getVoiceMailNumber(android.telecom.PhoneAccountHandle)">getVoiceMailNumber</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)
+      </code>
+      
+        <p>Return the voicemail number for a given phone account.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#handleMmi(java.lang.String)">handleMmi</a>(<a href="../../../reference/java/lang/String.html">String</a> dialString)
+      </code>
+      
+        <p>Processes the specified dial string as an MMI code.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#handleMmi(java.lang.String, android.telecom.PhoneAccountHandle)">handleMmi</a>(<a href="../../../reference/java/lang/String.html">String</a> dialString, <a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)
+      </code>
+      
+        <p>Processes the specified dial string as an MMI code.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#isInCall()">isInCall</a>()
+      </code>
+      
+        <p>Returns whether there is an ongoing phone call (can be in dialing, ringing, active or holding
+ states).
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#isVoiceMailNumber(android.telecom.PhoneAccountHandle, java.lang.String)">isVoiceMailNumber</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle, <a href="../../../reference/java/lang/String.html">String</a> number)
+      </code>
+      
+        <p>Return whether a given phone number is the configured voicemail number for a
+ particular phone account.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#placeCall(android.net.Uri, android.os.Bundle)">placeCall</a>(<a href="../../../reference/android/net/Uri.html">Uri</a> address, <a href="../../../reference/android/os/Bundle.html">Bundle</a> extras)
+      </code>
+      
+        <p>Places a new outgoing call to the provided address using the system telecom service with
+ the specified extras.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#registerPhoneAccount(android.telecom.PhoneAccount)">registerPhoneAccount</a>(<a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a> account)
+      </code>
+      
+        <p>Register a <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> for use by the system that will be stored in Device Encrypted
+ storage.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#showInCallScreen(boolean)">showInCallScreen</a>(boolean showDialpad)
+      </code>
+      
+        <p>Brings the in-call screen to the foreground if there is an ongoing call.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#silenceRinger()">silenceRinger</a>()
+      </code>
+      
+        <p>Silences the ringer if a ringing call exists.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/telecom/TelecomManager.html#unregisterPhoneAccount(android.telecom.PhoneAccountHandle)">unregisterPhoneAccount</a>(<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)
+      </code>
+      
+        <p>Remove a <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> registration from the system.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="methods inhtable">
+<tr><th><h3>Inherited methods</h3></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="../../../reference/java/lang/Object.html">java.lang.Object</a>
+  
+</code>
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/Object.html">Object</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#clone()">clone</a>()
+      </code>
+      
+        <p>Creates and returns a copy of this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#equals(java.lang.Object)">equals</a>(<a href="../../../reference/java/lang/Object.html">Object</a> obj)
+      </code>
+      
+        <p>Indicates whether some other object is "equal to" this one.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#finalize()">finalize</a>()
+      </code>
+      
+        <p>Called by the garbage collector on an object when garbage collection
+ determines that there are no more references to the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../reference/java/lang/Class.html">Class</a>&lt;?&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#getClass()">getClass</a>()
+      </code>
+      
+        <p>Returns the runtime class of this <code>Object</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#hashCode()">hashCode</a>()
+      </code>
+      
+        <p>Returns a hash code value for the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#notify()">notify</a>()
+      </code>
+      
+        <p>Wakes up a single thread that is waiting on this object's
+ monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll</a>()
+      </code>
+      
+        <p>Wakes up all threads that are waiting on this object's monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#toString()">toString</a>()
+      </code>
+      
+        <p>Returns a string representation of the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait(long, int)">wait</a>(long millis, int nanos)
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or
+ some other thread interrupts the current thread, or a certain
+ amount of real time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait(long)">wait</a>(long millis)
+      </code>
+      
+        <p>Causes the current thread to wait until either another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or a
+ specified amount of time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait()">wait</a>()
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2 class="api-section">Constants</h2>
+
+
+
+
+<A NAME="ACTION_CHANGE_DEFAULT_DIALER"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_CHANGE_DEFAULT_DIALER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_CHANGE_DEFAULT_DIALER</pre>
+    
+    
+
+    
+  <p>Activity action: Shows a dialog asking the user whether or not they want to replace the
+ current default Dialer with the one specified in
+ <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME">EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</a></code>.
+
+ Usage example:
+ <pre>
+ Intent intent = new Intent(TelecomManager.ACTION_CHANGE_DEFAULT_DIALER);
+ intent.putExtra(TelecomManager.EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME,
+         getActivity().getPackageName());
+ startActivity(intent);
+ </pre>
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.CHANGE_DEFAULT_DIALER"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_CHANGE_PHONE_ACCOUNTS"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_CHANGE_PHONE_ACCOUNTS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_CHANGE_PHONE_ACCOUNTS</pre>
+    
+    
+
+    
+  <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the settings page used to configure
+ <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> preferences.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.CHANGE_PHONE_ACCOUNTS"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_CONFIGURE_PHONE_ACCOUNT"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_CONFIGURE_PHONE_ACCOUNT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_CONFIGURE_PHONE_ACCOUNT</pre>
+    
+    
+
+    
+  <p>An <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action sent by the telecom framework to start a
+ configuration dialog for a registered <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>. There is no default dialog
+ and each app that registers a <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> should provide one if desired.
+ <p>
+ A user can access the list of enabled <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>s through the Phone
+ app's settings menu. For each entry, the settings app will add a click action. When
+ triggered, the click-action will start this intent along with the extra
+ <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_PHONE_ACCOUNT_HANDLE">EXTRA_PHONE_ACCOUNT_HANDLE</a></code> to indicate the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> to configure. If the
+ <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> package does not register an <code><a href="../../../reference/android/app/Activity.html">Activity</a></code> for this
+ intent, then it will not be sent.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.CONFIGURE_PHONE_ACCOUNT"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_DEFAULT_DIALER_CHANGED"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_DEFAULT_DIALER_CHANGED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_DEFAULT_DIALER_CHANGED</pre>
+    
+    
+
+    
+  <p>Broadcast intent action indicating that the current default dialer has changed.
+ The string extra <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME">EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</a></code> will contain the
+ name of the package that the default dialer was changed to.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME">EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.DEFAULT_DIALER_CHANGED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_INCOMING_CALL"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_INCOMING_CALL</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_INCOMING_CALL</pre>
+    
+    
+
+    
+  <p>Activity action: Starts the UI for handing an incoming call. This intent starts the in-call
+ UI by notifying the Telecom system that an incoming call exists for a specific call service
+ (see <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code>). Telecom reads the Intent extras to find
+ and bind to the appropriate <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> which Telecom will
+ ultimately use to control and get information about the call.
+ <p>
+ Input: get*Extra field <code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_PHONE_ACCOUNT_HANDLE">EXTRA_PHONE_ACCOUNT_HANDLE</a></code> contains the component name of the
+ <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> that Telecom should bind to. Telecom will then
+ ask the connection service for more information about the call prior to showing any UI.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.INCOMING_CALL"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_SHOW_CALL_ACCESSIBILITY_SETTINGS"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_SHOW_CALL_ACCESSIBILITY_SETTINGS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_SHOW_CALL_ACCESSIBILITY_SETTINGS</pre>
+    
+    
+
+    
+  <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the call accessibility settings page.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.SHOW_CALL_ACCESSIBILITY_SETTINGS"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_SHOW_CALL_SETTINGS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">ACTION_SHOW_CALL_SETTINGS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_SHOW_CALL_SETTINGS</pre>
+    
+    
+
+    
+  <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the call settings page.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.SHOW_CALL_SETTINGS"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_SHOW_MISSED_CALLS_NOTIFICATION"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">ACTION_SHOW_MISSED_CALLS_NOTIFICATION</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_SHOW_MISSED_CALLS_NOTIFICATION</pre>
+    
+    
+
+    
+  <p>Broadcast intent action for letting custom component know to show the missed call
+ notification. If no custom component exists then this is sent to the default dialer which
+ should post a missed-call notification.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.SHOW_MISSED_CALLS_NOTIFICATION"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_SHOW_RESPOND_VIA_SMS_SETTINGS"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ACTION_SHOW_RESPOND_VIA_SMS_SETTINGS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_SHOW_RESPOND_VIA_SMS_SETTINGS</pre>
+    
+    
+
+    
+  <p>The <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> action used to show the respond via SMS settings page.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.action.SHOW_RESPOND_VIA_SMS_SETTINGS"
+      
+    
+</div>
+
+
+
+<A NAME="DTMF_CHARACTER_PAUSE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DTMF_CHARACTER_PAUSE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+char DTMF_CHARACTER_PAUSE</pre>
+    
+    
+
+    
+  <p>The dual tone multi-frequency signaling character sent to indicate the dialing system should
+ pause for a predefined period.
+</p>
+
+    
+      <p>Constant Value:
+      
+          44
+          (0x0000002c)
+      
+    
+</div>
+
+
+
+<A NAME="DTMF_CHARACTER_WAIT"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DTMF_CHARACTER_WAIT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+char DTMF_CHARACTER_WAIT</pre>
+    
+    
+
+    
+  <p>The dual-tone multi-frequency signaling character sent to indicate the dialing system should
+ wait for user confirmation before proceeding.
+</p>
+
+    
+      <p>Constant Value:
+      
+          59
+          (0x0000003b)
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CALL_BACK_NUMBER"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_CALL_BACK_NUMBER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CALL_BACK_NUMBER</pre>
+    
+    
+
+    
+  <p>The number which the party on the other side of the line will see (and use to return the
+ call).
+ <p>
+ <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code>s which interact with <code><a href="../../../reference/android/telecom/RemoteConnection.html">RemoteConnection</a></code>s should only populate
+ this if the <code><a href="../../../reference/android/telephony/TelephonyManager.html#getLine1Number()">getLine1Number()</a></code> value, as that is the
+ user's expected caller ID.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.CALL_BACK_NUMBER"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CALL_DISCONNECT_CAUSE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">EXTRA_CALL_DISCONNECT_CAUSE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CALL_DISCONNECT_CAUSE</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/telephony/TelephonyManager.html#ACTION_PHONE_STATE_CHANGED">ACTION_PHONE_STATE_CHANGED</a></code>
+ containing the disconnect code.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.CALL_DISCONNECT_CAUSE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CALL_DISCONNECT_MESSAGE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">EXTRA_CALL_DISCONNECT_MESSAGE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CALL_DISCONNECT_MESSAGE</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/telephony/TelephonyManager.html#ACTION_PHONE_STATE_CHANGED">ACTION_PHONE_STATE_CHANGED</a></code>
+ containing the disconnect message.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.CALL_DISCONNECT_MESSAGE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CALL_SUBJECT"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_CALL_SUBJECT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CALL_SUBJECT</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> containing a string call
+ subject which will be associated with an outgoing call.  Should only be specified if the
+ <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> supports the capability <code><a href="../../../reference/android/telecom/PhoneAccount.html#CAPABILITY_CALL_SUBJECT">CAPABILITY_CALL_SUBJECT</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.CALL_SUBJECT"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME</pre>
+    
+    
+
+    
+  <p>Extra value used to provide the package name for <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER">ACTION_CHANGE_DEFAULT_DIALER</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.CHANGE_DEFAULT_DIALER_PACKAGE_NAME"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_INCOMING_CALL_ADDRESS"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_INCOMING_CALL_ADDRESS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_INCOMING_CALL_ADDRESS</pre>
+    
+    
+
+    
+  <p>The extra used by a <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> to provide the handle of the caller that
+ has initiated a new incoming call.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.INCOMING_CALL_ADDRESS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_INCOMING_CALL_EXTRAS"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_INCOMING_CALL_EXTRAS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_INCOMING_CALL_EXTRAS</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/telecom/TelecomManager.html#ACTION_INCOMING_CALL">ACTION_INCOMING_CALL</a></code> containing a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> which contains
+ metadata about the call. This <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> will be returned to the
+ <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.INCOMING_CALL_EXTRAS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_NOTIFICATION_COUNT"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">EXTRA_NOTIFICATION_COUNT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_NOTIFICATION_COUNT</pre>
+    
+    
+
+    
+  <p>The number of calls associated with the notification. If the number is zero then the missed
+ call notification should be dismissed.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.NOTIFICATION_COUNT"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_NOTIFICATION_PHONE_NUMBER"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">EXTRA_NOTIFICATION_PHONE_NUMBER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_NOTIFICATION_PHONE_NUMBER</pre>
+    
+    
+
+    
+  <p>The number associated with the missed calls. This number is only relevant
+ when EXTRA_NOTIFICATION_COUNT is 1.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.NOTIFICATION_PHONE_NUMBER"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_OUTGOING_CALL_EXTRAS"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_OUTGOING_CALL_EXTRAS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_OUTGOING_CALL_EXTRAS</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> and
+ <code><a href="../../../reference/android/content/Intent.html#ACTION_DIAL">ACTION_DIAL</a></code> <code>Intent</code> containing a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code>
+ which contains metadata about the call. This <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> will be saved into
+ <code>Call.Details</code> and passed to the <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> when placing the call.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.OUTGOING_CALL_EXTRAS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_PHONE_ACCOUNT_HANDLE"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_PHONE_ACCOUNT_HANDLE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_PHONE_ACCOUNT_HANDLE</pre>
+    
+    
+
+    
+  <p>The extra used with an <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> and
+ <code><a href="../../../reference/android/content/Intent.html#ACTION_DIAL">ACTION_DIAL</a></code> <code>Intent</code> to specify a
+ <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> to use when making the call.
+ <p class="note">
+ Retrieve with <code><a href="../../../reference/android/content/Intent.html#getParcelableExtra(java.lang.String)">getParcelableExtra(String)</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.PHONE_ACCOUNT_HANDLE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_START_CALL_WITH_SPEAKERPHONE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">EXTRA_START_CALL_WITH_SPEAKERPHONE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_START_CALL_WITH_SPEAKERPHONE</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> containing a boolean that
+ determines whether the speakerphone should be automatically turned on for an outgoing call.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.START_CALL_WITH_SPEAKERPHONE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_START_CALL_WITH_VIDEO_STATE"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_START_CALL_WITH_VIDEO_STATE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_START_CALL_WITH_VIDEO_STATE</pre>
+    
+    
+
+    
+  <p>Optional extra for <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> containing an integer that
+ determines the desired video state for an outgoing call.
+ Valid options:
+ <code><a href="../../../reference/android/telecom/VideoProfile.html#STATE_AUDIO_ONLY">STATE_AUDIO_ONLY</a></code>,
+ <code><a href="../../../reference/android/telecom/VideoProfile.html#STATE_BIDIRECTIONAL">STATE_BIDIRECTIONAL</a></code>,
+ <code><a href="../../../reference/android/telecom/VideoProfile.html#STATE_RX_ENABLED">STATE_RX_ENABLED</a></code>,
+ <code><a href="../../../reference/android/telecom/VideoProfile.html#STATE_TX_ENABLED">STATE_TX_ENABLED</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.START_CALL_WITH_VIDEO_STATE"
+      
+    
+</div>
+
+
+
+<A NAME="GATEWAY_ORIGINAL_ADDRESS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">GATEWAY_ORIGINAL_ADDRESS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> GATEWAY_ORIGINAL_ADDRESS</pre>
+    
+    
+
+    
+  <p>An optional <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> intent extra corresponding to the
+ original address to dial for the call. This is used when an alternative gateway address is
+ provided to recall the original address.
+ The value is a <code><a href="../../../reference/android/net/Uri.html">Uri</a></code>.
+
+ (See <code><a href="../../../reference/android/telecom/TelecomManager.html#GATEWAY_PROVIDER_PACKAGE">GATEWAY_PROVIDER_PACKAGE</a></code> for details)
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.GATEWAY_ORIGINAL_ADDRESS"
+      
+    
+</div>
+
+
+
+<A NAME="GATEWAY_PROVIDER_PACKAGE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">GATEWAY_PROVIDER_PACKAGE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> GATEWAY_PROVIDER_PACKAGE</pre>
+    
+    
+
+    
+  <p>An optional <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> intent extra denoting the
+ package name of the app specifying an alternative gateway for the call.
+ The value is a string.
+
+ (The following comment corresponds to the all GATEWAY_* extras)
+ An app which sends the <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code> intent can specify an
+ alternative address to dial which is different from the one specified and displayed to
+ the user. This alternative address is referred to as the gateway address.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.extra.GATEWAY_PROVIDER_PACKAGE"
+      
+    
+</div>
+
+
+
+<A NAME="METADATA_IN_CALL_SERVICE_RINGING"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">METADATA_IN_CALL_SERVICE_RINGING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> METADATA_IN_CALL_SERVICE_RINGING</pre>
+    
+    
+
+    
+  <p>A boolean meta-data value indicating whether an <code><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></code> implements ringing.
+ Dialer implementations (see <code><a href="../../../reference/android/telecom/TelecomManager.html#getDefaultDialerPackage()">getDefaultDialerPackage()</a></code>) which would also like to
+ override the system provided ringing should set this meta-data to <code>true</code> in the
+ manifest registration of their <code><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.IN_CALL_SERVICE_RINGING"
+      
+    
+</div>
+
+
+
+<A NAME="METADATA_IN_CALL_SERVICE_UI"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">METADATA_IN_CALL_SERVICE_UI</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> METADATA_IN_CALL_SERVICE_UI</pre>
+    
+    
+
+    
+  <p>A boolean meta-data value indicating whether an <code><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></code> implements an
+ in-call user interface. Dialer implementations (see <code><a href="../../../reference/android/telecom/TelecomManager.html#getDefaultDialerPackage()">getDefaultDialerPackage()</a></code>) which
+ would also like to replace the in-call interface should set this meta-data to <code>true</code> in
+ the manifest registration of their <code><a href="../../../reference/android/telecom/InCallService.html">InCallService</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.telecom.IN_CALL_SERVICE_UI"
+      
+    
+</div>
+
+
+
+<A NAME="PRESENTATION_ALLOWED"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">PRESENTATION_ALLOWED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int PRESENTATION_ALLOWED</pre>
+    
+    
+
+    
+  <p>Indicates that the address or number of a call is allowed to be displayed for caller ID.
+</p>
+
+    
+      <p>Constant Value:
+      
+          1
+          (0x00000001)
+      
+    
+</div>
+
+
+
+<A NAME="PRESENTATION_PAYPHONE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">PRESENTATION_PAYPHONE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int PRESENTATION_PAYPHONE</pre>
+    
+    
+
+    
+  <p>Indicates that the address or number of a call belongs to a pay phone.
+</p>
+
+    
+      <p>Constant Value:
+      
+          4
+          (0x00000004)
+      
+    
+</div>
+
+
+
+<A NAME="PRESENTATION_RESTRICTED"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">PRESENTATION_RESTRICTED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int PRESENTATION_RESTRICTED</pre>
+    
+    
+
+    
+  <p>Indicates that the address or number of a call is blocked by the other party.
+</p>
+
+    
+      <p>Constant Value:
+      
+          2
+          (0x00000002)
+      
+    
+</div>
+
+
+
+<A NAME="PRESENTATION_UNKNOWN"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">PRESENTATION_UNKNOWN</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int PRESENTATION_UNKNOWN</pre>
+    
+    
+
+    
+  <p>Indicates that the address or number of a call is not specified or known by the carrier.
+</p>
+
+    
+      <p>Constant Value:
+      
+          3
+          (0x00000003)
+      
+    
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2 class="api-section">Public methods</h2>
+
+
+
+<A NAME="addNewIncomingCall(android.telecom.PhoneAccountHandle, android.os.Bundle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">addNewIncomingCall</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void addNewIncomingCall (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> phoneAccount, 
+                <a href="../../../reference/android/os/Bundle.html">Bundle</a> extras)</pre>
+    
+    
+
+    
+  <p>Registers a new incoming call. A <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> should invoke this method when it
+ has an incoming call. The specified <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> must have been registered
+ with <code><a href="../../../reference/android/telecom/TelecomManager.html#registerPhoneAccount(android.telecom.PhoneAccount)">registerPhoneAccount(PhoneAccount)</a></code> and the user must have enabled the corresponding
+ <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>. This can be checked using <code><a href="../../../reference/android/telecom/TelecomManager.html#getPhoneAccount(android.telecom.PhoneAccountHandle)">getPhoneAccount(PhoneAccountHandle)</a></code>. Once invoked, this
+ method will cause the system to bind to the <code><a href="../../../reference/android/telecom/ConnectionService.html">ConnectionService</a></code> associated with the
+ <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> and request additional information about the call
+ (See <code><a href="../../../reference/android/telecom/ConnectionService.html#onCreateIncomingConnection(android.telecom.PhoneAccountHandle, android.telecom.ConnectionRequest)">onCreateIncomingConnection(PhoneAccountHandle, ConnectionRequest)</a></code>) before starting the incoming
+ call UI.
+ <p>
+ A <code><a href="../../../reference/java/lang/SecurityException.html">SecurityException</a></code> will be thrown if either the <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> does not
+ correspond to a registered <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> or the associated <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> is not
+ currently enabled by the user.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>phoneAccount</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          A <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> registered with
+            <code><a href="../../../reference/android/telecom/TelecomManager.html#registerPhoneAccount(android.telecom.PhoneAccount)">registerPhoneAccount(PhoneAccount)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>extras</code></td>
+        <td width="100%">
+          <code>Bundle</code>:
+          A bundle that will be passed through to
+            <code><a href="../../../reference/android/telecom/ConnectionService.html#onCreateIncomingConnection(android.telecom.PhoneAccountHandle, android.telecom.ConnectionRequest)">onCreateIncomingConnection(PhoneAccountHandle, ConnectionRequest)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="cancelMissedCallsNotification()"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">cancelMissedCallsNotification</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void cancelMissedCallsNotification ()</pre>
+    
+    
+
+    
+  <p>Removes the missed-call notification if one is present.
+ <p>
+ Requires that the method-caller be set as the system dialer app.
+ </p>
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">MODIFY_PHONE_STATE</a></code>
+</p>
+
+</div>
+
+
+<A NAME="createManageBlockedNumbersIntent()"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">createManageBlockedNumbersIntent</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/content/Intent.html">Intent</a> createManageBlockedNumbersIntent ()</pre>
+    
+    
+
+    
+  <p>Creates the <code><a href="../../../reference/android/content/Intent.html">Intent</a></code> which can be used with <code><a href="../../../reference/android/content/Context.html#startActivity(android.content.Intent)">startActivity(Intent)</a></code> to
+ launch the activity to manage blocked numbers.
+ <p> The activity will display the UI to manage blocked numbers only if
+ <code><a href="../../../reference/android/provider/BlockedNumberContract.html#canCurrentUserBlockNumbers(android.content.Context)">canCurrentUserBlockNumbers(Context)</a></code> returns
+ <code>true</code> for the current user.
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/content/Intent.html">Intent</a></code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getAdnUriForPhoneAccount(android.telecom.PhoneAccountHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getAdnUriForPhoneAccount</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/net/Uri.html">Uri</a> getAdnUriForPhoneAccount (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)</pre>
+    
+    
+
+    
+  <p>Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">MODIFY_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>accountHandle</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          The handle for the account to derive an adn query URI for or
+ <code>null</code> to return a URI which will use the default account.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/net/Uri.html">Uri</a></code></td>
+        <td width="100%">The URI (with the content:// scheme) specific to the specified <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>
+ for the the content retrieve.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getCallCapablePhoneAccounts()"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getCallCapablePhoneAccounts</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/util/List.html">List</a>&lt;<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a>&gt; getCallCapablePhoneAccounts ()</pre>
+    
+    
+
+    
+  <p>Returns a list of <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>s which can be used to make and receive phone
+ calls. The returned list includes only those accounts which have been explicitly enabled
+ by the user.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code></p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/java/util/List.html">List</a>&lt;<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a>&gt;</code></td>
+        <td width="100%">A list of <code>PhoneAccountHandle</code> objects.
+</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_PHONE_ACCOUNT_HANDLE">EXTRA_PHONE_ACCOUNT_HANDLE</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="getDefaultDialerPackage()"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getDefaultDialerPackage</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> getDefaultDialerPackage ()</pre>
+    
+    
+
+    
+  <p>Used to determine the currently selected default dialer package.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">package name for the default dialer package or null if no package has been
+         selected as the default dialer.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getDefaultOutgoingPhoneAccount(java.lang.String)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getDefaultOutgoingPhoneAccount</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> getDefaultOutgoingPhoneAccount (<a href="../../../reference/java/lang/String.html">String</a> uriScheme)</pre>
+    
+    
+
+    
+  <p>Return the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> which will be used to place outgoing calls to addresses with
+ the specified <code>uriScheme</code>. This <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> will always be a member of the
+ list which is returned from invoking <code><a href="../../../reference/android/telecom/TelecomManager.html#getCallCapablePhoneAccounts()">getCallCapablePhoneAccounts()</a></code>. The specific
+ account returned depends on the following priorities:
+ <ul>
+ <li> If the user-selected default <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> supports the specified scheme, it will
+ be returned.
+ </li>
+ <li> If there exists only one <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> that supports the specified scheme, it
+ will be returned.
+ </li>
+ </ul>
+ <p>
+ If no <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> fits the criteria above, this method will return <code>null</code>.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>uriScheme</code></td>
+        <td width="100%">
+          <code>String</code>:
+          The URI scheme.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code></td>
+        <td width="100%">The <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> corresponding to the account to be used.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getLine1Number(android.telecom.PhoneAccountHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getLine1Number</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> getLine1Number (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)</pre>
+    
+    
+
+    
+  <p>Return the line 1 phone number for given phone account.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>accountHandle</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          The handle for the account retrieve a number for.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">A string representation of the line 1 phone number.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getPhoneAccount(android.telecom.PhoneAccountHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getPhoneAccount</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a> getPhoneAccount (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> account)</pre>
+    
+    
+
+    
+  <p>Return the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> for a specified <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>. Object includes
+ resources which can be used in a user interface.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>account</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          The <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code>.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code></td>
+        <td width="100%">The <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> object.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getSimCallManager()"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getSimCallManager</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> getSimCallManager ()</pre>
+    
+    
+
+    
+  <p>Returns the current SIM call manager. Apps must be prepared for this method to return
+ <code>null</code>, indicating that there currently exists no user-chosen default
+ <code>PhoneAccount</code>.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code></td>
+        <td width="100%">The phone account handle of the current sim call manager.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getVoiceMailNumber(android.telecom.PhoneAccountHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getVoiceMailNumber</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> getVoiceMailNumber (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)</pre>
+    
+    
+
+    
+  <p>Return the voicemail number for a given phone account.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>accountHandle</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          The handle for the phone account.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">The voicemail number for the phone account, and <code>null</code> if one has not been
+         configured.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="handleMmi(java.lang.String)"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">handleMmi</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean handleMmi (<a href="../../../reference/java/lang/String.html">String</a> dialString)</pre>
+    
+    
+
+    
+  <p>Processes the specified dial string as an MMI code.
+ MMI codes are any sequence of characters entered into the dialpad that contain a "*" or "#".
+ Some of these sequences launch special behavior through handled by Telephony.
+ This method uses the default subscription.
+ <p>
+ Requires that the method-caller be set as the system dialer app.
+ </p>
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">MODIFY_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>dialString</code></td>
+        <td width="100%">
+          <code>String</code>:
+          The digits to dial.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">True if the digits were processed as an MMI code, false otherwise.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="handleMmi(java.lang.String, android.telecom.PhoneAccountHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">handleMmi</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean handleMmi (<a href="../../../reference/java/lang/String.html">String</a> dialString, 
+                <a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)</pre>
+    
+    
+
+    
+  <p>Processes the specified dial string as an MMI code.
+ MMI codes are any sequence of characters entered into the dialpad that contain a "*" or "#".
+ Some of these sequences launch special behavior through handled by Telephony.
+ <p>
+ Requires that the method-caller be set as the system dialer app.
+ </p>
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">MODIFY_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>dialString</code></td>
+        <td width="100%">
+          <code>String</code>:
+          The digits to dial.</td>
+      </tr>
+      <tr>
+        <td><code>accountHandle</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          The handle for the account the MMI code should apply to.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">True if the digits were processed as an MMI code, false otherwise.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isInCall()"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">isInCall</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isInCall ()</pre>
+    
+    
+
+    
+  <p>Returns whether there is an ongoing phone call (can be in dialing, ringing, active or holding
+ states).
+ <p>
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code>
+ </p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isVoiceMailNumber(android.telecom.PhoneAccountHandle, java.lang.String)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">isVoiceMailNumber</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isVoiceMailNumber (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle, 
+                <a href="../../../reference/java/lang/String.html">String</a> number)</pre>
+    
+    
+
+    
+  <p>Return whether a given phone number is the configured voicemail number for a
+ particular phone account.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>accountHandle</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          The handle for the account to check the voicemail number against</td>
+      </tr>
+      <tr>
+        <td><code>number</code></td>
+        <td width="100%">
+          <code>String</code>:
+          The number to look up.
+</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="placeCall(android.net.Uri, android.os.Bundle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">placeCall</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void placeCall (<a href="../../../reference/android/net/Uri.html">Uri</a> address, 
+                <a href="../../../reference/android/os/Bundle.html">Bundle</a> extras)</pre>
+    
+    
+
+    
+  <p>Places a new outgoing call to the provided address using the system telecom service with
+ the specified extras.
+
+ This method is equivalent to placing an outgoing call using <code><a href="../../../reference/android/content/Intent.html#ACTION_CALL">ACTION_CALL</a></code>,
+ except that the outgoing call will always be sent via the system telecom service. If
+ method-caller is either the user selected default dialer app or preloaded system dialer
+ app, then emergency calls will also be allowed.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#CALL_PHONE">CALL_PHONE</a></code>
+
+ Usage example:
+ <pre>
+ Uri uri = Uri.fromParts("tel", "12345", null);
+ Bundle extras = new Bundle();
+ extras.putBoolean(TelecomManager.EXTRA_START_CALL_WITH_SPEAKERPHONE, true);
+ telecomManager.placeCall(uri, extras);
+ </pre>
+
+ The following keys are supported in the supplied extras.
+ <ul>
+   <li><code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_OUTGOING_CALL_EXTRAS">EXTRA_OUTGOING_CALL_EXTRAS</a></code></li>
+   <li><code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_PHONE_ACCOUNT_HANDLE">EXTRA_PHONE_ACCOUNT_HANDLE</a></code></li>
+   <li><code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_START_CALL_WITH_SPEAKERPHONE">EXTRA_START_CALL_WITH_SPEAKERPHONE</a></code></li>
+   <li><code><a href="../../../reference/android/telecom/TelecomManager.html#EXTRA_START_CALL_WITH_VIDEO_STATE">EXTRA_START_CALL_WITH_VIDEO_STATE</a></code></li>
+ </ul></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>address</code></td>
+        <td width="100%">
+          <code>Uri</code>:
+          The address to make the call to.</td>
+      </tr>
+      <tr>
+        <td><code>extras</code></td>
+        <td width="100%">
+          <code>Bundle</code>:
+          Bundle of extras to use with the call.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="registerPhoneAccount(android.telecom.PhoneAccount)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">registerPhoneAccount</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void registerPhoneAccount (<a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a> account)</pre>
+    
+    
+
+    
+  <p>Register a <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> for use by the system that will be stored in Device Encrypted
+ storage. When registering <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>s, existing registrations will be overwritten
+ if the <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> matches that of a <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> which is already
+ registered. Once registered, the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> is listed to the user as an option
+ when placing calls. The user may still need to enable the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> within
+ the phone app settings before the account is usable.
+ <p>
+ A <code><a href="../../../reference/java/lang/SecurityException.html">SecurityException</a></code> will be thrown if an app tries to register a
+ <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> where the package name specified within
+ <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html#getComponentName()">getComponentName()</a></code> does not match the package name of the app.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>account</code></td>
+        <td width="100%">
+          <code>PhoneAccount</code>:
+          The complete <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="showInCallScreen(boolean)"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">showInCallScreen</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void showInCallScreen (boolean showDialpad)</pre>
+    
+    
+
+    
+  <p>Brings the in-call screen to the foreground if there is an ongoing call. If there is
+ currently no ongoing call, then this method does nothing.
+ <p>
+ Requires that the method-caller be set as the system dialer app or have the
+ <code><a href="../../../reference/android/Manifest.permission.html#READ_PHONE_STATE">READ_PHONE_STATE</a></code> permission.
+ </p></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>showDialpad</code></td>
+        <td width="100%">
+          <code>boolean</code>:
+          Brings up the in-call dialpad as part of showing the in-call screen.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="silenceRinger()"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">silenceRinger</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void silenceRinger ()</pre>
+    
+    
+
+    
+  <p>Silences the ringer if a ringing call exists.
+
+ Requires permission: <code><a href="../../../reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">MODIFY_PHONE_STATE</a></code>
+</p>
+
+</div>
+
+
+<A NAME="unregisterPhoneAccount(android.telecom.PhoneAccountHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">unregisterPhoneAccount</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void unregisterPhoneAccount (<a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a> accountHandle)</pre>
+    
+    
+
+    
+  <p>Remove a <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> registration from the system.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>accountHandle</code></td>
+        <td width="100%">
+          <code>PhoneAccountHandle</code>:
+          A <code><a href="../../../reference/android/telecom/PhoneAccountHandle.html">PhoneAccountHandle</a></code> for the <code><a href="../../../reference/android/telecom/PhoneAccount.html">PhoneAccount</a></code> to unregister.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</div><!-- end jd-content -->
+
+
+
+
+
+<div class="wrap">
+  <div class="dac-footer">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" id="newsletter" data-modal-toggle="newsletter" href="javascript:;">Get news &amp; tips <span
+          class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i></span></a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</a>
+          <a class="dac-footer-contact-link" href="/support.html">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-button-social dac-youtube dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><i class="dac-sprite dac-youtube"></i></a>
+          <a class="dac-button-social dac-gplus dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers"><i class="dac-sprite dac-gplus"></i></a>
+          <a class="dac-button-social dac-twitter dac-footer-social-link" href="https://twitter.com/AndroidDev"><i class="dac-sprite dac-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+
+    
+      <p class="dac-footer-copyright">
+        
+  Except as noted, this content is licensed under <a
+  href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
+  For details and restrictions, see the <a href="../../../license.html">
+  Content License</a>.
+
+      </p>
+      <p class="dac-footer-build">
+        
+  
+    Android 6.0&nbsp;r1 &mdash;
+  
+  <script src="../../../timestamp.js" type="text/javascript"></script>
+  <script>document.write(BUILD_TIMESTAMP)</script>
+
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="/about/android.html">About Android</a>
+      <a href="/auto/index.html">Auto</a>
+      <a href="/tv/index.html">TV</a>
+      <a href="/wear/index.html">Wear</a>
+      <a href="/legal.html">Legal</a>
+
+      <span id="language" class="locales">
+        <select name="language" onchange="changeLangPref(this.value, true)">
+          <option value="en" selected="selected">English</option>
+          <option value="es">Español</option>
+          <option value="in">Bahasa Indonesia</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt-br">Português Brasileiro</option>
+          <option value="ru">Русский</option>
+          <option value="vi">tiếng Việt</option>
+          <option value="zh-cn">中文（简体)</option>
+          <option value="zh-tw">中文（繁體)</option>
+        </select>
+      </span>
+    </p>
+  </div>
+</div>
+<!-- end footer -->
+
+
+
+  
+
+
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.title"></h2>
+            <p class="dac-modal-header-subtitle" data-t="newsletter.requiredHint"></p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.successTitle">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <input type="hidden" name="entry.935454734" data-newsletter-language>
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel" data-t="newsletter.name">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel" data-t="newsletter.email">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel" data-t="newsletter.company">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel" data-t="newsletter.appUrl">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend"><span data-t="newsletter.business.label">Which best describes your business:</span><span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label" data-t="newsletter.business.apps">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label" data-t="newsletter.business.games">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label" data-t="newsletter.business.both">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside"><span data-t="newsletter.confirmMailingList"></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside"><span data-t="newsletter.privacyPolicy" data-t-html></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message" data-t="newsletter.successDetails"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end newsletter modal -->
+
+<!-- start reset language header modal -->
+<div data-modal="langform" class="dac-modal" id="langform">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title"></h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+            <fieldset class="dac-form-fieldset">
+              <div class="cols">
+                <div class="col-2of2 langform-leftCol">
+                  <p id="resetLangText"></p>
+                  <p id="resetLangCta"></p>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+              <button class="button dac-primary dac-modal-action lang yes" data-t="newsletter.resetLangButtonYes" data-modal-toggle></button>
+              <button class="button dac-primary dac-modal-action lang no" data-t="newsletter.resetLangButtonNo" data-modal-toggle></button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- end langreset modal -->
+
+
+</div> <!-- end body-content --> 
+
+
+
+
+<script src="https://developer.android.com/ytblogger_lists_unified.js" defer></script>
+<script src="/jd_lists_unified_en.js?v=17" defer></script>
+<script src="/reference/lists.js?v=17" defer></script>
+<script src="/reference/gcm_lists.js?v=17" defer></script>
+<script src="/reference/gms_lists.js?v=17" defer></script>
+<script>
+  // Load localized metadata.
+  (function(lang) {
+    if (lang === 'en') { return; }
+
+    // Write it to the document so it gets evaluated before DOMContentReady.
+    document.write('<script src="/jd_lists_unified_' + lang + '.js?v=14" defer></' + 'script>');
+  })(getLangPref())
+</script>
+
+
+</body>
+</html>

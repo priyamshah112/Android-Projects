@@ -1,0 +1,4753 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico" />
+<link rel="alternate" href="http://developer.android.com/" hreflang="en" />
+<link rel="alternate" href="http://developer.android.com/intl/es/" hreflang="es" />
+<link rel="alternate" href="http://developer.android.com/intl/id/" hreflang="id" />
+<link rel="alternate" href="http://developer.android.com/intl/ja/" hreflang="ja" />
+<link rel="alternate" href="http://developer.android.com/intl/ko/" hreflang="ko" />
+<link rel="alternate" href="http://developer.android.com/intl/pt-br/" hreflang="pt-br" />
+<link rel="alternate" href="http://developer.android.com/intl/ru/" hreflang="ru" />
+<link rel="alternate" href="http://developer.android.com/intl/vi/" hreflang="vi" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-cn/" hreflang="zh-cn" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-tw/" hreflang="zh-tw" />
+
+
+<title>DeviceAdminReceiver - Android SDK | Android Developers
+</title>
+
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+  title="roboto">
+
+<link href="../../../../assets/css/default.css?v=16" rel="stylesheet" type="text/css">
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "../../../../";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</script>
+<script src="../../../../assets/js/docs.js?v=17" type="text/javascript"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+</head>
+
+<body class="gc-documentation develop reference api apilevel-8">
+<div id="doc-api-level" class="8" style="display:none"></div>
+
+
+  
+  <a name="top"></a>
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div class="dac-header " id="header">
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="javascript:;" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        <a class="dac-header-logo" href="../../../../index.html">
+          <img class="dac-header-logo-image" src="../../../../assets/images/android_logo.png"
+              srcset="../../../../assets/images/android_logo@2x.png 2x"
+              width="32" height="36" alt="Android" /> Developers
+          </a>
+
+        <ul class="dac-header-tabs">
+          <li>
+          <a class="dac-header-tab" href="../../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../../distribute/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          </li>
+        </ul>
+
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+
+        
+        
+        
+  <form data-search class="dac-header-search">
+    <button class="dac-header-search-close" data-search-close>
+      <i class="dac-sprite dac-back-arrow"></i>
+    </button>
+
+    <div class="dac-header-search-inner">
+      <i class="dac-sprite dac-search-white dac-header-search-icon"></i>
+      <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" class="dac-header-search-input" placeholder="Search" />
+      <button class="dac-header-search-clear dac-hidden" data-search-clear>
+        <i class="dac-sprite dac-close-black"></i>
+      </button>
+    </div>
+  </form>
+
+        
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+  </div> <!--end header-wrapper -->
+
+  
+  <!-- Navigation-->
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+
+    <div class="dac-nav-sidebar" data-swap data-dynamic="false" data-transition-speed="300" data-dac-nav>
+      <div data-swap-container>
+        
+  
+    <a class="dac-nav-back-button dac-swap-section dac-up dac-no-anim" data-swap-button href="javascript:;">
+      <i class="dac-sprite dac-nav-back"></i> <span class="dac-nav-back-title">Back</span>
+    </a>
+    <div class="dac-nav-sub dac-swap-section dac-right dac-active" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      
+        
+  <!-- Fullscreen toggler -->
+  <button data-fullscreen class="dac-nav-fullscreen">
+    <i class="dac-sprite dac-fullscreen"></i>
+  </button>
+
+  <script>$('[data-fullscreen]').dacFullscreen();</script>
+  <!-- End: Fullscreen toggler -->
+
+  
+    <div id="devdoc-nav">
+      <div id="api-nav-header">
+        <div id="api-level-toggle">
+          <label for="apiLevelCheckbox" class="disabled"
+                 title="Select your target API level to dim unavailable APIs">API level: </label>
+          <div class="select-wrapper">
+            <select id="apiLevelSelector">
+              <!-- option elements added by buildApiLevelSelector() -->
+            </select>
+          </div>
+        </div><!-- end toggle -->
+        <div id="api-nav-title">Android APIs</div>
+      </div><!-- end nav header -->
+      <script>
+        var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24' ];
+        buildApiLevelSelector();
+      </script>
+
+      <div class="dac-reference-nav" data-reference-tree>
+        <ul class="dac-reference-nav-list" data-reference-namespaces>
+          
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/package-summary.html">android</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/accessibilityservice/package-summary.html">android.accessibilityservice</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../../reference/android/accounts/package-summary.html">android.accounts</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../../reference/android/animation/package-summary.html">android.animation</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/annotation/package-summary.html">android.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/app/package-summary.html">android.app</a></li>
+    <li class="selected api apilevel-8">
+  <a href="../../../../reference/android/app/admin/package-summary.html">android.app.admin</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/app/assist/package-summary.html">android.app.assist</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/android/app/backup/package-summary.html">android.app.backup</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/app/job/package-summary.html">android.app.job</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/app/usage/package-summary.html">android.app.usage</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/appwidget/package-summary.html">android.appwidget</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../../reference/android/bluetooth/package-summary.html">android.bluetooth</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/bluetooth/le/package-summary.html">android.bluetooth.le</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/content/package-summary.html">android.content</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/content/pm/package-summary.html">android.content.pm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/content/res/package-summary.html">android.content.res</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/database/package-summary.html">android.database</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/database/sqlite/package-summary.html">android.database.sqlite</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/databinding/package-summary.html">android.databinding</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../../reference/android/drm/package-summary.html">android.drm</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/gesture/package-summary.html">android.gesture</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/graphics/package-summary.html">android.graphics</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/graphics/drawable/package-summary.html">android.graphics.drawable</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/graphics/drawable/shapes/package-summary.html">android.graphics.drawable.shapes</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/graphics/pdf/package-summary.html">android.graphics.pdf</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/hardware/package-summary.html">android.hardware</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/hardware/camera2/package-summary.html">android.hardware.camera2</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/hardware/camera2/params/package-summary.html">android.hardware.camera2.params</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../../reference/android/hardware/display/package-summary.html">android.hardware.display</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/hardware/fingerprint/package-summary.html">android.hardware.fingerprint</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/hardware/input/package-summary.html">android.hardware.input</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../../reference/android/hardware/usb/package-summary.html">android.hardware.usb</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/lang/package-summary.html">android.icu.lang</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/math/package-summary.html">android.icu.math</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/text/package-summary.html">android.icu.text</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/icu/util/package-summary.html">android.icu.util</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/inputmethodservice/package-summary.html">android.inputmethodservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/location/package-summary.html">android.location</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/media/package-summary.html">android.media</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/media/audiofx/package-summary.html">android.media.audiofx</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/browse/package-summary.html">android.media.browse</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/media/effect/package-summary.html">android.media.effect</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/media/midi/package-summary.html">android.media.midi</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/projection/package-summary.html">android.media.projection</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/session/package-summary.html">android.media.session</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/media/tv/package-summary.html">android.media.tv</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../../reference/android/mtp/package-summary.html">android.mtp</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/net/package-summary.html">android.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/net/http/package-summary.html">android.net.http</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/net/nsd/package-summary.html">android.net.nsd</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../../reference/android/net/rtp/package-summary.html">android.net.rtp</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/net/sip/package-summary.html">android.net.sip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/net/wifi/package-summary.html">android.net.wifi</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/net/wifi/p2p/package-summary.html">android.net.wifi.p2p</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../../reference/android/net/wifi/p2p/nsd/package-summary.html">android.net.wifi.p2p.nsd</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/nfc/package-summary.html">android.nfc</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/nfc/cardemulation/package-summary.html">android.nfc.cardemulation</a></li>
+    <li class="api apilevel-10">
+  <a href="../../../../reference/android/nfc/tech/package-summary.html">android.nfc.tech</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/opengl/package-summary.html">android.opengl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/os/package-summary.html">android.os</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/os/health/package-summary.html">android.os.health</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../../reference/android/os/storage/package-summary.html">android.os.storage</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/preference/package-summary.html">android.preference</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/print/package-summary.html">android.print</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/print/pdf/package-summary.html">android.print.pdf</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/printservice/package-summary.html">android.printservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/provider/package-summary.html">android.provider</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../../reference/android/renderscript/package-summary.html">android.renderscript</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/sax/package-summary.html">android.sax</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/security/package-summary.html">android.security</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/security/keystore/package-summary.html">android.security.keystore</a></li>
+    <li class="api apilevel-22">
+  <a href="../../../../reference/android/service/carrier/package-summary.html">android.service.carrier</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../../reference/android/service/chooser/package-summary.html">android.service.chooser</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../../reference/android/service/dreams/package-summary.html">android.service.dreams</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/service/media/package-summary.html">android.service.media</a></li>
+    <li class="api apilevel-18">
+  <a href="../../../../reference/android/service/notification/package-summary.html">android.service.notification</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/service/quicksettings/package-summary.html">android.service.quicksettings</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/service/restrictions/package-summary.html">android.service.restrictions</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/service/textservice/package-summary.html">android.service.textservice</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/service/voice/package-summary.html">android.service.voice</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/android/service/vr/package-summary.html">android.service.vr</a></li>
+    <li class="api apilevel-7">
+  <a href="../../../../reference/android/service/wallpaper/package-summary.html">android.service.wallpaper</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/speech/package-summary.html">android.speech</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/speech/tts/package-summary.html">android.speech.tts</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/annotation/package-summary.html">android.support.annotation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/annotations/package-summary.html">android.support.annotations</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/app/recommendation/package-summary.html">android.support.app.recommendation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/customtabs/package-summary.html">android.support.customtabs</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/design/package-summary.html">android.support.design</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/design/widget/package-summary.html">android.support.design.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/graphics/drawable/package-summary.html">android.support.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/multidex/package-summary.html">android.support.multidex</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/percent/package-summary.html">android.support.percent</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/provider/package-summary.html">android.support.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v13/app/package-summary.html">android.support.v13.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v13/view/package-summary.html">android.support.v13.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v14/preference/package-summary.html">android.support.v14.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/package-summary.html">android.support.v17.leanback</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/app/package-summary.html">android.support.v17.leanback.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/database/package-summary.html">android.support.v17.leanback.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/graphics/package-summary.html">android.support.v17.leanback.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/system/package-summary.html">android.support.v17.leanback.system</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/widget/package-summary.html">android.support.v17.leanback.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/leanback/widget/picker/package-summary.html">android.support.v17.leanback.widget.picker</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v17/preference/package-summary.html">android.support.v17.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/package-summary.html">android.support.v4</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/accessibilityservice/package-summary.html">android.support.v4.accessibilityservice</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/app/package-summary.html">android.support.v4.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/content/package-summary.html">android.support.v4.content</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/content/pm/package-summary.html">android.support.v4.content.pm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/content/res/package-summary.html">android.support.v4.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/database/package-summary.html">android.support.v4.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/graphics/package-summary.html">android.support.v4.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/graphics/drawable/package-summary.html">android.support.v4.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/hardware/display/package-summary.html">android.support.v4.hardware.display</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/hardware/fingerprint/package-summary.html">android.support.v4.hardware.fingerprint</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/media/package-summary.html">android.support.v4.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/media/session/package-summary.html">android.support.v4.media.session</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/net/package-summary.html">android.support.v4.net</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/os/package-summary.html">android.support.v4.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/print/package-summary.html">android.support.v4.print</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/provider/package-summary.html">android.support.v4.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/text/package-summary.html">android.support.v4.text</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/util/package-summary.html">android.support.v4.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/view/package-summary.html">android.support.v4.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/view/accessibility/package-summary.html">android.support.v4.view.accessibility</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/view/animation/package-summary.html">android.support.v4.view.animation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v4/widget/package-summary.html">android.support.v4.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/app/package-summary.html">android.support.v7.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/appcompat/package-summary.html">android.support.v7.appcompat</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/cardview/package-summary.html">android.support.v7.cardview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/content/res/package-summary.html">android.support.v7.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/graphics/package-summary.html">android.support.v7.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/graphics/drawable/package-summary.html">android.support.v7.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/gridlayout/package-summary.html">android.support.v7.gridlayout</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/media/package-summary.html">android.support.v7.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/mediarouter/package-summary.html">android.support.v7.mediarouter</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/palette/package-summary.html">android.support.v7.palette</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/preference/package-summary.html">android.support.v7.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/recyclerview/package-summary.html">android.support.v7.recyclerview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/util/package-summary.html">android.support.v7.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/view/package-summary.html">android.support.v7.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/widget/package-summary.html">android.support.v7.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/widget/helper/package-summary.html">android.support.v7.widget.helper</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v7/widget/util/package-summary.html">android.support.v7.widget.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/android/support/v8/renderscript/package-summary.html">android.support.v8.renderscript</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/system/package-summary.html">android.system</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../../reference/android/telecom/package-summary.html">android.telecom</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/telephony/package-summary.html">android.telephony</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../../reference/android/telephony/cdma/package-summary.html">android.telephony.cdma</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/telephony/gsm/package-summary.html">android.telephony.gsm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/package-summary.html">android.test</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/mock/package-summary.html">android.test.mock</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/suitebuilder/package-summary.html">android.test.suitebuilder</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/test/suitebuilder/annotation/package-summary.html">android.test.suitebuilder.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/package-summary.html">android.text</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/text/format/package-summary.html">android.text.format</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/method/package-summary.html">android.text.method</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/style/package-summary.html">android.text.style</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/text/util/package-summary.html">android.text.util</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../../reference/android/transition/package-summary.html">android.transition</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/util/package-summary.html">android.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/view/package-summary.html">android.view</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../../reference/android/view/accessibility/package-summary.html">android.view.accessibility</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/view/animation/package-summary.html">android.view.animation</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/android/view/inputmethod/package-summary.html">android.view.inputmethod</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../../reference/android/view/textservice/package-summary.html">android.view.textservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/webkit/package-summary.html">android.webkit</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/android/widget/package-summary.html">android.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/backup/package-summary.html">com.android.internal.backup</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/logging/package-summary.html">com.android.internal.logging</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/os/package-summary.html">com.android.internal.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/statusbar/package-summary.html">com.android.internal.statusbar</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/internal/widget/package-summary.html">com.android.internal.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../reference/com/android/test/runner/package-summary.html">com.android.test.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/dalvik/annotation/package-summary.html">dalvik.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/dalvik/bytecode/package-summary.html">dalvik.bytecode</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/dalvik/system/package-summary.html">dalvik.system</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/awt/font/package-summary.html">java.awt.font</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../../reference/java/beans/package-summary.html">java.beans</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/io/package-summary.html">java.io</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/package-summary.html">java.lang</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/annotation/package-summary.html">java.lang.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/ref/package-summary.html">java.lang.ref</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/lang/reflect/package-summary.html">java.lang.reflect</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/math/package-summary.html">java.math</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/net/package-summary.html">java.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/package-summary.html">java.nio</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/channels/package-summary.html">java.nio.channels</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/channels/spi/package-summary.html">java.nio.channels.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/charset/package-summary.html">java.nio.charset</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/nio/charset/spi/package-summary.html">java.nio.charset.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/package-summary.html">java.security</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/acl/package-summary.html">java.security.acl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/cert/package-summary.html">java.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/interfaces/package-summary.html">java.security.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/security/spec/package-summary.html">java.security.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/sql/package-summary.html">java.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/text/package-summary.html">java.text</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/package-summary.html">java.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/concurrent/package-summary.html">java.util.concurrent</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/concurrent/atomic/package-summary.html">java.util.concurrent.atomic</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/concurrent/locks/package-summary.html">java.util.concurrent.locks</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/java/util/function/package-summary.html">java.util.function</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/jar/package-summary.html">java.util.jar</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/logging/package-summary.html">java.util.logging</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/prefs/package-summary.html">java.util.prefs</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/regex/package-summary.html">java.util.regex</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../../reference/java/util/stream/package-summary.html">java.util.stream</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/java/util/zip/package-summary.html">java.util.zip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/crypto/package-summary.html">javax.crypto</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/crypto/interfaces/package-summary.html">javax.crypto.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/crypto/spec/package-summary.html">javax.crypto.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/microedition/khronos/egl/package-summary.html">javax.microedition.khronos.egl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/microedition/khronos/opengles/package-summary.html">javax.microedition.khronos.opengles</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/net/package-summary.html">javax.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/net/ssl/package-summary.html">javax.net.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/package-summary.html">javax.security.auth</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/callback/package-summary.html">javax.security.auth.callback</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/login/package-summary.html">javax.security.auth.login</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/auth/x500/package-summary.html">javax.security.auth.x500</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/security/cert/package-summary.html">javax.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/sql/package-summary.html">javax.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/xml/package-summary.html">javax.xml</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/datatype/package-summary.html">javax.xml.datatype</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/namespace/package-summary.html">javax.xml.namespace</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/javax/xml/parsers/package-summary.html">javax.xml.parsers</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/package-summary.html">javax.xml.transform</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/dom/package-summary.html">javax.xml.transform.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/sax/package-summary.html">javax.xml.transform.sax</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/transform/stream/package-summary.html">javax.xml.transform.stream</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/validation/package-summary.html">javax.xml.validation</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/javax/xml/xpath/package-summary.html">javax.xml.xpath</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/junit/framework/package-summary.html">junit.framework</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/junit/runner/package-summary.html">junit.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/conn/package-summary.html">org.apache.http.conn</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/conn/scheme/package-summary.html">org.apache.http.conn.scheme</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/conn/ssl/package-summary.html">org.apache.http.conn.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/apache/http/params/package-summary.html">org.apache.http.params</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/json/package-summary.html">org.json</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/w3c/dom/package-summary.html">org.w3c.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../../reference/org/w3c/dom/ls/package-summary.html">org.w3c.dom.ls</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xml/sax/package-summary.html">org.xml.sax</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xml/sax/ext/package-summary.html">org.xml.sax.ext</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xml/sax/helpers/package-summary.html">org.xml.sax.helpers</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xmlpull/v1/package-summary.html">org.xmlpull.v1</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../../reference/org/xmlpull/v1/sax2/package-summary.html">org.xmlpull.v1.sax2</a></li>
+        </ul>
+
+        
+        <ul data-reference-resources>
+          
+          
+          
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-8"><a href="../../../../reference/android/app/admin/DeviceAdminInfo.html">DeviceAdminInfo</a></li>
+          <li class="selected api apilevel-8"><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html">DeviceAdminReceiver</a></li>
+          <li class="api apilevel-8"><a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></li>
+          <li class="api apilevel-24"><a href="../../../../reference/android/app/admin/SecurityLog.html">SecurityLog</a></li>
+          <li class="api apilevel-24"><a href="../../../../reference/android/app/admin/SecurityLog.SecurityEvent.html">SecurityLog.SecurityEvent</a></li>
+          <li class="api apilevel-23"><a href="../../../../reference/android/app/admin/SystemUpdatePolicy.html">SystemUpdatePolicy</a></li>
+      </ul>
+    </li>
+          
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  
+
+      
+    </div>
+  
+
+        <ul id="dac-main-navigation" class="dac-nav-list dac-swap-section dac-left dac-no-anim">
+        <li class="dac-nav-item home">
+          <a class="dac-nav-link" href="../../../../index.html">Home</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary about">
+            <li class="dac-nav-item versions">
+              <a class="dac-nav-link" href="../../../../about/versions/marshmallow/index.html">Android</a>
+            </li>
+            <li class="dac-nav-item wear">
+              <a class="dac-nav-link" href="../../../../wear/index.html">Wear</a>
+            </li>
+            <li class="dac-nav-item tv">
+              <a class="dac-nav-link" href="../../../../tv/index.html">TV</a>
+            </li>
+            <li class="dac-nav-item auto">
+              <a class="dac-nav-link" href="../../../../auto/index.html">Auto</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item design">
+          <a class="dac-nav-link" href="../../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+        </li>
+        <li class="dac-nav-item develop">
+          <a class="dac-nav-link" href="../../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary develop">
+            <li class="dac-nav-item training">
+              <a class="dac-nav-link" href="../../../../training/index.html"
+                 zh-tw-lang="訓練課程"
+                 zh-cn-lang="培训"
+                 ru-lang="Курсы"
+                 ko-lang="교육"
+                 ja-lang="トレーニング"
+                 es-lang="Capacitación">Training</a>
+            </li>
+            <li class="dac-nav-item guide">
+              <a class="dac-nav-link" href="../../../../guide/index.html"
+                 zh-tw-lang="API 指南"
+                 zh-cn-lang="API 指南"
+                 ru-lang="Руководства по API"
+                 ko-lang="API 가이드"
+                 ja-lang="API ガイド"
+                 es-lang="Guías de la API">API Guides</a>
+            </li>
+            <li class="dac-nav-item reference">
+              <a class="dac-nav-link" href="../../../../reference/packages.html"
+                 zh-tw-lang="參考資源"
+                 zh-cn-lang="参考"
+                 ru-lang="Справочник"
+                 ko-lang="참조문서"
+                 ja-lang="リファレンス"
+                 es-lang="Referencia">Reference</a>
+            </li>
+            <li class="dac-nav-item tools">
+              <a class="dac-nav-link" href="../../../../sdk/index.html"
+                 zh-tw-lang="相關工具"
+                 zh-cn-lang="工具"
+                 ru-lang="Инструменты"
+                 ko-lang="도구"
+                 ja-lang="ツール"
+                 es-lang="Herramientas">Tools</a></li>
+            <li class="dac-nav-item google">
+              <a class="dac-nav-link" href="../../../../google/index.html">Google Services</a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="dac-nav-item distribute">
+          <a class="dac-nav-link" href="../../../../distribute/googleplay/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary distribute">
+            <li class="dac-nav-item googleplay">
+              <a class="dac-nav-link" href="../../../../distribute/googleplay/index.html">Google Play</a></li>
+            <li class="dac-nav-item essentials">
+              <a class="dac-nav-link" href="../../../../distribute/essentials/index.html">Essentials</a></li>
+            <li class="dac-nav-item users">
+              <a class="dac-nav-link" href="../../../../distribute/users/index.html">Get Users</a></li>
+            <li class="dac-nav-item engage">
+              <a class="dac-nav-link" href="../../../../distribute/engage/index.html">Engage &amp; Retain</a></li>
+            <li class="dac-nav-item monetize">
+              <a class="dac-nav-link" href="../../../../distribute/monetize/index.html">Earn</a>
+            </li>
+            <li class="dac-nav-item analyze">
+              <a class="dac-nav-link" href="../../../../distribute/analyze/index.html">Analyze</a>
+            </li>
+            <li class="dac-nav-item stories">
+              <a class="dac-nav-link" href="../../../../distribute/stories/index.html">Stories</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item preview">
+          <a class="dac-nav-link" href="../../../../preview/index.html">Preview</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end navigation-->
+  
+
+<!-- Nav Setup -->
+<script>$('[data-dac-nav]').dacNav();</script>
+
+
+
+  
+    
+  <div class="wrap clearfix" id="body-content">
+
+  
+
+  
+  <div id="search-results" class="dac-search-results">
+    <div id="dac-search-results-history" class="dac-search-results-history">
+      <div class="wrap dac-search-results-history-wrap">
+        <div class="cols">
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Most visited</h2>
+            <div class="resource-flow-layout" data-history-query="history:most/visited" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Recently visited</h2>
+            <div class="resource-flow-layout cols" data-history-query="history:recent" data-allow-duplicates="true" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dac-search-results-content" class="dac-search-results-content">
+      <div class="dac-search-results-metadata wrap">
+        <div class="dac-search-results-for">
+          <h2>Results for <span id="search-results-for"></span></h2>
+        </div>
+
+        <div id="dac-search-results-hero"></div>
+
+        <div class="dac-search-results-hero cols">
+          <div id="dac-search-results-reference" class="col-3of6 col-tablet-1of2 col-mobile-1of1">
+            <div class="suggest-card reference no-display">
+              <ul class="dac-search-results-reference">
+              </ul>
+            </div>
+          </div>
+          <div id="dac-custom-search-results"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+<div id="naMessage"></div>
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+  
+  
+
+</div>
+
+
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+  <a href="#constants">Constants</a>
+  
+
+
+
+
+
+  &#124; <a href="#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+</div><!-- end api-info-block -->
+
+<div class="api apilevel-8" id="jd-content">
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<h1 class="api-title">DeviceAdminReceiver</h1>
+<p>
+<code class="api-signature">
+  public
+  
+  
+  
+  class
+  DeviceAdminReceiver
+</code>
+<br>
+
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+    extends <a href="../../../../reference/android/content/BroadcastReceiver.html">BroadcastReceiver</a>
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+</p><table class="jd-inheritance-table">
+
+
+  <tr>
+    
+    <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../reference/java/lang/Object.html">java.lang.Object</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../reference/android/content/BroadcastReceiver.html">android.content.BroadcastReceiver</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;</td>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="1" class="jd-inheritance-class-cell">android.app.admin.DeviceAdminReceiver
+    </td>
+  </tr>
+  
+
+</table>
+  
+
+    
+
+<br><hr>
+
+
+  <p>Base class for implementing a device administration component.  This
+ class provides a convenience for interpreting the raw intent actions
+ that are sent by the system.
+
+ <p>The callback methods, like the base
+ <code><a href="../../../../reference/android/content/BroadcastReceiver.html#onReceive(android.content.Context, android.content.Intent)">BroadcastReceiver.onReceive()</a></code>
+ method, happen on the main thread of the process.  Thus long running
+ operations must be done on another thread.  Note that because a receiver
+ is done once returning from its receive function, such long-running operations
+ should probably be done in a <code><a href="../../../../reference/android/app/Service.html">Service</a></code>.
+
+ <p>When publishing your DeviceAdmin subclass as a receiver, it must
+ handle <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_ENABLED">ACTION_DEVICE_ADMIN_ENABLED</a></code> and require the
+ <code><a href="../../../../reference/android/Manifest.permission.html#BIND_DEVICE_ADMIN">BIND_DEVICE_ADMIN</a></code> permission.  A typical
+ manifest entry would look like:</p>
+
+ <pre>&lt;receiver android:name=".app.DeviceAdminSample$DeviceAdminSampleReceiver"
+        android:label="@string/sample_device_admin"
+        android:description="@string/sample_device_admin_description"
+        android:permission="android.permission.BIND_DEVICE_ADMIN"&gt;
+    &lt;meta-data android:name="android.app.device_admin"
+               android:resource="@xml/device_admin_sample" /&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.app.action.DEVICE_ADMIN_ENABLED" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+&lt;receiver android:name=".app.DeviceAdminSample$DeviceAdminSampleReceiver2"
+    android:label="@string/sample_device_admin2"
+    android:description="@string/sample_device_admin_description2"
+    android:permission="android.permission.BIND_DEVICE_ADMIN"&gt;
+    &lt;meta-data android:name="android.app.device_admin"
+        android:resource="@xml/device_admin_sample" /&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.app.action.DEVICE_ADMIN_ENABLED" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;</pre>
+
+ <p>The meta-data referenced here provides addition information specific
+ to the device administrator, as parsed by the <code><a href="../../../../reference/android/app/admin/DeviceAdminInfo.html">DeviceAdminInfo</a></code> class.
+ A typical file would be:</p>
+
+ <pre>&lt;device-admin xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;uses-policies&gt;
+        &lt;limit-password /&gt;
+        &lt;watch-login /&gt;
+        &lt;reset-password /&gt;
+        &lt;force-lock /&gt;
+        &lt;wipe-data /&gt;
+        &lt;expire-password /&gt;
+        &lt;encrypted-storage /&gt;
+        &lt;disable-camera /&gt;
+        &lt;disable-keyguard-features /&gt;
+    &lt;/uses-policies&gt;
+&lt;/device-admin&gt;</pre>
+
+ <div class="special reference">
+ <h3>Developer Guides</h3>
+ <p>For more information about device administration, read the
+ <a href="../../../../guide/topics/admin/device-admin.html">Device Administration</a>
+ developer guide.</p>
+ </div>
+</p>
+
+
+
+
+
+
+
+<h2 class="api-section">Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="responsive constants">
+<tr><th colspan="2"><h3>Constants</h3></th></tr>
+
+
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLED">ACTION_DEVICE_ADMIN_DISABLED</a></code>
+          <p>Action sent to a device administrator when the user has disabled
+ it.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLE_REQUESTED">ACTION_DEVICE_ADMIN_DISABLE_REQUESTED</a></code>
+          <p>Action sent to a device administrator when the user has requested to
+ disable it, but before this has actually been done.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_ENABLED">ACTION_DEVICE_ADMIN_ENABLED</a></code>
+          <p>This is the primary action that a device administrator must implement to be
+ allowed to manage a device.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_LOCK_TASK_ENTERING">ACTION_LOCK_TASK_ENTERING</a></code>
+          <p>Action sent to a device administrator to notify that the device is entering
+ lock task mode.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_LOCK_TASK_EXITING">ACTION_LOCK_TASK_EXITING</a></code>
+          <p>Action sent to a device administrator to notify that the device is exiting
+ lock task mode.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_CHANGED">ACTION_PASSWORD_CHANGED</a></code>
+          <p>Action sent to a device administrator when the user has changed the password of their device
+ or profile challenge.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-11" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_EXPIRING">ACTION_PASSWORD_EXPIRING</a></code>
+          <p>Action periodically sent to a device administrator when the device or profile challenge
+ password is expiring.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_FAILED">ACTION_PASSWORD_FAILED</a></code>
+          <p>Action sent to a device administrator when the user has entered an incorrect device
+ or profile challenge password.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_SUCCEEDED">ACTION_PASSWORD_SUCCEEDED</a></code>
+          <p>Action sent to a device administrator when the user has successfully entered their device
+ or profile challenge password, after failing one or more times.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PROFILE_PROVISIONING_COMPLETE">ACTION_PROFILE_PROVISIONING_COMPLETE</a></code>
+          <p>Broadcast Action: This broadcast is sent to indicate that provisioning of a managed profile
+ or managed device has completed successfully.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#BUGREPORT_FAILURE_FAILED_COMPLETING">BUGREPORT_FAILURE_FAILED_COMPLETING</a></code>
+          <p>Bugreport completion process failed.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE">BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE</a></code>
+          <p>Bugreport has been created, but is no longer available for collection.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#DEVICE_ADMIN_META_DATA">DEVICE_ADMIN_META_DATA</a></code>
+          <p>Name under which a DevicePolicy component publishes information
+ about itself.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#EXTRA_DISABLE_WARNING">EXTRA_DISABLE_WARNING</a></code>
+          <p>A CharSequence that can be shown to the user informing them of the
+ impact of disabling your admin.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#EXTRA_LOCK_TASK_PACKAGE">EXTRA_LOCK_TASK_PACKAGE</a></code>
+          <p>A string containing the name of the package entering lock task mode.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="responsive constructors">
+<tr><th colspan="2"><h3>Public constructors</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#DeviceAdminReceiver()">DeviceAdminReceiver</a>()
+      </code>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="responsive methods">
+<tr><th colspan="2"><h3>Public methods</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#getManager(android.content.Context)">getManager</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context)
+      </code>
+      
+        <p>Retrieve the DevicePolicyManager interface for this administrator to work
+ with the system.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/android/content/ComponentName.html">ComponentName</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#getWho(android.content.Context)">getWho</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context)
+      </code>
+      
+        <p>Retrieve the ComponentName describing who this device administrator is, for
+ use in <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></code> APIs that require the administrator to
+ identify itself.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onBugreportFailed(android.content.Context, android.content.Intent, int)">onBugreportFailed</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, int failureCode)
+      </code>
+      
+        <p>Called when the bugreport collection flow has failed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onBugreportShared(android.content.Context, android.content.Intent, java.lang.String)">onBugreportShared</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, <a href="../../../../reference/java/lang/String.html">String</a> bugreportHash)
+      </code>
+      
+        <p>Called when the bugreport has been shared with the device administrator app.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onBugreportSharingDeclined(android.content.Context, android.content.Intent)">onBugreportSharingDeclined</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called when sharing a bugreport has been cancelled by the user of the device.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onChoosePrivateKeyAlias(android.content.Context, android.content.Intent, int, android.net.Uri, java.lang.String)">onChoosePrivateKeyAlias</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, int uid, <a href="../../../../reference/android/net/Uri.html">Uri</a> uri, <a href="../../../../reference/java/lang/String.html">String</a> alias)
+      </code>
+      
+        <p>Allows this receiver to select the alias for a private key and certificate pair for
+ authentication.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/java/lang/CharSequence.html">CharSequence</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onDisableRequested(android.content.Context, android.content.Intent)">onDisableRequested</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called when the user has asked to disable the administrator, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLE_REQUESTED">ACTION_DEVICE_ADMIN_DISABLE_REQUESTED</a></code>, giving you
+ a chance to present a warning message to them.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onDisabled(android.content.Context, android.content.Intent)">onDisabled</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called prior to the administrator being disabled, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLED">ACTION_DEVICE_ADMIN_DISABLED</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onEnabled(android.content.Context, android.content.Intent)">onEnabled</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called after the administrator is first enabled, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_ENABLED">ACTION_DEVICE_ADMIN_ENABLED</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onLockTaskModeEntering(android.content.Context, android.content.Intent, java.lang.String)">onLockTaskModeEntering</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, <a href="../../../../reference/java/lang/String.html">String</a> pkg)
+      </code>
+      
+        <p>Called when a device is entering lock task mode.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onLockTaskModeExiting(android.content.Context, android.content.Intent)">onLockTaskModeExiting</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called when a device is exiting lock task mode.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordChanged(android.content.Context, android.content.Intent)">onPasswordChanged</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called after the user has changed their device or profile challenge password, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_CHANGED">ACTION_PASSWORD_CHANGED</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-11" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordExpiring(android.content.Context, android.content.Intent)">onPasswordExpiring</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called periodically when the device or profile challenge password is about to expire
+ or has expired.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordFailed(android.content.Context, android.content.Intent)">onPasswordFailed</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called after the user has failed at entering their device or profile challenge password,
+ as a result of receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_FAILED">ACTION_PASSWORD_FAILED</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordSucceeded(android.content.Context, android.content.Intent)">onPasswordSucceeded</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called after the user has succeeded at entering their device or profile challenge password,
+ as a result of receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_SUCCEEDED">ACTION_PASSWORD_SUCCEEDED</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onProfileProvisioningComplete(android.content.Context, android.content.Intent)">onProfileProvisioningComplete</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called when provisioning of a managed profile or managed device has completed successfully.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReadyForUserInitialization(android.content.Context, android.content.Intent)">onReadyForUserInitialization</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p><em>
+      This method was deprecated
+      in API level 24.
+    Do not use
+</em>
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Intercept standard device administrator broadcasts.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onSecurityLogsAvailable(android.content.Context, android.content.Intent)">onSecurityLogsAvailable</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>Called when a new batch of security logs can be retrieved.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onSystemUpdatePending(android.content.Context, android.content.Intent, long)">onSystemUpdatePending</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, long receivedTime)
+      </code>
+      
+        <p>Allows the receiver to be notified when information about a pending system update is
+ available from the system update service.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="methods inhtable">
+<tr><th><h3>Inherited methods</h3></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-android.content.BroadcastReceiver" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-android.content.BroadcastReceiver-trigger"
+          src="../../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="../../../../reference/android/content/BroadcastReceiver.html">android.content.BroadcastReceiver</a>
+  
+</code>
+<div id="inherited-methods-android.content.BroadcastReceiver">
+  <div id="inherited-methods-android.content.BroadcastReceiver-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-android.content.BroadcastReceiver-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#abortBroadcast()">abortBroadcast</a>()
+      </code>
+      
+        <p>Sets the flag indicating that this receiver should abort the
+ current broadcast; only works with broadcasts sent through
+ <code><a href="../../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String)">Context.sendOrderedBroadcast</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#clearAbortBroadcast()">clearAbortBroadcast</a>()
+      </code>
+      
+        <p>Clears the flag indicating that this receiver should abort the current
+ broadcast.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#getAbortBroadcast()">getAbortBroadcast</a>()
+      </code>
+      
+        <p>Returns the flag indicating whether or not this receiver should
+ abort the current broadcast.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#getDebugUnregister()">getDebugUnregister</a>()
+      </code>
+      
+        <p>Return the last value given to <code><a href="../../../../reference/android/content/BroadcastReceiver.html#setDebugUnregister(boolean)">setDebugUnregister(boolean)</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#getResultCode()">getResultCode</a>()
+      </code>
+      
+        <p>Retrieve the current result code, as set by the previous receiver.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#getResultData()">getResultData</a>()
+      </code>
+      
+        <p>Retrieve the current result data, as set by the previous receiver.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../../reference/android/os/Bundle.html">Bundle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#getResultExtras(boolean)">getResultExtras</a>(boolean makeMap)
+      </code>
+      
+        <p>Retrieve the current result extra data, as set by the previous receiver.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-11" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../../reference/android/content/BroadcastReceiver.PendingResult.html">BroadcastReceiver.PendingResult</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#goAsync()">goAsync</a>()
+      </code>
+      
+        <p>This can be called by an application in <code><a href="../../../../reference/android/content/BroadcastReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code> to allow
+ it to keep the broadcast active after returning from that function.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-5" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#isInitialStickyBroadcast()">isInitialStickyBroadcast</a>()
+      </code>
+      
+        <p>Returns true if the receiver is currently processing the initial
+ value of a sticky broadcast -- that is, the value that was last
+ broadcast and is currently held in the sticky cache, so this is
+ not directly the result of a broadcast right now.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-5" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#isOrderedBroadcast()">isOrderedBroadcast</a>()
+      </code>
+      
+        <p>Returns true if the receiver is currently processing an ordered
+ broadcast.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        abstract
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive</a>(<a href="../../../../reference/android/content/Context.html">Context</a> context, <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)
+      </code>
+      
+        <p>This method is called when the BroadcastReceiver is receiving an Intent
+ broadcast.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-3" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/android/os/IBinder.html">IBinder</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#peekService(android.content.Context, android.content.Intent)">peekService</a>(<a href="../../../../reference/android/content/Context.html">Context</a> myContext, <a href="../../../../reference/android/content/Intent.html">Intent</a> service)
+      </code>
+      
+        <p>Provide a binder to an already-running service.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#setDebugUnregister(boolean)">setDebugUnregister</a>(boolean debug)
+      </code>
+      
+        <p>Control inclusion of debugging help for mismatched
+ calls to <code><a href="../../../../reference/android/content/Context.html#registerReceiver(android.content.BroadcastReceiver, android.content.IntentFilter)">Context.registerReceiver()</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#setOrderedHint(boolean)">setOrderedHint</a>(boolean isOrdered)
+      </code>
+      
+        <p>For internal use, sets the hint about whether this BroadcastReceiver is
+ running in ordered mode.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#setResult(int, java.lang.String, android.os.Bundle)">setResult</a>(int code, <a href="../../../../reference/java/lang/String.html">String</a> data, <a href="../../../../reference/android/os/Bundle.html">Bundle</a> extras)
+      </code>
+      
+        <p>Change all of the result data returned from this broadcasts; only works
+ with broadcasts sent through
+ <code><a href="../../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String)">Context.sendOrderedBroadcast</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#setResultCode(int)">setResultCode</a>(int code)
+      </code>
+      
+        <p>Change the current result code of this broadcast; only works with
+ broadcasts sent through
+ <code><a href="../../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String)">Context.sendOrderedBroadcast</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#setResultData(java.lang.String)">setResultData</a>(<a href="../../../../reference/java/lang/String.html">String</a> data)
+      </code>
+      
+        <p>Change the current result data of this broadcast; only works with
+ broadcasts sent through
+ <code><a href="../../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String)">Context.sendOrderedBroadcast</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/android/content/BroadcastReceiver.html#setResultExtras(android.os.Bundle)">setResultExtras</a>(<a href="../../../../reference/android/os/Bundle.html">Bundle</a> extras)
+      </code>
+      
+        <p>Change the current result extras of this broadcast; only works with
+ broadcasts sent through
+ <code><a href="../../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String)">Context.sendOrderedBroadcast</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="../../../../reference/java/lang/Object.html">java.lang.Object</a>
+  
+</code>
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/java/lang/Object.html">Object</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#clone()">clone</a>()
+      </code>
+      
+        <p>Creates and returns a copy of this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#equals(java.lang.Object)">equals</a>(<a href="../../../../reference/java/lang/Object.html">Object</a> obj)
+      </code>
+      
+        <p>Indicates whether some other object is "equal to" this one.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#finalize()">finalize</a>()
+      </code>
+      
+        <p>Called by the garbage collector on an object when garbage collection
+ determines that there are no more references to the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../../reference/java/lang/Class.html">Class</a>&lt;?&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#getClass()">getClass</a>()
+      </code>
+      
+        <p>Returns the runtime class of this <code>Object</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#hashCode()">hashCode</a>()
+      </code>
+      
+        <p>Returns a hash code value for the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#notify()">notify</a>()
+      </code>
+      
+        <p>Wakes up a single thread that is waiting on this object's
+ monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll</a>()
+      </code>
+      
+        <p>Wakes up all threads that are waiting on this object's monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#toString()">toString</a>()
+      </code>
+      
+        <p>Returns a string representation of the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#wait(long, int)">wait</a>(long millis, int nanos)
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or
+ some other thread interrupts the current thread, or a certain
+ amount of real time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#wait(long)">wait</a>(long millis)
+      </code>
+      
+        <p>Causes the current thread to wait until either another thread invokes the
+ <code><a href="../../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or a
+ specified amount of time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../../reference/java/lang/Object.html#wait()">wait</a>()
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2 class="api-section">Constants</h2>
+
+
+
+
+<A NAME="ACTION_DEVICE_ADMIN_DISABLED"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_DEVICE_ADMIN_DISABLED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_DEVICE_ADMIN_DISABLED</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator when the user has disabled
+ it.  Upon return, the application no longer has access to the
+ protected device policy manager APIs.  You will generally
+ handle this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onDisabled(android.content.Context, android.content.Intent)">onDisabled(Context, Intent)</a></code>.  Note
+ that this action will be
+ sent the receiver regardless of whether it is explicitly listed in
+ its intent filter.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.DEVICE_ADMIN_DISABLED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_DEVICE_ADMIN_DISABLE_REQUESTED"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_DEVICE_ADMIN_DISABLE_REQUESTED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_DEVICE_ADMIN_DISABLE_REQUESTED</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator when the user has requested to
+ disable it, but before this has actually been done.  This gives you
+ a chance to supply a message to the user about the impact of
+ disabling your admin, by setting the extra field
+ <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#EXTRA_DISABLE_WARNING">EXTRA_DISABLE_WARNING</a></code> in the result Intent.  If not set,
+ no warning will be displayed.  If set, the given text will be shown
+ to the user before they disable your admin.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.DEVICE_ADMIN_DISABLE_REQUESTED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_DEVICE_ADMIN_ENABLED"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_DEVICE_ADMIN_ENABLED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_DEVICE_ADMIN_ENABLED</pre>
+    
+    
+
+    
+  <p>This is the primary action that a device administrator must implement to be
+ allowed to manage a device.  This will be set to the receiver
+ when the user enables it for administration.  You will generally
+ handle this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onEnabled(android.content.Context, android.content.Intent)">onEnabled(Context, Intent)</a></code>.  To be
+ supported, the receiver must also require the
+ <code><a href="../../../../reference/android/Manifest.permission.html#BIND_DEVICE_ADMIN">BIND_DEVICE_ADMIN</a></code> permission so
+ that other applications can not abuse it.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.DEVICE_ADMIN_ENABLED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_LOCK_TASK_ENTERING"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">ACTION_LOCK_TASK_ENTERING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_LOCK_TASK_ENTERING</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator to notify that the device is entering
+ lock task mode.  The extra <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#EXTRA_LOCK_TASK_PACKAGE">EXTRA_LOCK_TASK_PACKAGE</a></code>
+ will describe the package using lock task mode.
+
+ <p>The calling device admin must be the device owner or profile
+ owner to receive this broadcast.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#isLockTaskPermitted(java.lang.String)">isLockTaskPermitted(String)</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.LOCK_TASK_ENTERING"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_LOCK_TASK_EXITING"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">ACTION_LOCK_TASK_EXITING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_LOCK_TASK_EXITING</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator to notify that the device is exiting
+ lock task mode.
+
+ <p>The calling device admin must be the device owner or profile
+ owner to receive this broadcast.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#isLockTaskPermitted(java.lang.String)">isLockTaskPermitted(String)</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.LOCK_TASK_EXITING"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_PASSWORD_CHANGED"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_PASSWORD_CHANGED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_PASSWORD_CHANGED</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator when the user has changed the password of their device
+ or profile challenge.  You can at this point check the characteristics
+ of the new password with <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#isActivePasswordSufficient()">DevicePolicyManager.isActivePasswordSufficient()</a></code>.
+ You will generally
+ handle this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordChanged(android.content.Context, android.content.Intent)">onPasswordChanged(Context, Intent)</a></code>.
+
+ <p>The calling device admin must have requested
+ <code><a href="../../../../reference/android/app/admin/DeviceAdminInfo.html#USES_POLICY_LIMIT_PASSWORD">USES_POLICY_LIMIT_PASSWORD</a></code> to receive
+ this broadcast.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.ACTION_PASSWORD_CHANGED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_PASSWORD_EXPIRING"></A>
+
+<div class="api apilevel-11">
+    <h3 class="api-name">ACTION_PASSWORD_EXPIRING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 11</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_PASSWORD_EXPIRING</pre>
+    
+    
+
+    
+  <p>Action periodically sent to a device administrator when the device or profile challenge
+ password is expiring.  You will generally
+ handle this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordExpiring(android.content.Context, android.content.Intent)">onPasswordExpiring(Context, Intent)</a></code>.
+
+ <p>The calling device admin must have requested
+ <code><a href="../../../../reference/android/app/admin/DeviceAdminInfo.html#USES_POLICY_EXPIRE_PASSWORD">USES_POLICY_EXPIRE_PASSWORD</a></code> to receive
+ this broadcast.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.ACTION_PASSWORD_EXPIRING"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_PASSWORD_FAILED"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_PASSWORD_FAILED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_PASSWORD_FAILED</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator when the user has entered an incorrect device
+ or profile challenge password.  You can at this point check the
+ number of failed password attempts there have been with
+ <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#getCurrentFailedPasswordAttempts()">DevicePolicyManager.getCurrentFailedPasswordAttempts()</a></code>.  You will generally
+ handle this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordFailed(android.content.Context, android.content.Intent)">onPasswordFailed(Context, Intent)</a></code>.
+
+ <p>The calling device admin must have requested
+ <code><a href="../../../../reference/android/app/admin/DeviceAdminInfo.html#USES_POLICY_WATCH_LOGIN">USES_POLICY_WATCH_LOGIN</a></code> to receive
+ this broadcast.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.ACTION_PASSWORD_FAILED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_PASSWORD_SUCCEEDED"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_PASSWORD_SUCCEEDED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_PASSWORD_SUCCEEDED</pre>
+    
+    
+
+    
+  <p>Action sent to a device administrator when the user has successfully entered their device
+ or profile challenge password, after failing one or more times.  You will generally
+ handle this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordSucceeded(android.content.Context, android.content.Intent)">onPasswordSucceeded(Context, Intent)</a></code>.
+
+ <p>The calling device admin must have requested
+ <code><a href="../../../../reference/android/app/admin/DeviceAdminInfo.html#USES_POLICY_WATCH_LOGIN">USES_POLICY_WATCH_LOGIN</a></code> to receive
+ this broadcast.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.ACTION_PASSWORD_SUCCEEDED"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_PROFILE_PROVISIONING_COMPLETE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">ACTION_PROFILE_PROVISIONING_COMPLETE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> ACTION_PROFILE_PROVISIONING_COMPLETE</pre>
+    
+    
+
+    
+  <p>Broadcast Action: This broadcast is sent to indicate that provisioning of a managed profile
+ or managed device has completed successfully.
+
+ <p>The broadcast is limited to the profile that will be managed by the application that
+ requested provisioning. In the device owner case the profile is the primary user.
+ The broadcast will also be limited to the <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html">DeviceAdminReceiver</a></code> component
+ specified in the original intent or NFC bump that started the provisioning process
+ (see <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE">DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE</a></code>).
+
+ <p>A device admin application which listens to this intent can find out if the device was
+ provisioned for the device owner or profile owner case by calling respectively
+ <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#isDeviceOwnerApp(java.lang.String)">isDeviceOwnerApp(String)</a></code> and
+ <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#isProfileOwnerApp(java.lang.String)">isProfileOwnerApp(String)</a></code>. You will generally handle
+ this in <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onProfileProvisioningComplete(android.content.Context, android.content.Intent)">onProfileProvisioningComplete(Context, Intent)</a></code>.
+
+ <p>Input: Nothing.</p>
+ <p>Output: Nothing</p>
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.action.PROFILE_PROVISIONING_COMPLETE"
+      
+    
+</div>
+
+
+
+<A NAME="BUGREPORT_FAILURE_FAILED_COMPLETING"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">BUGREPORT_FAILURE_FAILED_COMPLETING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int BUGREPORT_FAILURE_FAILED_COMPLETING</pre>
+    
+    
+
+    
+  <p>Bugreport completion process failed.
+
+ <p>If this error code is received, the requesting of bugreport can be retried.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#requestBugreport(android.content.ComponentName)">requestBugreport(ComponentName)</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          0
+          (0x00000000)
+      
+    
+</div>
+
+
+
+<A NAME="BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE</pre>
+    
+    
+
+    
+  <p>Bugreport has been created, but is no longer available for collection.
+
+ <p>This error likely occurs because the user of the device hasn't consented to share
+ the bugreport for a long period after its creation.
+
+ <p>If this error code is received, the requesting of bugreport can be retried.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#requestBugreport(android.content.ComponentName)">requestBugreport(ComponentName)</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          1
+          (0x00000001)
+      
+    
+</div>
+
+
+
+<A NAME="DEVICE_ADMIN_META_DATA"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">DEVICE_ADMIN_META_DATA</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> DEVICE_ADMIN_META_DATA</pre>
+    
+    
+
+    
+  <p>Name under which a DevicePolicy component publishes information
+ about itself.  This meta-data must reference an XML resource containing
+ a device-admin tag.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.app.device_admin"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_DISABLE_WARNING"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_DISABLE_WARNING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> EXTRA_DISABLE_WARNING</pre>
+    
+    
+
+    
+  <p>A CharSequence that can be shown to the user informing them of the
+ impact of disabling your admin.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLE_REQUESTED">ACTION_DEVICE_ADMIN_DISABLE_REQUESTED</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "android.app.extra.DISABLE_WARNING"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_LOCK_TASK_PACKAGE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">EXTRA_LOCK_TASK_PACKAGE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> EXTRA_LOCK_TASK_PACKAGE</pre>
+    
+    
+
+    
+  <p>A string containing the name of the package entering lock task mode.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_LOCK_TASK_ENTERING">ACTION_LOCK_TASK_ENTERING</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "android.app.extra.LOCK_TASK_PACKAGE"
+      
+    
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2 class="api-section">Public constructors</h2>
+
+
+
+<A NAME="DeviceAdminReceiver()"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">DeviceAdminReceiver</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+DeviceAdminReceiver ()</pre>
+    
+    
+
+    
+  <p></p>
+
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2 class="api-section">Public methods</h2>
+
+
+
+<A NAME="getManager(android.content.Context)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">getManager</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a> getManager (<a href="../../../../reference/android/content/Context.html">Context</a> context)</pre>
+    
+    
+
+    
+  <p>Retrieve the DevicePolicyManager interface for this administrator to work
+ with the system.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getWho(android.content.Context)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">getWho</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/android/content/ComponentName.html">ComponentName</a> getWho (<a href="../../../../reference/android/content/Context.html">Context</a> context)</pre>
+    
+    
+
+    
+  <p>Retrieve the ComponentName describing who this device administrator is, for
+ use in <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></code> APIs that require the administrator to
+ identify itself.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../../reference/android/content/ComponentName.html">ComponentName</a></code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onBugreportFailed(android.content.Context, android.content.Intent, int)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">onBugreportFailed</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onBugreportFailed (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, 
+                int failureCode)</pre>
+    
+    
+
+    
+  <p>Called when the bugreport collection flow has failed.
+
+ <p>This callback is only applicable to device owners.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>failureCode</code></td>
+        <td width="100%">
+          <code>int</code>:
+          int containing failure code. One of
+ <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#BUGREPORT_FAILURE_FAILED_COMPLETING">BUGREPORT_FAILURE_FAILED_COMPLETING</a></code>
+ or <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE">BUGREPORT_FAILURE_FILE_NO_LONGER_AVAILABLE</a></code></td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#requestBugreport(android.content.ComponentName)">requestBugreport(ComponentName)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="onBugreportShared(android.content.Context, android.content.Intent, java.lang.String)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">onBugreportShared</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onBugreportShared (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, 
+                <a href="../../../../reference/java/lang/String.html">String</a> bugreportHash)</pre>
+    
+    
+
+    
+  <p>Called when the bugreport has been shared with the device administrator app.
+
+ <p>This callback is only applicable to device owners.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>. Contains the URI of
+ the bugreport file (with MIME type "application/vnd.android.bugreport"), that can be accessed
+ by calling <code><a href="../../../../reference/android/content/Intent.html#getData()">getData()</a></code></td>
+      </tr>
+      <tr>
+        <td><code>bugreportHash</code></td>
+        <td width="100%">
+          <code>String</code>:
+          SHA-256 hash of the bugreport file.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#requestBugreport(android.content.ComponentName)">requestBugreport(ComponentName)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="onBugreportSharingDeclined(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">onBugreportSharingDeclined</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onBugreportSharingDeclined (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called when sharing a bugreport has been cancelled by the user of the device.
+
+ <p>This callback is only applicable to device owners.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#requestBugreport(android.content.ComponentName)">requestBugreport(ComponentName)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="onChoosePrivateKeyAlias(android.content.Context, android.content.Intent, int, android.net.Uri, java.lang.String)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">onChoosePrivateKeyAlias</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/String.html">String</a> onChoosePrivateKeyAlias (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, 
+                int uid, 
+                <a href="../../../../reference/android/net/Uri.html">Uri</a> uri, 
+                <a href="../../../../reference/java/lang/String.html">String</a> alias)</pre>
+    
+    
+
+    
+  <p>Allows this receiver to select the alias for a private key and certificate pair for
+ authentication. If this method returns null, the default <code><a href="../../../../reference/android/app/Activity.html">Activity</a></code> will be
+ shown that lets the user pick a private key and certificate pair.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>uid</code></td>
+        <td width="100%">
+          <code>int</code>:
+          The uid asking for the private key and certificate pair.</td>
+      </tr>
+      <tr>
+        <td><code>uri</code></td>
+        <td width="100%">
+          <code>Uri</code>:
+          The URI to authenticate, may be null.</td>
+      </tr>
+      <tr>
+        <td><code>alias</code></td>
+        <td width="100%">
+          <code>String</code>:
+          The alias preselected by the client, or null.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">The private key alias to return and grant access to.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/security/KeyChain.html#choosePrivateKeyAlias(android.app.Activity, android.security.KeyChainAliasCallback, java.lang.String[], java.security.Principal[], android.net.Uri, java.lang.String)">choosePrivateKeyAlias(Activity, KeyChainAliasCallback, String[], Principal[], Uri, String)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="onDisableRequested(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onDisableRequested</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../../reference/java/lang/CharSequence.html">CharSequence</a> onDisableRequested (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called when the user has asked to disable the administrator, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLE_REQUESTED">ACTION_DEVICE_ADMIN_DISABLE_REQUESTED</a></code>, giving you
+ a chance to present a warning message to them.  The message is returned
+ as the result; if null is returned (the default implementation), no
+ message will be displayed.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../../reference/java/lang/CharSequence.html">CharSequence</a></code></td>
+        <td width="100%">Return the warning message to display to the user before
+ being disabled; if null is returned, no message is displayed.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onDisabled(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onDisabled</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onDisabled (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called prior to the administrator being disabled, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_DISABLED">ACTION_DEVICE_ADMIN_DISABLED</a></code>.  Upon return, you
+ can no longer use the protected parts of the <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></code>
+ API.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onEnabled(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onEnabled</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onEnabled (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called after the administrator is first enabled, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_DEVICE_ADMIN_ENABLED">ACTION_DEVICE_ADMIN_ENABLED</a></code>.  At this point you
+ can use <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a></code> to set your desired policies.
+
+ <p> If the admin is activated by a device owner, then the intent
+ may contain private extras that are relevant to user setup.
+ </p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#createAndManageUser(android.content.ComponentName, java.lang.String, android.content.ComponentName, android.os.PersistableBundle, int)">createAndManageUser(ComponentName, String, ComponentName, PersistableBundle, int)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="onLockTaskModeEntering(android.content.Context, android.content.Intent, java.lang.String)"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">onLockTaskModeEntering</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onLockTaskModeEntering (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, 
+                <a href="../../../../reference/java/lang/String.html">String</a> pkg)</pre>
+    
+    
+
+    
+  <p>Called when a device is entering lock task mode.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>pkg</code></td>
+        <td width="100%">
+          <code>String</code>:
+          If entering, the authorized package using lock task mode, otherwise null.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onLockTaskModeExiting(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">onLockTaskModeExiting</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onLockTaskModeExiting (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called when a device is exiting lock task mode.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onPasswordChanged(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onPasswordChanged</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onPasswordChanged (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called after the user has changed their device or profile challenge password, as a result of
+ receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_CHANGED">ACTION_PASSWORD_CHANGED</a></code>.  At this point you
+ can use <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#getPasswordQuality(android.content.ComponentName)">getPasswordQuality(android.content.ComponentName)</a></code>
+ to retrieve the active password characteristics.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onPasswordExpiring(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-11">
+    <h3 class="api-name">onPasswordExpiring</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 11</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onPasswordExpiring (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called periodically when the device or profile challenge password is about to expire
+ or has expired.  It will typically be called at these times: on device boot, once per day
+ before the password expires, and at the time when the password expires.
+
+ <p>If the password is not updated by the user, this method will continue to be called
+ once per day until the password is changed or the device admin disables password expiration.
+
+ <p>The admin will typically post a notification requesting the user to change their password
+ in response to this call. The actual password expiration time can be obtained by calling
+ <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#getPasswordExpiration(android.content.ComponentName)">getPasswordExpiration(ComponentName)</a></code>
+
+ <p>The admin should be sure to take down any notifications it posted in response to this call
+ when it receives <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onPasswordChanged(android.content.Context, android.content.Intent)">onPasswordChanged(Context, Intent)</a></code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onPasswordFailed(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onPasswordFailed</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onPasswordFailed (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called after the user has failed at entering their device or profile challenge password,
+ as a result of receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_FAILED">ACTION_PASSWORD_FAILED</a></code>.  At this point you can use
+ <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#getCurrentFailedPasswordAttempts()">getCurrentFailedPasswordAttempts()</a></code> to retrieve the number of
+ failed password attempts.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onPasswordSucceeded(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onPasswordSucceeded</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onPasswordSucceeded (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called after the user has succeeded at entering their device or profile challenge password,
+ as a result of receiving <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PASSWORD_SUCCEEDED">ACTION_PASSWORD_SUCCEEDED</a></code>.  This will
+ only be received the first time they succeed after having previously
+ failed.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onProfileProvisioningComplete(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">onProfileProvisioningComplete</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onProfileProvisioningComplete (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called when provisioning of a managed profile or managed device has completed successfully.
+
+ <p> As a prerequisite for the execution of this callback the <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html">DeviceAdminReceiver</a></code> has
+ to declare an intent filter for <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#ACTION_PROFILE_PROVISIONING_COMPLETE">ACTION_PROFILE_PROVISIONING_COMPLETE</a></code>.
+ Its component must also be specified in the <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#EXTRA_DEVICE_ADMIN">EXTRA_DEVICE_ADMIN</a></code>
+ of the <code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE">ACTION_PROVISION_MANAGED_PROFILE</a></code> intent that started the
+ managed provisioning.
+
+ <p>When provisioning of a managed profile is complete, the managed profile is hidden until
+ the profile owner calls {DevicePolicyManager#setProfileEnabled(ComponentName admin)}.
+ Typically a profile owner will enable the profile when it has finished any additional setup
+ such as adding an account by using the <code><a href="../../../../reference/android/accounts/AccountManager.html">AccountManager</a></code> and calling apis to bring the
+ profile into the desired state.
+
+ <p> Note that provisioning completes without waiting for any server interactions, so the
+ profile owner needs to wait for data to be available if required (e.g. android device ids or
+ other data that is set as a result of server interactions).</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onReadyForUserInitialization(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">onReadyForUserInitialization</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onReadyForUserInitialization (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    <p>
+  <p class="caution"><strong>
+      This method was deprecated
+      in API level 24.</strong><br/>
+    Do not use
+
+  </p>
+  <p>Called during provisioning of a managed device to allow the device initializer to perform
+ user setup steps.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onReceive(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">onReceive</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onReceive (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Intercept standard device administrator broadcasts.  Implementations
+ should not override this method; it is better to implement the
+ convenience callbacks for each action.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The Context in which the receiver is running.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The Intent being received.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="onSecurityLogsAvailable(android.content.Context, android.content.Intent)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">onSecurityLogsAvailable</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onSecurityLogsAvailable (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent)</pre>
+    
+    
+
+    
+  <p>Called when a new batch of security logs can be retrieved.
+
+ <p>This callback is only applicable to device owners.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../reference/android/app/admin/DevicePolicyManager.html#retrieveSecurityLogs(android.content.ComponentName)">retrieveSecurityLogs(ComponentName)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="onSystemUpdatePending(android.content.Context, android.content.Intent, long)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">onSystemUpdatePending</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void onSystemUpdatePending (<a href="../../../../reference/android/content/Context.html">Context</a> context, 
+                <a href="../../../../reference/android/content/Intent.html">Intent</a> intent, 
+                long receivedTime)</pre>
+    
+    
+
+    
+  <p>Allows the receiver to be notified when information about a pending system update is
+ available from the system update service. The same pending system update can trigger multiple
+ calls to this method, so it is necessary to examine the incoming parameters for details about
+ the update.
+ <p>
+ This callback is only applicable to device owners.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          The running context as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>intent</code></td>
+        <td width="100%">
+          <code>Intent</code>:
+          The received intent as per <code><a href="../../../../reference/android/app/admin/DeviceAdminReceiver.html#onReceive(android.content.Context, android.content.Intent)">onReceive(Context, Intent)</a></code>.</td>
+      </tr>
+      <tr>
+        <td><code>receivedTime</code></td>
+        <td width="100%">
+          <code>long</code>:
+          The time as given by <code><a href="../../../../reference/java/lang/System.html#currentTimeMillis()">currentTimeMillis()</a></code> indicating when
+        the current pending update was first available. -1 if no pending update is available.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</div><!-- end jd-content -->
+
+
+
+
+
+<div class="wrap">
+  <div class="dac-footer">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" id="newsletter" data-modal-toggle="newsletter" href="javascript:;">Get news &amp; tips <span
+          class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i></span></a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</a>
+          <a class="dac-footer-contact-link" href="/support.html">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-button-social dac-youtube dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><i class="dac-sprite dac-youtube"></i></a>
+          <a class="dac-button-social dac-gplus dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers"><i class="dac-sprite dac-gplus"></i></a>
+          <a class="dac-button-social dac-twitter dac-footer-social-link" href="https://twitter.com/AndroidDev"><i class="dac-sprite dac-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+
+    
+      <p class="dac-footer-copyright">
+        
+  Except as noted, this content is licensed under <a
+  href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
+  For details and restrictions, see the <a href="../../../../license.html">
+  Content License</a>.
+
+      </p>
+      <p class="dac-footer-build">
+        
+  
+    Android 6.0&nbsp;r1 &mdash;
+  
+  <script src="../../../../timestamp.js" type="text/javascript"></script>
+  <script>document.write(BUILD_TIMESTAMP)</script>
+
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="/about/android.html">About Android</a>
+      <a href="/auto/index.html">Auto</a>
+      <a href="/tv/index.html">TV</a>
+      <a href="/wear/index.html">Wear</a>
+      <a href="/legal.html">Legal</a>
+
+      <span id="language" class="locales">
+        <select name="language" onchange="changeLangPref(this.value, true)">
+          <option value="en" selected="selected">English</option>
+          <option value="es">Español</option>
+          <option value="in">Bahasa Indonesia</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt-br">Português Brasileiro</option>
+          <option value="ru">Русский</option>
+          <option value="vi">tiếng Việt</option>
+          <option value="zh-cn">中文（简体)</option>
+          <option value="zh-tw">中文（繁體)</option>
+        </select>
+      </span>
+    </p>
+  </div>
+</div>
+<!-- end footer -->
+
+
+
+  
+
+
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.title"></h2>
+            <p class="dac-modal-header-subtitle" data-t="newsletter.requiredHint"></p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.successTitle">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <input type="hidden" name="entry.935454734" data-newsletter-language>
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel" data-t="newsletter.name">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel" data-t="newsletter.email">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel" data-t="newsletter.company">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel" data-t="newsletter.appUrl">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend"><span data-t="newsletter.business.label">Which best describes your business:</span><span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label" data-t="newsletter.business.apps">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label" data-t="newsletter.business.games">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label" data-t="newsletter.business.both">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside"><span data-t="newsletter.confirmMailingList"></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside"><span data-t="newsletter.privacyPolicy" data-t-html></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message" data-t="newsletter.successDetails"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end newsletter modal -->
+
+<!-- start reset language header modal -->
+<div data-modal="langform" class="dac-modal" id="langform">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title"></h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+            <fieldset class="dac-form-fieldset">
+              <div class="cols">
+                <div class="col-2of2 langform-leftCol">
+                  <p id="resetLangText"></p>
+                  <p id="resetLangCta"></p>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+              <button class="button dac-primary dac-modal-action lang yes" data-t="newsletter.resetLangButtonYes" data-modal-toggle></button>
+              <button class="button dac-primary dac-modal-action lang no" data-t="newsletter.resetLangButtonNo" data-modal-toggle></button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- end langreset modal -->
+
+
+</div> <!-- end body-content --> 
+
+
+
+
+<script src="https://developer.android.com/ytblogger_lists_unified.js" defer></script>
+<script src="/jd_lists_unified_en.js?v=17" defer></script>
+<script src="/reference/lists.js?v=17" defer></script>
+<script src="/reference/gcm_lists.js?v=17" defer></script>
+<script src="/reference/gms_lists.js?v=17" defer></script>
+<script>
+  // Load localized metadata.
+  (function(lang) {
+    if (lang === 'en') { return; }
+
+    // Write it to the document so it gets evaluated before DOMContentReady.
+    document.write('<script src="/jd_lists_unified_' + lang + '.js?v=14" defer></' + 'script>');
+  })(getLangPref())
+</script>
+
+
+</body>
+</html>

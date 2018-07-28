@@ -1,0 +1,3473 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<link rel="alternate" href="http://developer.android.com/" hreflang="en" />
+<link rel="alternate" href="http://developer.android.com/intl/es/" hreflang="es" />
+<link rel="alternate" href="http://developer.android.com/intl/id/" hreflang="id" />
+<link rel="alternate" href="http://developer.android.com/intl/ja/" hreflang="ja" />
+<link rel="alternate" href="http://developer.android.com/intl/ko/" hreflang="ko" />
+<link rel="alternate" href="http://developer.android.com/intl/pt-br/" hreflang="pt-br" />
+<link rel="alternate" href="http://developer.android.com/intl/ru/" hreflang="ru" />
+<link rel="alternate" href="http://developer.android.com/intl/vi/" hreflang="vi" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-cn/" hreflang="zh-cn" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-tw/" hreflang="zh-tw" />
+
+
+<title>RecognizerIntent - Android SDK | Android Developers
+</title>
+
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+  title="roboto">
+
+<link href="../../../assets/css/default.css?v=16" rel="stylesheet" type="text/css">
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "../../../";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</script>
+<script src="../../../assets/js/docs.js?v=17" type="text/javascript"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+</head>
+
+<body class="gc-documentation develop reference api apilevel-3">
+<div id="doc-api-level" class="3" style="display:none"></div>
+
+
+  
+  <a name="top"></a>
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div class="dac-header " id="header">
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="javascript:;" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        <a class="dac-header-logo" href="../../../index.html">
+          <img class="dac-header-logo-image" src="../../../assets/images/android_logo.png"
+              srcset="../../../assets/images/android_logo@2x.png 2x"
+              width="32" height="36" alt="Android" /> Developers
+          </a>
+
+        <ul class="dac-header-tabs">
+          <li>
+          <a class="dac-header-tab" href="../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../distribute/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          </li>
+        </ul>
+
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+
+        
+        
+        
+  <form data-search class="dac-header-search">
+    <button class="dac-header-search-close" data-search-close>
+      <i class="dac-sprite dac-back-arrow"></i>
+    </button>
+
+    <div class="dac-header-search-inner">
+      <i class="dac-sprite dac-search-white dac-header-search-icon"></i>
+      <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" class="dac-header-search-input" placeholder="Search" />
+      <button class="dac-header-search-clear dac-hidden" data-search-clear>
+        <i class="dac-sprite dac-close-black"></i>
+      </button>
+    </div>
+  </form>
+
+        
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+  </div> <!--end header-wrapper -->
+
+  
+  <!-- Navigation-->
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+
+    <div class="dac-nav-sidebar" data-swap data-dynamic="false" data-transition-speed="300" data-dac-nav>
+      <div data-swap-container>
+        
+  
+    <a class="dac-nav-back-button dac-swap-section dac-up dac-no-anim" data-swap-button href="javascript:;">
+      <i class="dac-sprite dac-nav-back"></i> <span class="dac-nav-back-title">Back</span>
+    </a>
+    <div class="dac-nav-sub dac-swap-section dac-right dac-active" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      
+        
+  <!-- Fullscreen toggler -->
+  <button data-fullscreen class="dac-nav-fullscreen">
+    <i class="dac-sprite dac-fullscreen"></i>
+  </button>
+
+  <script>$('[data-fullscreen]').dacFullscreen();</script>
+  <!-- End: Fullscreen toggler -->
+
+  
+    <div id="devdoc-nav">
+      <div id="api-nav-header">
+        <div id="api-level-toggle">
+          <label for="apiLevelCheckbox" class="disabled"
+                 title="Select your target API level to dim unavailable APIs">API level: </label>
+          <div class="select-wrapper">
+            <select id="apiLevelSelector">
+              <!-- option elements added by buildApiLevelSelector() -->
+            </select>
+          </div>
+        </div><!-- end toggle -->
+        <div id="api-nav-title">Android APIs</div>
+      </div><!-- end nav header -->
+      <script>
+        var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24' ];
+        buildApiLevelSelector();
+      </script>
+
+      <div class="dac-reference-nav" data-reference-tree>
+        <ul class="dac-reference-nav-list" data-reference-namespaces>
+          
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/package-summary.html">android</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/accessibilityservice/package-summary.html">android.accessibilityservice</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/accounts/package-summary.html">android.accounts</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/animation/package-summary.html">android.animation</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/annotation/package-summary.html">android.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/app/package-summary.html">android.app</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/android/app/admin/package-summary.html">android.app.admin</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/app/assist/package-summary.html">android.app.assist</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/android/app/backup/package-summary.html">android.app.backup</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/app/job/package-summary.html">android.app.job</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/app/usage/package-summary.html">android.app.usage</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/appwidget/package-summary.html">android.appwidget</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/bluetooth/package-summary.html">android.bluetooth</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/bluetooth/le/package-summary.html">android.bluetooth.le</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/package-summary.html">android.content</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/pm/package-summary.html">android.content.pm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/res/package-summary.html">android.content.res</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/database/package-summary.html">android.database</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/database/sqlite/package-summary.html">android.database.sqlite</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/databinding/package-summary.html">android.databinding</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/drm/package-summary.html">android.drm</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/gesture/package-summary.html">android.gesture</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/package-summary.html">android.graphics</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/drawable/package-summary.html">android.graphics.drawable</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/drawable/shapes/package-summary.html">android.graphics.drawable.shapes</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/graphics/pdf/package-summary.html">android.graphics.pdf</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/hardware/package-summary.html">android.hardware</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/hardware/camera2/package-summary.html">android.hardware.camera2</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/hardware/camera2/params/package-summary.html">android.hardware.camera2.params</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../reference/android/hardware/display/package-summary.html">android.hardware.display</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/hardware/fingerprint/package-summary.html">android.hardware.fingerprint</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/hardware/input/package-summary.html">android.hardware.input</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/hardware/usb/package-summary.html">android.hardware.usb</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/lang/package-summary.html">android.icu.lang</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/math/package-summary.html">android.icu.math</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/text/package-summary.html">android.icu.text</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/util/package-summary.html">android.icu.util</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/inputmethodservice/package-summary.html">android.inputmethodservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/location/package-summary.html">android.location</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/media/package-summary.html">android.media</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/media/audiofx/package-summary.html">android.media.audiofx</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/browse/package-summary.html">android.media.browse</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/media/effect/package-summary.html">android.media.effect</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/media/midi/package-summary.html">android.media.midi</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/projection/package-summary.html">android.media.projection</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/session/package-summary.html">android.media.session</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/tv/package-summary.html">android.media.tv</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/mtp/package-summary.html">android.mtp</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/package-summary.html">android.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/http/package-summary.html">android.net.http</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/net/nsd/package-summary.html">android.net.nsd</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/net/rtp/package-summary.html">android.net.rtp</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/net/sip/package-summary.html">android.net.sip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/wifi/package-summary.html">android.net.wifi</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/net/wifi/p2p/package-summary.html">android.net.wifi.p2p</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/net/wifi/p2p/nsd/package-summary.html">android.net.wifi.p2p.nsd</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/nfc/package-summary.html">android.nfc</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/nfc/cardemulation/package-summary.html">android.nfc.cardemulation</a></li>
+    <li class="api apilevel-10">
+  <a href="../../../reference/android/nfc/tech/package-summary.html">android.nfc.tech</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/opengl/package-summary.html">android.opengl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/os/package-summary.html">android.os</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/os/health/package-summary.html">android.os.health</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/os/storage/package-summary.html">android.os.storage</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/preference/package-summary.html">android.preference</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/print/package-summary.html">android.print</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/print/pdf/package-summary.html">android.print.pdf</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/printservice/package-summary.html">android.printservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/provider/package-summary.html">android.provider</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/renderscript/package-summary.html">android.renderscript</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/sax/package-summary.html">android.sax</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/security/package-summary.html">android.security</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/security/keystore/package-summary.html">android.security.keystore</a></li>
+    <li class="api apilevel-22">
+  <a href="../../../reference/android/service/carrier/package-summary.html">android.service.carrier</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/service/chooser/package-summary.html">android.service.chooser</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../reference/android/service/dreams/package-summary.html">android.service.dreams</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/media/package-summary.html">android.service.media</a></li>
+    <li class="api apilevel-18">
+  <a href="../../../reference/android/service/notification/package-summary.html">android.service.notification</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/service/quicksettings/package-summary.html">android.service.quicksettings</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/restrictions/package-summary.html">android.service.restrictions</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/service/textservice/package-summary.html">android.service.textservice</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/voice/package-summary.html">android.service.voice</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/service/vr/package-summary.html">android.service.vr</a></li>
+    <li class="api apilevel-7">
+  <a href="../../../reference/android/service/wallpaper/package-summary.html">android.service.wallpaper</a></li>
+    <li class="selected api apilevel-3">
+  <a href="../../../reference/android/speech/package-summary.html">android.speech</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/speech/tts/package-summary.html">android.speech.tts</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/annotation/package-summary.html">android.support.annotation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/annotations/package-summary.html">android.support.annotations</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/app/recommendation/package-summary.html">android.support.app.recommendation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/customtabs/package-summary.html">android.support.customtabs</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/design/package-summary.html">android.support.design</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/design/widget/package-summary.html">android.support.design.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/graphics/drawable/package-summary.html">android.support.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/multidex/package-summary.html">android.support.multidex</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/percent/package-summary.html">android.support.percent</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/provider/package-summary.html">android.support.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v13/app/package-summary.html">android.support.v13.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v13/view/package-summary.html">android.support.v13.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v14/preference/package-summary.html">android.support.v14.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/package-summary.html">android.support.v17.leanback</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/app/package-summary.html">android.support.v17.leanback.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/database/package-summary.html">android.support.v17.leanback.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/graphics/package-summary.html">android.support.v17.leanback.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/system/package-summary.html">android.support.v17.leanback.system</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/widget/package-summary.html">android.support.v17.leanback.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/widget/picker/package-summary.html">android.support.v17.leanback.widget.picker</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/preference/package-summary.html">android.support.v17.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/package-summary.html">android.support.v4</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/accessibilityservice/package-summary.html">android.support.v4.accessibilityservice</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/app/package-summary.html">android.support.v4.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/package-summary.html">android.support.v4.content</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/pm/package-summary.html">android.support.v4.content.pm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/res/package-summary.html">android.support.v4.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/database/package-summary.html">android.support.v4.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/graphics/package-summary.html">android.support.v4.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/graphics/drawable/package-summary.html">android.support.v4.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/hardware/display/package-summary.html">android.support.v4.hardware.display</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/hardware/fingerprint/package-summary.html">android.support.v4.hardware.fingerprint</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/media/package-summary.html">android.support.v4.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/media/session/package-summary.html">android.support.v4.media.session</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/net/package-summary.html">android.support.v4.net</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/os/package-summary.html">android.support.v4.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/print/package-summary.html">android.support.v4.print</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/provider/package-summary.html">android.support.v4.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/text/package-summary.html">android.support.v4.text</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/util/package-summary.html">android.support.v4.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/package-summary.html">android.support.v4.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/accessibility/package-summary.html">android.support.v4.view.accessibility</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/animation/package-summary.html">android.support.v4.view.animation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/widget/package-summary.html">android.support.v4.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/app/package-summary.html">android.support.v7.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/appcompat/package-summary.html">android.support.v7.appcompat</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/cardview/package-summary.html">android.support.v7.cardview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/content/res/package-summary.html">android.support.v7.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/graphics/package-summary.html">android.support.v7.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/graphics/drawable/package-summary.html">android.support.v7.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/gridlayout/package-summary.html">android.support.v7.gridlayout</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/media/package-summary.html">android.support.v7.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/mediarouter/package-summary.html">android.support.v7.mediarouter</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/palette/package-summary.html">android.support.v7.palette</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/preference/package-summary.html">android.support.v7.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/recyclerview/package-summary.html">android.support.v7.recyclerview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/util/package-summary.html">android.support.v7.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/view/package-summary.html">android.support.v7.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/package-summary.html">android.support.v7.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/helper/package-summary.html">android.support.v7.widget.helper</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/util/package-summary.html">android.support.v7.widget.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v8/renderscript/package-summary.html">android.support.v8.renderscript</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/system/package-summary.html">android.system</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/telecom/package-summary.html">android.telecom</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/telephony/package-summary.html">android.telephony</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/telephony/cdma/package-summary.html">android.telephony.cdma</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/telephony/gsm/package-summary.html">android.telephony.gsm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/package-summary.html">android.test</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/mock/package-summary.html">android.test.mock</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/suitebuilder/package-summary.html">android.test.suitebuilder</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/suitebuilder/annotation/package-summary.html">android.test.suitebuilder.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/package-summary.html">android.text</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/text/format/package-summary.html">android.text.format</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/method/package-summary.html">android.text.method</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/style/package-summary.html">android.text.style</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/util/package-summary.html">android.text.util</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/transition/package-summary.html">android.transition</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/util/package-summary.html">android.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/view/package-summary.html">android.view</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/view/accessibility/package-summary.html">android.view.accessibility</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/view/animation/package-summary.html">android.view.animation</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/view/inputmethod/package-summary.html">android.view.inputmethod</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/view/textservice/package-summary.html">android.view.textservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/webkit/package-summary.html">android.webkit</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/widget/package-summary.html">android.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/backup/package-summary.html">com.android.internal.backup</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/logging/package-summary.html">com.android.internal.logging</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/os/package-summary.html">com.android.internal.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/statusbar/package-summary.html">com.android.internal.statusbar</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/widget/package-summary.html">com.android.internal.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/test/runner/package-summary.html">com.android.test.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/annotation/package-summary.html">dalvik.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/bytecode/package-summary.html">dalvik.bytecode</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/system/package-summary.html">dalvik.system</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/awt/font/package-summary.html">java.awt.font</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/java/beans/package-summary.html">java.beans</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/io/package-summary.html">java.io</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/package-summary.html">java.lang</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/annotation/package-summary.html">java.lang.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/ref/package-summary.html">java.lang.ref</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/reflect/package-summary.html">java.lang.reflect</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/math/package-summary.html">java.math</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/net/package-summary.html">java.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/package-summary.html">java.nio</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/channels/package-summary.html">java.nio.channels</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/channels/spi/package-summary.html">java.nio.channels.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/charset/package-summary.html">java.nio.charset</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/charset/spi/package-summary.html">java.nio.charset.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/package-summary.html">java.security</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/acl/package-summary.html">java.security.acl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/cert/package-summary.html">java.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/interfaces/package-summary.html">java.security.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/spec/package-summary.html">java.security.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/sql/package-summary.html">java.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/text/package-summary.html">java.text</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/package-summary.html">java.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/package-summary.html">java.util.concurrent</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/atomic/package-summary.html">java.util.concurrent.atomic</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/locks/package-summary.html">java.util.concurrent.locks</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/java/util/function/package-summary.html">java.util.function</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/jar/package-summary.html">java.util.jar</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/logging/package-summary.html">java.util.logging</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/prefs/package-summary.html">java.util.prefs</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/regex/package-summary.html">java.util.regex</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/java/util/stream/package-summary.html">java.util.stream</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/zip/package-summary.html">java.util.zip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/package-summary.html">javax.crypto</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/interfaces/package-summary.html">javax.crypto.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/spec/package-summary.html">javax.crypto.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/microedition/khronos/egl/package-summary.html">javax.microedition.khronos.egl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/microedition/khronos/opengles/package-summary.html">javax.microedition.khronos.opengles</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/net/package-summary.html">javax.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/net/ssl/package-summary.html">javax.net.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/package-summary.html">javax.security.auth</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/callback/package-summary.html">javax.security.auth.callback</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/login/package-summary.html">javax.security.auth.login</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/x500/package-summary.html">javax.security.auth.x500</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/cert/package-summary.html">javax.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/sql/package-summary.html">javax.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/xml/package-summary.html">javax.xml</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/datatype/package-summary.html">javax.xml.datatype</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/namespace/package-summary.html">javax.xml.namespace</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/xml/parsers/package-summary.html">javax.xml.parsers</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/package-summary.html">javax.xml.transform</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/dom/package-summary.html">javax.xml.transform.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/sax/package-summary.html">javax.xml.transform.sax</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/stream/package-summary.html">javax.xml.transform.stream</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/validation/package-summary.html">javax.xml.validation</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/xpath/package-summary.html">javax.xml.xpath</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/junit/framework/package-summary.html">junit.framework</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/junit/runner/package-summary.html">junit.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/package-summary.html">org.apache.http.conn</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/scheme/package-summary.html">org.apache.http.conn.scheme</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/ssl/package-summary.html">org.apache.http.conn.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/params/package-summary.html">org.apache.http.params</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/json/package-summary.html">org.json</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/w3c/dom/package-summary.html">org.w3c.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/org/w3c/dom/ls/package-summary.html">org.w3c.dom.ls</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/package-summary.html">org.xml.sax</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/ext/package-summary.html">org.xml.sax.ext</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/helpers/package-summary.html">org.xml.sax.helpers</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xmlpull/v1/package-summary.html">org.xmlpull.v1</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xmlpull/v1/sax2/package-summary.html">org.xmlpull.v1.sax2</a></li>
+        </ul>
+
+        
+        <ul data-reference-resources>
+          
+          
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-8"><a href="../../../reference/android/speech/RecognitionListener.html">RecognitionListener</a></li>
+      </ul>
+    </li>
+          
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-8"><a href="../../../reference/android/speech/RecognitionService.html">RecognitionService</a></li>
+          <li class="api apilevel-8"><a href="../../../reference/android/speech/RecognitionService.Callback.html">RecognitionService.Callback</a></li>
+          <li class="selected api apilevel-3"><a href="../../../reference/android/speech/RecognizerIntent.html">RecognizerIntent</a></li>
+          <li class="api apilevel-10"><a href="../../../reference/android/speech/RecognizerResultsIntent.html">RecognizerResultsIntent</a></li>
+          <li class="api apilevel-8"><a href="../../../reference/android/speech/SpeechRecognizer.html">SpeechRecognizer</a></li>
+      </ul>
+    </li>
+          
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  
+
+      
+    </div>
+  
+
+        <ul id="dac-main-navigation" class="dac-nav-list dac-swap-section dac-left dac-no-anim">
+        <li class="dac-nav-item home">
+          <a class="dac-nav-link" href="../../../index.html">Home</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary about">
+            <li class="dac-nav-item versions">
+              <a class="dac-nav-link" href="../../../about/versions/marshmallow/index.html">Android</a>
+            </li>
+            <li class="dac-nav-item wear">
+              <a class="dac-nav-link" href="../../../wear/index.html">Wear</a>
+            </li>
+            <li class="dac-nav-item tv">
+              <a class="dac-nav-link" href="../../../tv/index.html">TV</a>
+            </li>
+            <li class="dac-nav-item auto">
+              <a class="dac-nav-link" href="../../../auto/index.html">Auto</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item design">
+          <a class="dac-nav-link" href="../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+        </li>
+        <li class="dac-nav-item develop">
+          <a class="dac-nav-link" href="../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary develop">
+            <li class="dac-nav-item training">
+              <a class="dac-nav-link" href="../../../training/index.html"
+                 zh-tw-lang="訓練課程"
+                 zh-cn-lang="培训"
+                 ru-lang="Курсы"
+                 ko-lang="교육"
+                 ja-lang="トレーニング"
+                 es-lang="Capacitación">Training</a>
+            </li>
+            <li class="dac-nav-item guide">
+              <a class="dac-nav-link" href="../../../guide/index.html"
+                 zh-tw-lang="API 指南"
+                 zh-cn-lang="API 指南"
+                 ru-lang="Руководства по API"
+                 ko-lang="API 가이드"
+                 ja-lang="API ガイド"
+                 es-lang="Guías de la API">API Guides</a>
+            </li>
+            <li class="dac-nav-item reference">
+              <a class="dac-nav-link" href="../../../reference/packages.html"
+                 zh-tw-lang="參考資源"
+                 zh-cn-lang="参考"
+                 ru-lang="Справочник"
+                 ko-lang="참조문서"
+                 ja-lang="リファレンス"
+                 es-lang="Referencia">Reference</a>
+            </li>
+            <li class="dac-nav-item tools">
+              <a class="dac-nav-link" href="../../../sdk/index.html"
+                 zh-tw-lang="相關工具"
+                 zh-cn-lang="工具"
+                 ru-lang="Инструменты"
+                 ko-lang="도구"
+                 ja-lang="ツール"
+                 es-lang="Herramientas">Tools</a></li>
+            <li class="dac-nav-item google">
+              <a class="dac-nav-link" href="../../../google/index.html">Google Services</a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="dac-nav-item distribute">
+          <a class="dac-nav-link" href="../../../distribute/googleplay/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary distribute">
+            <li class="dac-nav-item googleplay">
+              <a class="dac-nav-link" href="../../../distribute/googleplay/index.html">Google Play</a></li>
+            <li class="dac-nav-item essentials">
+              <a class="dac-nav-link" href="../../../distribute/essentials/index.html">Essentials</a></li>
+            <li class="dac-nav-item users">
+              <a class="dac-nav-link" href="../../../distribute/users/index.html">Get Users</a></li>
+            <li class="dac-nav-item engage">
+              <a class="dac-nav-link" href="../../../distribute/engage/index.html">Engage &amp; Retain</a></li>
+            <li class="dac-nav-item monetize">
+              <a class="dac-nav-link" href="../../../distribute/monetize/index.html">Earn</a>
+            </li>
+            <li class="dac-nav-item analyze">
+              <a class="dac-nav-link" href="../../../distribute/analyze/index.html">Analyze</a>
+            </li>
+            <li class="dac-nav-item stories">
+              <a class="dac-nav-link" href="../../../distribute/stories/index.html">Stories</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item preview">
+          <a class="dac-nav-link" href="../../../preview/index.html">Preview</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end navigation-->
+  
+
+<!-- Nav Setup -->
+<script>$('[data-dac-nav]').dacNav();</script>
+
+
+
+  
+    
+  <div class="wrap clearfix" id="body-content">
+
+  
+
+  
+  <div id="search-results" class="dac-search-results">
+    <div id="dac-search-results-history" class="dac-search-results-history">
+      <div class="wrap dac-search-results-history-wrap">
+        <div class="cols">
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Most visited</h2>
+            <div class="resource-flow-layout" data-history-query="history:most/visited" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Recently visited</h2>
+            <div class="resource-flow-layout cols" data-history-query="history:recent" data-allow-duplicates="true" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dac-search-results-content" class="dac-search-results-content">
+      <div class="dac-search-results-metadata wrap">
+        <div class="dac-search-results-for">
+          <h2>Results for <span id="search-results-for"></span></h2>
+        </div>
+
+        <div id="dac-search-results-hero"></div>
+
+        <div class="dac-search-results-hero cols">
+          <div id="dac-search-results-reference" class="col-3of6 col-tablet-1of2 col-mobile-1of1">
+            <div class="suggest-card reference no-display">
+              <ul class="dac-search-results-reference">
+              </ul>
+            </div>
+          </div>
+          <div id="dac-custom-search-results"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+<div id="naMessage"></div>
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+  
+  
+
+</div>
+
+
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+  <a href="#constants">Constants</a>
+  
+
+
+
+
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+</div><!-- end api-info-block -->
+
+<div class="api apilevel-3" id="jd-content">
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<h1 class="api-title">RecognizerIntent</h1>
+<p>
+<code class="api-signature">
+  public
+  
+  
+  
+  class
+  RecognizerIntent
+</code>
+<br>
+
+
+<code class="api-signature">
+  
+    extends <a href="../../../reference/java/lang/Object.html">Object</a>
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+</p><table class="jd-inheritance-table">
+
+
+  <tr>
+    
+    <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../reference/java/lang/Object.html">java.lang.Object</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="1" class="jd-inheritance-class-cell">android.speech.RecognizerIntent
+    </td>
+  </tr>
+  
+
+</table>
+  
+
+    
+
+<br><hr>
+
+
+  <p>Constants for supporting speech recognition through starting an <code><a href="../../../reference/android/content/Intent.html">Intent</a></code>
+</p>
+
+
+
+
+
+
+
+<h2 class="api-section">Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="responsive constants">
+<tr><th colspan="2"><h3>Constants</h3></th></tr>
+
+
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code>
+          <p>A broadcast intent which can be fired to the <code><a href="../../../reference/android/content/BroadcastReceiver.html">BroadcastReceiver</a></code> component specified
+ in the meta-data defined in the <code><a href="../../../reference/android/speech/RecognizerIntent.html#DETAILS_META_DATA">DETAILS_META_DATA</a></code> meta-data of an
+ <code><a href="../../../reference/android/app/Activity.html">Activity</a></code> satisfying <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>
+          <p>Starts an activity that will prompt the user for speech and send it through a
+ speech recognizer.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-16" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_VOICE_SEARCH_HANDS_FREE">ACTION_VOICE_SEARCH_HANDS_FREE</a></code>
+          <p>Starts an activity that will prompt the user for speech without requiring the user's
+ visual attention or touch input.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>
+          <p>Starts an activity that will prompt the user for speech, send it through a
+ speech recognizer, and either display a web search result or trigger
+ another type of action based on the user's speech.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#DETAILS_META_DATA">DETAILS_META_DATA</a></code>
+          <p>Meta-data name under which an <code><a href="../../../reference/android/app/Activity.html">Activity</a></code> implementing <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code> can
+ use to expose the class name of a <code><a href="../../../reference/android/content/BroadcastReceiver.html">BroadcastReceiver</a></code> which can respond to request for
+ more information, from any of the broadcast intents specified in this class.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_CALLING_PACKAGE">EXTRA_CALLING_PACKAGE</a></code>
+          <p>The extra key used in an intent to the speech recognizer for voice search.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-14" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_CONFIDENCE_SCORES">EXTRA_CONFIDENCE_SCORES</a></code>
+          <p>A float array of confidence scores of the recognition results when performing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE">EXTRA_LANGUAGE</a></code>
+          <p>Optional IETF language tag (as defined by BCP 47), for example "en-US".
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code>
+          <p>Informs the recognizer which speech model to prefer when performing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_PREFERENCE">EXTRA_LANGUAGE_PREFERENCE</a></code>
+          <p>The key to the extra in the <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> returned by <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code>
+ which is a <code><a href="../../../reference/java/lang/String.html">String</a></code> that represents the current language preference this user has
+ specified - a locale string like "en-US".
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_MAX_RESULTS">EXTRA_MAX_RESULTS</a></code>
+          <p>Optional limit on the maximum number of results to return.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE">EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE</a></code>
+          <p>Specify this boolean extra in a broadcast of <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code> to
+ indicate that only the current language preference is needed in the response.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-14" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_ORIGIN">EXTRA_ORIGIN</a></code>
+          <p>Optional value which can be used to indicate the referer url of a page in which
+ speech was requested.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_PARTIAL_RESULTS">EXTRA_PARTIAL_RESULTS</a></code>
+          <p>Optional boolean to indicate whether partial results should be returned by the recognizer
+ as the user speaks (default is false).
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_PREFER_OFFLINE">EXTRA_PREFER_OFFLINE</a></code>
+          <p>Optional boolean, to be used with <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>,
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_VOICE_SEARCH_HANDS_FREE">ACTION_VOICE_SEARCH_HANDS_FREE</a></code>, <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code> to indicate whether to
+ only use an offline speech recognition engine.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_PROMPT">EXTRA_PROMPT</a></code>
+          <p>Optional text prompt to show to the user when asking them to speak.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS">EXTRA_RESULTS</a></code>
+          <p>An ArrayList&lt;String&gt; of the recognition results when performing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS_PENDINGINTENT">EXTRA_RESULTS_PENDINGINTENT</a></code>
+          <p>When the intent is <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>, the speech input activity will
+ return results to you via the activity results mechanism.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS_PENDINGINTENT_BUNDLE">EXTRA_RESULTS_PENDINGINTENT_BUNDLE</a></code>
+          <p>If you use <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS_PENDINGINTENT">EXTRA_RESULTS_PENDINGINTENT</a></code> to supply a forwarding intent, you can
+ also use this extra to supply additional extras for the final intent.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-16" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SECURE">EXTRA_SECURE</a></code>
+          <p>Optional boolean to indicate that a "hands free" voice search was performed while the device
+ was in a secure mode.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS">EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS</a></code>
+          <p>The amount of time that it should take after we stop hearing speech to consider the input
+ complete.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS">EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS</a></code>
+          <p>The minimum length of an utterance.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS">EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS</a></code>
+          <p>The amount of time that it should take after we stop hearing speech to consider the input
+ possibly complete.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-8" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SUPPORTED_LANGUAGES">EXTRA_SUPPORTED_LANGUAGES</a></code>
+          <p>The key to the extra in the <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> returned by <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code>
+ which is an <code><a href="../../../reference/java/util/ArrayList.html">ArrayList</a></code> of <code><a href="../../../reference/java/lang/String.html">String</a></code>s that represents the languages supported by
+ this implementation of voice recognition - a list of strings like "en-US", "cmn-Hans-CN",
+ etc.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-11" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_WEB_SEARCH_ONLY">EXTRA_WEB_SEARCH_ONLY</a></code>
+          <p>Optional boolean, to be used with <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>, to indicate whether to
+ only fire web searches in response to a user's speech.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#LANGUAGE_MODEL_FREE_FORM">LANGUAGE_MODEL_FREE_FORM</a></code>
+          <p>Use a language model based on free-form speech recognition.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#LANGUAGE_MODEL_WEB_SEARCH">LANGUAGE_MODEL_WEB_SEARCH</a></code>
+          <p>Use a language model based on web search terms.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#RESULT_AUDIO_ERROR">RESULT_AUDIO_ERROR</a></code>
+          <p>Result code returned when an audio error was encountered 
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#RESULT_CLIENT_ERROR">RESULT_CLIENT_ERROR</a></code>
+          <p>Result code returned when there is a generic client error 
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#RESULT_NETWORK_ERROR">RESULT_NETWORK_ERROR</a></code>
+          <p>Result code returned when a network error was encountered 
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#RESULT_NO_MATCH">RESULT_NO_MATCH</a></code>
+          <p>Result code returned when no matches are found for the given speech 
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-3" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/speech/RecognizerIntent.html#RESULT_SERVER_ERROR">RESULT_SERVER_ERROR</a></code>
+          <p>Result code returned when the recognition server returns an error 
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="responsive methods">
+<tr><th colspan="2"><h3>Public methods</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-8" >
+  
+  
+    <td><code>
+        
+        
+        static
+        final
+        
+        <a href="../../../reference/android/content/Intent.html">Intent</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/speech/RecognizerIntent.html#getVoiceDetailsIntent(android.content.Context)">getVoiceDetailsIntent</a>(<a href="../../../reference/android/content/Context.html">Context</a> context)
+      </code>
+      
+        <p>Returns the broadcast intent to fire with
+ <code><a href="../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String, android.content.BroadcastReceiver, android.os.Handler, int, java.lang.String, android.os.Bundle)">sendOrderedBroadcast(Intent, String, BroadcastReceiver, android.os.Handler, int, String, Bundle)</a></code>
+ to receive details from the package that implements voice search.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="methods inhtable">
+<tr><th><h3>Inherited methods</h3></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="../../../reference/java/lang/Object.html">java.lang.Object</a>
+  
+</code>
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/Object.html">Object</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#clone()">clone</a>()
+      </code>
+      
+        <p>Creates and returns a copy of this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#equals(java.lang.Object)">equals</a>(<a href="../../../reference/java/lang/Object.html">Object</a> obj)
+      </code>
+      
+        <p>Indicates whether some other object is "equal to" this one.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#finalize()">finalize</a>()
+      </code>
+      
+        <p>Called by the garbage collector on an object when garbage collection
+ determines that there are no more references to the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../reference/java/lang/Class.html">Class</a>&lt;?&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#getClass()">getClass</a>()
+      </code>
+      
+        <p>Returns the runtime class of this <code>Object</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#hashCode()">hashCode</a>()
+      </code>
+      
+        <p>Returns a hash code value for the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#notify()">notify</a>()
+      </code>
+      
+        <p>Wakes up a single thread that is waiting on this object's
+ monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll</a>()
+      </code>
+      
+        <p>Wakes up all threads that are waiting on this object's monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#toString()">toString</a>()
+      </code>
+      
+        <p>Returns a string representation of the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait(long, int)">wait</a>(long millis, int nanos)
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or
+ some other thread interrupts the current thread, or a certain
+ amount of real time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait(long)">wait</a>(long millis)
+      </code>
+      
+        <p>Causes the current thread to wait until either another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or a
+ specified amount of time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait()">wait</a>()
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2 class="api-section">Constants</h2>
+
+
+
+
+<A NAME="ACTION_GET_LANGUAGE_DETAILS"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">ACTION_GET_LANGUAGE_DETAILS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_GET_LANGUAGE_DETAILS</pre>
+    
+    
+
+    
+  <p>A broadcast intent which can be fired to the <code><a href="../../../reference/android/content/BroadcastReceiver.html">BroadcastReceiver</a></code> component specified
+ in the meta-data defined in the <code><a href="../../../reference/android/speech/RecognizerIntent.html#DETAILS_META_DATA">DETAILS_META_DATA</a></code> meta-data of an
+ <code><a href="../../../reference/android/app/Activity.html">Activity</a></code> satisfying <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>.
+ <p>
+ When fired with
+ <code><a href="../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String, android.content.BroadcastReceiver, android.os.Handler, int, java.lang.String, android.os.Bundle)">sendOrderedBroadcast(Intent, String, BroadcastReceiver, android.os.Handler, int, String, android.os.Bundle)</a></code>,
+ a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> of extras will be returned to the provided result receiver, and should
+ ideally contain values for <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_PREFERENCE">EXTRA_LANGUAGE_PREFERENCE</a></code> and
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SUPPORTED_LANGUAGES">EXTRA_SUPPORTED_LANGUAGES</a></code>.
+ <p>
+ (Whether these are actually provided is up to the particular implementation. It is
+ recommended that <code><a href="../../../reference/android/app/Activity.html">Activity</a></code>s implementing <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code> provide this
+ information, but it is not required.)
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.action.GET_LANGUAGE_DETAILS"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_RECOGNIZE_SPEECH"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">ACTION_RECOGNIZE_SPEECH</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_RECOGNIZE_SPEECH</pre>
+    
+    
+
+    
+  <p>Starts an activity that will prompt the user for speech and send it through a
+ speech recognizer.  The results will be returned via activity results (in
+ <code><a href="../../../reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult(int, int, Intent)</a></code>, if you start the intent using
+ <code><a href="../../../reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult(Intent, int)</a></code>), or forwarded via a PendingIntent
+ if one is provided.
+ 
+ <p>Starting this intent with just <code><a href="../../../reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity(Intent)</a></code> is not supported.
+ You must either use <code><a href="../../../reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult(Intent, int)</a></code>, or provide a
+ PendingIntent, to receive recognition results.
+
+ <p>The implementation of this API is likely to stream audio to remote servers to perform
+ speech recognition which can use a substantial amount of bandwidth.
+
+ <p>Required extras:
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code>
+ </ul>
+ 
+ <p>Optional extras:
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_PROMPT">EXTRA_PROMPT</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE">EXTRA_LANGUAGE</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_MAX_RESULTS">EXTRA_MAX_RESULTS</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS_PENDINGINTENT">EXTRA_RESULTS_PENDINGINTENT</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS_PENDINGINTENT_BUNDLE">EXTRA_RESULTS_PENDINGINTENT_BUNDLE</a></code>
+ </ul>
+ 
+ <p> Result extras (returned in the result, not to be specified in the request):
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS">EXTRA_RESULTS</a></code>
+ </ul>
+ 
+ <p>NOTE: There may not be any applications installed to handle this action, so you should
+ make sure to catch <code><a href="../../../reference/android/content/ActivityNotFoundException.html">ActivityNotFoundException</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.action.RECOGNIZE_SPEECH"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_VOICE_SEARCH_HANDS_FREE"></A>
+
+<div class="api apilevel-16">
+    <h3 class="api-name">ACTION_VOICE_SEARCH_HANDS_FREE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 16</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_VOICE_SEARCH_HANDS_FREE</pre>
+    
+    
+
+    
+  <p>Starts an activity that will prompt the user for speech without requiring the user's
+ visual attention or touch input. It will send it through a speech recognizer,
+ and either synthesize speech for a web search result or trigger
+ another type of action based on the user's speech.
+
+ This activity may be launched while device is locked in a secure mode.
+ Special care must be taken to ensure that the voice actions that are performed while
+ hands free cannot compromise the device's security.
+ The activity should check the value of the <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SECURE">EXTRA_SECURE</a></code> extra to determine
+ whether the device has been securely locked. If so, the activity should either restrict
+ the set of voice actions that are permitted or require some form of secure
+ authentication before proceeding.
+
+ To ensure that the activity's user interface is visible while the lock screen is showing,
+ the activity should set the
+ <code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#FLAG_SHOW_WHEN_LOCKED">FLAG_SHOW_WHEN_LOCKED</a></code> window flag.
+ Otherwise the activity's user interface may be hidden by the lock screen. The activity
+ should take care not to leak private information when the device is securely locked.
+
+ <p>Optional extras:
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SECURE">EXTRA_SECURE</a></code>
+ </ul>
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.action.VOICE_SEARCH_HANDS_FREE"
+      
+    
+</div>
+
+
+
+<A NAME="ACTION_WEB_SEARCH"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">ACTION_WEB_SEARCH</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ACTION_WEB_SEARCH</pre>
+    
+    
+
+    
+  <p>Starts an activity that will prompt the user for speech, send it through a
+ speech recognizer, and either display a web search result or trigger
+ another type of action based on the user's speech.
+
+ <p>If you want to avoid triggering any type of action besides web search, you can use
+ the <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_WEB_SEARCH_ONLY">EXTRA_WEB_SEARCH_ONLY</a></code> extra.
+ 
+ <p>Required extras:
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code>
+ </ul>
+ 
+ <p>Optional extras:
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_PROMPT">EXTRA_PROMPT</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE">EXTRA_LANGUAGE</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_MAX_RESULTS">EXTRA_MAX_RESULTS</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_PARTIAL_RESULTS">EXTRA_PARTIAL_RESULTS</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_WEB_SEARCH_ONLY">EXTRA_WEB_SEARCH_ONLY</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_ORIGIN">EXTRA_ORIGIN</a></code>
+ </ul>
+ 
+ <p> Result extras (returned in the result, not to be specified in the request):
+ <ul>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS">EXTRA_RESULTS</a></code>
+   <li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_CONFIDENCE_SCORES">EXTRA_CONFIDENCE_SCORES</a></code> (optional)
+ </ul>
+ 
+ <p>NOTE: There may not be any applications installed to handle this action, so you should
+ make sure to catch <code><a href="../../../reference/android/content/ActivityNotFoundException.html">ActivityNotFoundException</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.action.WEB_SEARCH"
+      
+    
+</div>
+
+
+
+<A NAME="DETAILS_META_DATA"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">DETAILS_META_DATA</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DETAILS_META_DATA</pre>
+    
+    
+
+    
+  <p>Meta-data name under which an <code><a href="../../../reference/android/app/Activity.html">Activity</a></code> implementing <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code> can
+ use to expose the class name of a <code><a href="../../../reference/android/content/BroadcastReceiver.html">BroadcastReceiver</a></code> which can respond to request for
+ more information, from any of the broadcast intents specified in this class.
+ <p>
+ Broadcast intents can be directed to the class name specified in the meta-data by creating
+ an <code><a href="../../../reference/android/content/Intent.html">Intent</a></code>, setting the component with
+ <code><a href="../../../reference/android/content/Intent.html#setComponent(android.content.ComponentName)">setComponent(android.content.ComponentName)</a></code>, and using
+ <code><a href="../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String, android.content.BroadcastReceiver, android.os.Handler, int, java.lang.String, android.os.Bundle)">sendOrderedBroadcast(Intent, String, BroadcastReceiver, android.os.Handler, int, String, android.os.Bundle)</a></code>
+ with another <code><a href="../../../reference/android/content/BroadcastReceiver.html">BroadcastReceiver</a></code> which can receive the results.
+ <p>
+ The <code><a href="../../../reference/android/speech/RecognizerIntent.html#getVoiceDetailsIntent(android.content.Context)">getVoiceDetailsIntent(Context)</a></code> method is provided as a convenience to create
+ a broadcast intent based on the value of this meta-data, if available.
+ <p>
+ This is optional and not all <code><a href="../../../reference/android/app/Activity.html">Activity</a></code>s which implement <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>
+ are required to implement this. Thus retrieving this meta-data may be null.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.DETAILS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CALLING_PACKAGE"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_CALLING_PACKAGE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CALLING_PACKAGE</pre>
+    
+    
+
+    
+  <p>The extra key used in an intent to the speech recognizer for voice search. Not
+ generally to be used by developers. The system search dialog uses this, for example,
+ to set a calling package for identification by a voice search API. If this extra
+ is set by anyone but the system process, it should be overridden by the voice search
+ implementation.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "calling_package"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_CONFIDENCE_SCORES"></A>
+
+<div class="api apilevel-14">
+    <h3 class="api-name">EXTRA_CONFIDENCE_SCORES</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 14</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_CONFIDENCE_SCORES</pre>
+    
+    
+
+    
+  <p>A float array of confidence scores of the recognition results when performing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>. The array should be the same size as the ArrayList
+ returned in <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS">EXTRA_RESULTS</a></code>, and should contain values ranging from 0.0 to 1.0,
+ or -1 to represent an unavailable confidence score.
+ <p>
+ Confidence values close to 1.0 indicate high confidence (the speech recognizer is
+ confident that the recognition result is correct), while values close to 0.0 indicate
+ low confidence.
+ <p>
+ Returned in the results; not to be specified in the recognition request. This extra is
+ optional and might not be provided. Only present when <code><a href="../../../reference/android/app/Activity.html#RESULT_OK">RESULT_OK</a></code> is
+ returned in an activity result.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.CONFIDENCE_SCORES"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_LANGUAGE"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_LANGUAGE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_LANGUAGE</pre>
+    
+    
+
+    
+  <p>Optional IETF language tag (as defined by BCP 47), for example "en-US". This tag informs the
+ recognizer to perform speech recognition in a language different than the one set in the
+ <code><a href="../../../reference/java/util/Locale.html#getDefault()">getDefault()</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.LANGUAGE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_LANGUAGE_MODEL"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_LANGUAGE_MODEL</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_LANGUAGE_MODEL</pre>
+    
+    
+
+    
+  <p>Informs the recognizer which speech model to prefer when performing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>. The recognizer uses this
+ information to fine tune the results. This extra is required. Activities implementing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code> may interpret the values as they see fit.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/speech/RecognizerIntent.html#LANGUAGE_MODEL_FREE_FORM">LANGUAGE_MODEL_FREE_FORM</a></code></li><li><code><a href="../../../reference/android/speech/RecognizerIntent.html#LANGUAGE_MODEL_WEB_SEARCH">LANGUAGE_MODEL_WEB_SEARCH</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.LANGUAGE_MODEL"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_LANGUAGE_PREFERENCE"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_LANGUAGE_PREFERENCE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_LANGUAGE_PREFERENCE</pre>
+    
+    
+
+    
+  <p>The key to the extra in the <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> returned by <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code>
+ which is a <code><a href="../../../reference/java/lang/String.html">String</a></code> that represents the current language preference this user has
+ specified - a locale string like "en-US".
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.LANGUAGE_PREFERENCE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_MAX_RESULTS"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_MAX_RESULTS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_MAX_RESULTS</pre>
+    
+    
+
+    
+  <p>Optional limit on the maximum number of results to return. If omitted the recognizer
+ will choose how many results to return. Must be an integer.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.MAX_RESULTS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE</pre>
+    
+    
+
+    
+  <p>Specify this boolean extra in a broadcast of <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code> to
+ indicate that only the current language preference is needed in the response. This
+ avoids any additional computation if all you need is <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_PREFERENCE">EXTRA_LANGUAGE_PREFERENCE</a></code>
+ in the response.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.ONLY_RETURN_LANGUAGE_PREFERENCE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_ORIGIN"></A>
+
+<div class="api apilevel-14">
+    <h3 class="api-name">EXTRA_ORIGIN</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 14</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_ORIGIN</pre>
+    
+    
+
+    
+  <p>Optional value which can be used to indicate the referer url of a page in which
+ speech was requested. For example, a web browser may choose to provide this for
+ uses of speech on a given page.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.ORIGIN"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_PARTIAL_RESULTS"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_PARTIAL_RESULTS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_PARTIAL_RESULTS</pre>
+    
+    
+
+    
+  <p>Optional boolean to indicate whether partial results should be returned by the recognizer
+ as the user speaks (default is false).  The server may ignore a request for partial
+ results in some or all cases.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.PARTIAL_RESULTS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_PREFER_OFFLINE"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">EXTRA_PREFER_OFFLINE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_PREFER_OFFLINE</pre>
+    
+    
+
+    
+  <p>Optional boolean, to be used with <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>,
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_VOICE_SEARCH_HANDS_FREE">ACTION_VOICE_SEARCH_HANDS_FREE</a></code>, <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code> to indicate whether to
+ only use an offline speech recognition engine. The default is false, meaning that either
+ network or offline recognition engines may be used.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.PREFER_OFFLINE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_PROMPT"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_PROMPT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_PROMPT</pre>
+    
+    
+
+    
+  <p>Optional text prompt to show to the user when asking them to speak. </p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.PROMPT"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_RESULTS"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_RESULTS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_RESULTS</pre>
+    
+    
+
+    
+  <p>An ArrayList&lt;String&gt; of the recognition results when performing
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>. Generally this list should be ordered in
+ descending order of speech recognizer confidence. (See <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_CONFIDENCE_SCORES">EXTRA_CONFIDENCE_SCORES</a></code>).
+ Returned in the results; not to be specified in the recognition request. Only present
+ when <code><a href="../../../reference/android/app/Activity.html#RESULT_OK">RESULT_OK</a></code> is returned in an activity result. In a PendingIntent,
+ the lack of this extra indicates failure.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.RESULTS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_RESULTS_PENDINGINTENT"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_RESULTS_PENDINGINTENT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_RESULTS_PENDINGINTENT</pre>
+    
+    
+
+    
+  <p>When the intent is <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH">ACTION_RECOGNIZE_SPEECH</a></code>, the speech input activity will
+ return results to you via the activity results mechanism.  Alternatively, if you use this
+ extra to supply a PendingIntent, the results will be added to its bundle and the 
+ PendingIntent will be sent to its target.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.RESULTS_PENDINGINTENT"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_RESULTS_PENDINGINTENT_BUNDLE"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">EXTRA_RESULTS_PENDINGINTENT_BUNDLE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_RESULTS_PENDINGINTENT_BUNDLE</pre>
+    
+    
+
+    
+  <p>If you use <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_RESULTS_PENDINGINTENT">EXTRA_RESULTS_PENDINGINTENT</a></code> to supply a forwarding intent, you can
+ also use this extra to supply additional extras for the final intent.  The search results
+ will be added to this bundle, and the combined bundle will be sent to the target.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.RESULTS_PENDINGINTENT_BUNDLE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_SECURE"></A>
+
+<div class="api apilevel-16">
+    <h3 class="api-name">EXTRA_SECURE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 16</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_SECURE</pre>
+    
+    
+
+    
+  <p>Optional boolean to indicate that a "hands free" voice search was performed while the device
+ was in a secure mode. An example of secure mode is when the device's screen lock is active,
+ and it requires some form of authentication to be unlocked.
+
+ When the device is securely locked, the voice search activity should either restrict
+ the set of voice actions that are permitted, or require some form of secure authentication
+ before proceeding.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extras.EXTRA_SECURE"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS</pre>
+    
+    
+
+    
+  <p>The amount of time that it should take after we stop hearing speech to consider the input
+ complete. 
+ 
+ Note that it is extremely rare you'd want to specify this value in an intent. If
+ you don't have a very good reason to change these, you should leave them as they are. Note
+ also that certain values may cause undesired or unexpected results - use judiciously!
+ Additionally, depending on the recognizer implementation, these values may have no effect.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extras.SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS</pre>
+    
+    
+
+    
+  <p>The minimum length of an utterance. We will not stop recording before this amount of time.
+ 
+ Note that it is extremely rare you'd want to specify this value in an intent. If you don't
+ have a very good reason to change these, you should leave them as they are. Note also that
+ certain values may cause undesired or unexpected results - use judiciously! Additionally,
+ depending on the recognizer implementation, these values may have no effect.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extras.SPEECH_INPUT_MINIMUM_LENGTH_MILLIS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS</pre>
+    
+    
+
+    
+  <p>The amount of time that it should take after we stop hearing speech to consider the input
+ possibly complete. This is used to prevent the endpointer cutting off during very short
+ mid-speech pauses. 
+ 
+ Note that it is extremely rare you'd want to specify this value in an intent. If
+ you don't have a very good reason to change these, you should leave them as they are. Note
+ also that certain values may cause undesired or unexpected results - use judiciously!
+ Additionally, depending on the recognizer implementation, these values may have no effect.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extras.SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_SUPPORTED_LANGUAGES"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">EXTRA_SUPPORTED_LANGUAGES</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_SUPPORTED_LANGUAGES</pre>
+    
+    
+
+    
+  <p>The key to the extra in the <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> returned by <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_GET_LANGUAGE_DETAILS">ACTION_GET_LANGUAGE_DETAILS</a></code>
+ which is an <code><a href="../../../reference/java/util/ArrayList.html">ArrayList</a></code> of <code><a href="../../../reference/java/lang/String.html">String</a></code>s that represents the languages supported by
+ this implementation of voice recognition - a list of strings like "en-US", "cmn-Hans-CN",
+ etc.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.SUPPORTED_LANGUAGES"
+      
+    
+</div>
+
+
+
+<A NAME="EXTRA_WEB_SEARCH_ONLY"></A>
+
+<div class="api apilevel-11">
+    <h3 class="api-name">EXTRA_WEB_SEARCH_ONLY</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 11</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> EXTRA_WEB_SEARCH_ONLY</pre>
+    
+    
+
+    
+  <p>Optional boolean, to be used with <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>, to indicate whether to
+ only fire web searches in response to a user's speech. The default is false, meaning
+ that other types of actions can be taken based on the user's speech.
+</p>
+
+    
+      <p>Constant Value:
+      
+          "android.speech.extra.WEB_SEARCH_ONLY"
+      
+    
+</div>
+
+
+
+<A NAME="LANGUAGE_MODEL_FREE_FORM"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">LANGUAGE_MODEL_FREE_FORM</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> LANGUAGE_MODEL_FREE_FORM</pre>
+    
+    
+
+    
+  <p>Use a language model based on free-form speech recognition.  This is a value to use for 
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code>.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "free_form"
+      
+    
+</div>
+
+
+
+<A NAME="LANGUAGE_MODEL_WEB_SEARCH"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">LANGUAGE_MODEL_WEB_SEARCH</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> LANGUAGE_MODEL_WEB_SEARCH</pre>
+    
+    
+
+    
+  <p>Use a language model based on web search terms.  This is a value to use for 
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code>.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_MODEL">EXTRA_LANGUAGE_MODEL</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "web_search"
+      
+    
+</div>
+
+
+
+<A NAME="RESULT_AUDIO_ERROR"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">RESULT_AUDIO_ERROR</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int RESULT_AUDIO_ERROR</pre>
+    
+    
+
+    
+  <p>Result code returned when an audio error was encountered </p>
+
+    
+      <p>Constant Value:
+      
+          5
+          (0x00000005)
+      
+    
+</div>
+
+
+
+<A NAME="RESULT_CLIENT_ERROR"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">RESULT_CLIENT_ERROR</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int RESULT_CLIENT_ERROR</pre>
+    
+    
+
+    
+  <p>Result code returned when there is a generic client error </p>
+
+    
+      <p>Constant Value:
+      
+          2
+          (0x00000002)
+      
+    
+</div>
+
+
+
+<A NAME="RESULT_NETWORK_ERROR"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">RESULT_NETWORK_ERROR</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int RESULT_NETWORK_ERROR</pre>
+    
+    
+
+    
+  <p>Result code returned when a network error was encountered </p>
+
+    
+      <p>Constant Value:
+      
+          4
+          (0x00000004)
+      
+    
+</div>
+
+
+
+<A NAME="RESULT_NO_MATCH"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">RESULT_NO_MATCH</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int RESULT_NO_MATCH</pre>
+    
+    
+
+    
+  <p>Result code returned when no matches are found for the given speech </p>
+
+    
+      <p>Constant Value:
+      
+          1
+          (0x00000001)
+      
+    
+</div>
+
+
+
+<A NAME="RESULT_SERVER_ERROR"></A>
+
+<div class="api apilevel-3">
+    <h3 class="api-name">RESULT_SERVER_ERROR</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 3</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int RESULT_SERVER_ERROR</pre>
+    
+    
+
+    
+  <p>Result code returned when the recognition server returns an error </p>
+
+    
+      <p>Constant Value:
+      
+          3
+          (0x00000003)
+      
+    
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2 class="api-section">Public methods</h2>
+
+
+
+<A NAME="getVoiceDetailsIntent(android.content.Context)"></A>
+
+<div class="api apilevel-8">
+    <h3 class="api-name">getVoiceDetailsIntent</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 8</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/content/Intent.html">Intent</a> getVoiceDetailsIntent (<a href="../../../reference/android/content/Context.html">Context</a> context)</pre>
+    
+    
+
+    
+  <p>Returns the broadcast intent to fire with
+ <code><a href="../../../reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent, java.lang.String, android.content.BroadcastReceiver, android.os.Handler, int, java.lang.String, android.os.Bundle)">sendOrderedBroadcast(Intent, String, BroadcastReceiver, android.os.Handler, int, String, Bundle)</a></code>
+ to receive details from the package that implements voice search.
+ <p>
+ This is based on the value specified by the voice search <code><a href="../../../reference/android/app/Activity.html">Activity</a></code> in
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#DETAILS_META_DATA">DETAILS_META_DATA</a></code>, and if this is not specified, will return null. Also if there
+ is no chosen default to resolve for <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code>, this will return null.
+ <p>
+ If an intent is returned and is fired, a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> of extras will be returned to the
+ provided result receiver, and should ideally contain values for
+ <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_LANGUAGE_PREFERENCE">EXTRA_LANGUAGE_PREFERENCE</a></code> and <code><a href="../../../reference/android/speech/RecognizerIntent.html#EXTRA_SUPPORTED_LANGUAGES">EXTRA_SUPPORTED_LANGUAGES</a></code>.
+ <p>
+ (Whether these are actually provided is up to the particular implementation. It is
+ recommended that <code><a href="../../../reference/android/app/Activity.html">Activity</a></code>s implementing <code><a href="../../../reference/android/speech/RecognizerIntent.html#ACTION_WEB_SEARCH">ACTION_WEB_SEARCH</a></code> provide this
+ information, but it is not required.)</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>context</code></td>
+        <td width="100%">
+          <code>Context</code>:
+          a context object</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/content/Intent.html">Intent</a></code></td>
+        <td width="100%">the broadcast intent to fire or null if not available
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</div><!-- end jd-content -->
+
+
+
+
+
+<div class="wrap">
+  <div class="dac-footer">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" id="newsletter" data-modal-toggle="newsletter" href="javascript:;">Get news &amp; tips <span
+          class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i></span></a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</a>
+          <a class="dac-footer-contact-link" href="/support.html">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-button-social dac-youtube dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><i class="dac-sprite dac-youtube"></i></a>
+          <a class="dac-button-social dac-gplus dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers"><i class="dac-sprite dac-gplus"></i></a>
+          <a class="dac-button-social dac-twitter dac-footer-social-link" href="https://twitter.com/AndroidDev"><i class="dac-sprite dac-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+
+    
+      <p class="dac-footer-copyright">
+        
+  Except as noted, this content is licensed under <a
+  href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
+  For details and restrictions, see the <a href="../../../license.html">
+  Content License</a>.
+
+      </p>
+      <p class="dac-footer-build">
+        
+  
+    Android 6.0&nbsp;r1 &mdash;
+  
+  <script src="../../../timestamp.js" type="text/javascript"></script>
+  <script>document.write(BUILD_TIMESTAMP)</script>
+
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="/about/android.html">About Android</a>
+      <a href="/auto/index.html">Auto</a>
+      <a href="/tv/index.html">TV</a>
+      <a href="/wear/index.html">Wear</a>
+      <a href="/legal.html">Legal</a>
+
+      <span id="language" class="locales">
+        <select name="language" onchange="changeLangPref(this.value, true)">
+          <option value="en" selected="selected">English</option>
+          <option value="es">Español</option>
+          <option value="in">Bahasa Indonesia</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt-br">Português Brasileiro</option>
+          <option value="ru">Русский</option>
+          <option value="vi">tiếng Việt</option>
+          <option value="zh-cn">中文（简体)</option>
+          <option value="zh-tw">中文（繁體)</option>
+        </select>
+      </span>
+    </p>
+  </div>
+</div>
+<!-- end footer -->
+
+
+
+  
+
+
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.title"></h2>
+            <p class="dac-modal-header-subtitle" data-t="newsletter.requiredHint"></p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.successTitle">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <input type="hidden" name="entry.935454734" data-newsletter-language>
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel" data-t="newsletter.name">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel" data-t="newsletter.email">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel" data-t="newsletter.company">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel" data-t="newsletter.appUrl">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend"><span data-t="newsletter.business.label">Which best describes your business:</span><span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label" data-t="newsletter.business.apps">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label" data-t="newsletter.business.games">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label" data-t="newsletter.business.both">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside"><span data-t="newsletter.confirmMailingList"></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside"><span data-t="newsletter.privacyPolicy" data-t-html></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message" data-t="newsletter.successDetails"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end newsletter modal -->
+
+<!-- start reset language header modal -->
+<div data-modal="langform" class="dac-modal" id="langform">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title"></h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+            <fieldset class="dac-form-fieldset">
+              <div class="cols">
+                <div class="col-2of2 langform-leftCol">
+                  <p id="resetLangText"></p>
+                  <p id="resetLangCta"></p>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+              <button class="button dac-primary dac-modal-action lang yes" data-t="newsletter.resetLangButtonYes" data-modal-toggle></button>
+              <button class="button dac-primary dac-modal-action lang no" data-t="newsletter.resetLangButtonNo" data-modal-toggle></button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- end langreset modal -->
+
+
+</div> <!-- end body-content --> 
+
+
+
+
+<script src="https://developer.android.com/ytblogger_lists_unified.js" defer></script>
+<script src="/jd_lists_unified_en.js?v=17" defer></script>
+<script src="/reference/lists.js?v=17" defer></script>
+<script src="/reference/gcm_lists.js?v=17" defer></script>
+<script src="/reference/gms_lists.js?v=17" defer></script>
+<script>
+  // Load localized metadata.
+  (function(lang) {
+    if (lang === 'en') { return; }
+
+    // Write it to the document so it gets evaluated before DOMContentReady.
+    document.write('<script src="/jd_lists_unified_' + lang + '.js?v=14" defer></' + 'script>');
+  })(getLangPref())
+</script>
+
+
+</body>
+</html>

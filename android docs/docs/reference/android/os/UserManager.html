@@ -1,0 +1,5433 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<link rel="alternate" href="http://developer.android.com/" hreflang="en" />
+<link rel="alternate" href="http://developer.android.com/intl/es/" hreflang="es" />
+<link rel="alternate" href="http://developer.android.com/intl/id/" hreflang="id" />
+<link rel="alternate" href="http://developer.android.com/intl/ja/" hreflang="ja" />
+<link rel="alternate" href="http://developer.android.com/intl/ko/" hreflang="ko" />
+<link rel="alternate" href="http://developer.android.com/intl/pt-br/" hreflang="pt-br" />
+<link rel="alternate" href="http://developer.android.com/intl/ru/" hreflang="ru" />
+<link rel="alternate" href="http://developer.android.com/intl/vi/" hreflang="vi" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-cn/" hreflang="zh-cn" />
+<link rel="alternate" href="http://developer.android.com/intl/zh-tw/" hreflang="zh-tw" />
+
+
+<title>UserManager - Android SDK | Android Developers
+</title>
+
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+  title="roboto">
+
+<link href="../../../assets/css/default.css?v=16" rel="stylesheet" type="text/css">
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "../../../";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</script>
+<script src="../../../assets/js/docs.js?v=17" type="text/javascript"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+</head>
+
+<body class="gc-documentation develop reference api apilevel-17">
+<div id="doc-api-level" class="17" style="display:none"></div>
+
+
+  
+  <a name="top"></a>
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div class="dac-header " id="header">
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="javascript:;" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        <a class="dac-header-logo" href="../../../index.html">
+          <img class="dac-header-logo-image" src="../../../assets/images/android_logo.png"
+              srcset="../../../assets/images/android_logo@2x.png 2x"
+              width="32" height="36" alt="Android" /> Developers
+          </a>
+
+        <ul class="dac-header-tabs">
+          <li>
+          <a class="dac-header-tab" href="../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          </li>
+          <li>
+          <a class="dac-header-tab" href="../../../distribute/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          </li>
+        </ul>
+
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+
+        
+        
+        
+  <form data-search class="dac-header-search">
+    <button class="dac-header-search-close" data-search-close>
+      <i class="dac-sprite dac-back-arrow"></i>
+    </button>
+
+    <div class="dac-header-search-inner">
+      <i class="dac-sprite dac-search-white dac-header-search-icon"></i>
+      <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" class="dac-header-search-input" placeholder="Search" />
+      <button class="dac-header-search-clear dac-hidden" data-search-clear>
+        <i class="dac-sprite dac-close-black"></i>
+      </button>
+    </div>
+  </form>
+
+        
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+  </div> <!--end header-wrapper -->
+
+  
+  <!-- Navigation-->
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+
+    <div class="dac-nav-sidebar" data-swap data-dynamic="false" data-transition-speed="300" data-dac-nav>
+      <div data-swap-container>
+        
+  
+    <a class="dac-nav-back-button dac-swap-section dac-up dac-no-anim" data-swap-button href="javascript:;">
+      <i class="dac-sprite dac-nav-back"></i> <span class="dac-nav-back-title">Back</span>
+    </a>
+    <div class="dac-nav-sub dac-swap-section dac-right dac-active" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      
+        
+  <!-- Fullscreen toggler -->
+  <button data-fullscreen class="dac-nav-fullscreen">
+    <i class="dac-sprite dac-fullscreen"></i>
+  </button>
+
+  <script>$('[data-fullscreen]').dacFullscreen();</script>
+  <!-- End: Fullscreen toggler -->
+
+  
+    <div id="devdoc-nav">
+      <div id="api-nav-header">
+        <div id="api-level-toggle">
+          <label for="apiLevelCheckbox" class="disabled"
+                 title="Select your target API level to dim unavailable APIs">API level: </label>
+          <div class="select-wrapper">
+            <select id="apiLevelSelector">
+              <!-- option elements added by buildApiLevelSelector() -->
+            </select>
+          </div>
+        </div><!-- end toggle -->
+        <div id="api-nav-title">Android APIs</div>
+      </div><!-- end nav header -->
+      <script>
+        var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24' ];
+        buildApiLevelSelector();
+      </script>
+
+      <div class="dac-reference-nav" data-reference-tree>
+        <ul class="dac-reference-nav-list" data-reference-namespaces>
+          
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/package-summary.html">android</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/accessibilityservice/package-summary.html">android.accessibilityservice</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/accounts/package-summary.html">android.accounts</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/animation/package-summary.html">android.animation</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/annotation/package-summary.html">android.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/app/package-summary.html">android.app</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/android/app/admin/package-summary.html">android.app.admin</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/app/assist/package-summary.html">android.app.assist</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/android/app/backup/package-summary.html">android.app.backup</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/app/job/package-summary.html">android.app.job</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/app/usage/package-summary.html">android.app.usage</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/appwidget/package-summary.html">android.appwidget</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/bluetooth/package-summary.html">android.bluetooth</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/bluetooth/le/package-summary.html">android.bluetooth.le</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/package-summary.html">android.content</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/pm/package-summary.html">android.content.pm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/content/res/package-summary.html">android.content.res</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/database/package-summary.html">android.database</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/database/sqlite/package-summary.html">android.database.sqlite</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/databinding/package-summary.html">android.databinding</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/drm/package-summary.html">android.drm</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/gesture/package-summary.html">android.gesture</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/package-summary.html">android.graphics</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/drawable/package-summary.html">android.graphics.drawable</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/graphics/drawable/shapes/package-summary.html">android.graphics.drawable.shapes</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/graphics/pdf/package-summary.html">android.graphics.pdf</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/hardware/package-summary.html">android.hardware</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/hardware/camera2/package-summary.html">android.hardware.camera2</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/hardware/camera2/params/package-summary.html">android.hardware.camera2.params</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../reference/android/hardware/display/package-summary.html">android.hardware.display</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/hardware/fingerprint/package-summary.html">android.hardware.fingerprint</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/hardware/input/package-summary.html">android.hardware.input</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/hardware/usb/package-summary.html">android.hardware.usb</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/lang/package-summary.html">android.icu.lang</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/math/package-summary.html">android.icu.math</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/text/package-summary.html">android.icu.text</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/icu/util/package-summary.html">android.icu.util</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/inputmethodservice/package-summary.html">android.inputmethodservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/location/package-summary.html">android.location</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/media/package-summary.html">android.media</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/media/audiofx/package-summary.html">android.media.audiofx</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/browse/package-summary.html">android.media.browse</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/media/effect/package-summary.html">android.media.effect</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/media/midi/package-summary.html">android.media.midi</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/projection/package-summary.html">android.media.projection</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/session/package-summary.html">android.media.session</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/media/tv/package-summary.html">android.media.tv</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/mtp/package-summary.html">android.mtp</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/package-summary.html">android.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/http/package-summary.html">android.net.http</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/net/nsd/package-summary.html">android.net.nsd</a></li>
+    <li class="api apilevel-12">
+  <a href="../../../reference/android/net/rtp/package-summary.html">android.net.rtp</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/net/sip/package-summary.html">android.net.sip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/net/wifi/package-summary.html">android.net.wifi</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/net/wifi/p2p/package-summary.html">android.net.wifi.p2p</a></li>
+    <li class="api apilevel-16">
+  <a href="../../../reference/android/net/wifi/p2p/nsd/package-summary.html">android.net.wifi.p2p.nsd</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/nfc/package-summary.html">android.nfc</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/nfc/cardemulation/package-summary.html">android.nfc.cardemulation</a></li>
+    <li class="api apilevel-10">
+  <a href="../../../reference/android/nfc/tech/package-summary.html">android.nfc.tech</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/opengl/package-summary.html">android.opengl</a></li>
+    <li class="selected api apilevel-1">
+  <a href="../../../reference/android/os/package-summary.html">android.os</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/os/health/package-summary.html">android.os.health</a></li>
+    <li class="api apilevel-9">
+  <a href="../../../reference/android/os/storage/package-summary.html">android.os.storage</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/preference/package-summary.html">android.preference</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/print/package-summary.html">android.print</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/print/pdf/package-summary.html">android.print.pdf</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/printservice/package-summary.html">android.printservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/provider/package-summary.html">android.provider</a></li>
+    <li class="api apilevel-11">
+  <a href="../../../reference/android/renderscript/package-summary.html">android.renderscript</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/sax/package-summary.html">android.sax</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/security/package-summary.html">android.security</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/security/keystore/package-summary.html">android.security.keystore</a></li>
+    <li class="api apilevel-22">
+  <a href="../../../reference/android/service/carrier/package-summary.html">android.service.carrier</a></li>
+    <li class="api apilevel-23">
+  <a href="../../../reference/android/service/chooser/package-summary.html">android.service.chooser</a></li>
+    <li class="api apilevel-17">
+  <a href="../../../reference/android/service/dreams/package-summary.html">android.service.dreams</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/media/package-summary.html">android.service.media</a></li>
+    <li class="api apilevel-18">
+  <a href="../../../reference/android/service/notification/package-summary.html">android.service.notification</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/service/quicksettings/package-summary.html">android.service.quicksettings</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/restrictions/package-summary.html">android.service.restrictions</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/service/textservice/package-summary.html">android.service.textservice</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/service/voice/package-summary.html">android.service.voice</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/android/service/vr/package-summary.html">android.service.vr</a></li>
+    <li class="api apilevel-7">
+  <a href="../../../reference/android/service/wallpaper/package-summary.html">android.service.wallpaper</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/speech/package-summary.html">android.speech</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/speech/tts/package-summary.html">android.speech.tts</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/annotation/package-summary.html">android.support.annotation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/annotations/package-summary.html">android.support.annotations</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/app/recommendation/package-summary.html">android.support.app.recommendation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/customtabs/package-summary.html">android.support.customtabs</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/design/package-summary.html">android.support.design</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/design/widget/package-summary.html">android.support.design.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/graphics/drawable/package-summary.html">android.support.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/multidex/package-summary.html">android.support.multidex</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/percent/package-summary.html">android.support.percent</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/provider/package-summary.html">android.support.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v13/app/package-summary.html">android.support.v13.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v13/view/package-summary.html">android.support.v13.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v14/preference/package-summary.html">android.support.v14.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/package-summary.html">android.support.v17.leanback</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/app/package-summary.html">android.support.v17.leanback.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/database/package-summary.html">android.support.v17.leanback.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/graphics/package-summary.html">android.support.v17.leanback.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/system/package-summary.html">android.support.v17.leanback.system</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/widget/package-summary.html">android.support.v17.leanback.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/leanback/widget/picker/package-summary.html">android.support.v17.leanback.widget.picker</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v17/preference/package-summary.html">android.support.v17.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/package-summary.html">android.support.v4</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/accessibilityservice/package-summary.html">android.support.v4.accessibilityservice</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/app/package-summary.html">android.support.v4.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/package-summary.html">android.support.v4.content</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/pm/package-summary.html">android.support.v4.content.pm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/content/res/package-summary.html">android.support.v4.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/database/package-summary.html">android.support.v4.database</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/graphics/package-summary.html">android.support.v4.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/graphics/drawable/package-summary.html">android.support.v4.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/hardware/display/package-summary.html">android.support.v4.hardware.display</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/hardware/fingerprint/package-summary.html">android.support.v4.hardware.fingerprint</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/media/package-summary.html">android.support.v4.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/media/session/package-summary.html">android.support.v4.media.session</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/net/package-summary.html">android.support.v4.net</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/os/package-summary.html">android.support.v4.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/print/package-summary.html">android.support.v4.print</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/provider/package-summary.html">android.support.v4.provider</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/text/package-summary.html">android.support.v4.text</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/util/package-summary.html">android.support.v4.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/package-summary.html">android.support.v4.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/accessibility/package-summary.html">android.support.v4.view.accessibility</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/view/animation/package-summary.html">android.support.v4.view.animation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v4/widget/package-summary.html">android.support.v4.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/app/package-summary.html">android.support.v7.app</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/appcompat/package-summary.html">android.support.v7.appcompat</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/cardview/package-summary.html">android.support.v7.cardview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/content/res/package-summary.html">android.support.v7.content.res</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/graphics/package-summary.html">android.support.v7.graphics</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/graphics/drawable/package-summary.html">android.support.v7.graphics.drawable</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/gridlayout/package-summary.html">android.support.v7.gridlayout</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/media/package-summary.html">android.support.v7.media</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/mediarouter/package-summary.html">android.support.v7.mediarouter</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/palette/package-summary.html">android.support.v7.palette</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/preference/package-summary.html">android.support.v7.preference</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/recyclerview/package-summary.html">android.support.v7.recyclerview</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/util/package-summary.html">android.support.v7.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/view/package-summary.html">android.support.v7.view</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/package-summary.html">android.support.v7.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/helper/package-summary.html">android.support.v7.widget.helper</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v7/widget/util/package-summary.html">android.support.v7.widget.util</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/android/support/v8/renderscript/package-summary.html">android.support.v8.renderscript</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/system/package-summary.html">android.system</a></li>
+    <li class="api apilevel-21">
+  <a href="../../../reference/android/telecom/package-summary.html">android.telecom</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/telephony/package-summary.html">android.telephony</a></li>
+    <li class="api apilevel-5">
+  <a href="../../../reference/android/telephony/cdma/package-summary.html">android.telephony.cdma</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/telephony/gsm/package-summary.html">android.telephony.gsm</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/package-summary.html">android.test</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/mock/package-summary.html">android.test.mock</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/suitebuilder/package-summary.html">android.test.suitebuilder</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/test/suitebuilder/annotation/package-summary.html">android.test.suitebuilder.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/package-summary.html">android.text</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/text/format/package-summary.html">android.text.format</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/method/package-summary.html">android.text.method</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/style/package-summary.html">android.text.style</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/text/util/package-summary.html">android.text.util</a></li>
+    <li class="api apilevel-19">
+  <a href="../../../reference/android/transition/package-summary.html">android.transition</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/util/package-summary.html">android.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/view/package-summary.html">android.view</a></li>
+    <li class="api apilevel-4">
+  <a href="../../../reference/android/view/accessibility/package-summary.html">android.view.accessibility</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/view/animation/package-summary.html">android.view.animation</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/android/view/inputmethod/package-summary.html">android.view.inputmethod</a></li>
+    <li class="api apilevel-14">
+  <a href="../../../reference/android/view/textservice/package-summary.html">android.view.textservice</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/webkit/package-summary.html">android.webkit</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/android/widget/package-summary.html">android.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/backup/package-summary.html">com.android.internal.backup</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/logging/package-summary.html">com.android.internal.logging</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/os/package-summary.html">com.android.internal.os</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/statusbar/package-summary.html">com.android.internal.statusbar</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/internal/widget/package-summary.html">com.android.internal.widget</a></li>
+    <li class="api apilevel-">
+  <a href="../../../reference/com/android/test/runner/package-summary.html">com.android.test.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/annotation/package-summary.html">dalvik.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/bytecode/package-summary.html">dalvik.bytecode</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/dalvik/system/package-summary.html">dalvik.system</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/awt/font/package-summary.html">java.awt.font</a></li>
+    <li class="api apilevel-3">
+  <a href="../../../reference/java/beans/package-summary.html">java.beans</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/io/package-summary.html">java.io</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/package-summary.html">java.lang</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/annotation/package-summary.html">java.lang.annotation</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/ref/package-summary.html">java.lang.ref</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/lang/reflect/package-summary.html">java.lang.reflect</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/math/package-summary.html">java.math</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/net/package-summary.html">java.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/package-summary.html">java.nio</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/channels/package-summary.html">java.nio.channels</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/channels/spi/package-summary.html">java.nio.channels.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/charset/package-summary.html">java.nio.charset</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/nio/charset/spi/package-summary.html">java.nio.charset.spi</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/package-summary.html">java.security</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/acl/package-summary.html">java.security.acl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/cert/package-summary.html">java.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/interfaces/package-summary.html">java.security.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/security/spec/package-summary.html">java.security.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/sql/package-summary.html">java.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/text/package-summary.html">java.text</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/package-summary.html">java.util</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/package-summary.html">java.util.concurrent</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/atomic/package-summary.html">java.util.concurrent.atomic</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/concurrent/locks/package-summary.html">java.util.concurrent.locks</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/java/util/function/package-summary.html">java.util.function</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/jar/package-summary.html">java.util.jar</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/logging/package-summary.html">java.util.logging</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/prefs/package-summary.html">java.util.prefs</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/regex/package-summary.html">java.util.regex</a></li>
+    <li class="api apilevel-24">
+  <a href="../../../reference/java/util/stream/package-summary.html">java.util.stream</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/java/util/zip/package-summary.html">java.util.zip</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/package-summary.html">javax.crypto</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/interfaces/package-summary.html">javax.crypto.interfaces</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/crypto/spec/package-summary.html">javax.crypto.spec</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/microedition/khronos/egl/package-summary.html">javax.microedition.khronos.egl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/microedition/khronos/opengles/package-summary.html">javax.microedition.khronos.opengles</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/net/package-summary.html">javax.net</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/net/ssl/package-summary.html">javax.net.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/package-summary.html">javax.security.auth</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/callback/package-summary.html">javax.security.auth.callback</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/login/package-summary.html">javax.security.auth.login</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/auth/x500/package-summary.html">javax.security.auth.x500</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/security/cert/package-summary.html">javax.security.cert</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/sql/package-summary.html">javax.sql</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/xml/package-summary.html">javax.xml</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/datatype/package-summary.html">javax.xml.datatype</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/namespace/package-summary.html">javax.xml.namespace</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/javax/xml/parsers/package-summary.html">javax.xml.parsers</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/package-summary.html">javax.xml.transform</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/dom/package-summary.html">javax.xml.transform.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/sax/package-summary.html">javax.xml.transform.sax</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/transform/stream/package-summary.html">javax.xml.transform.stream</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/validation/package-summary.html">javax.xml.validation</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/javax/xml/xpath/package-summary.html">javax.xml.xpath</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/junit/framework/package-summary.html">junit.framework</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/junit/runner/package-summary.html">junit.runner</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/package-summary.html">org.apache.http.conn</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/scheme/package-summary.html">org.apache.http.conn.scheme</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/conn/ssl/package-summary.html">org.apache.http.conn.ssl</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/apache/http/params/package-summary.html">org.apache.http.params</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/json/package-summary.html">org.json</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/w3c/dom/package-summary.html">org.w3c.dom</a></li>
+    <li class="api apilevel-8">
+  <a href="../../../reference/org/w3c/dom/ls/package-summary.html">org.w3c.dom.ls</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/package-summary.html">org.xml.sax</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/ext/package-summary.html">org.xml.sax.ext</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xml/sax/helpers/package-summary.html">org.xml.sax.helpers</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xmlpull/v1/package-summary.html">org.xmlpull.v1</a></li>
+    <li class="api apilevel-1">
+  <a href="../../../reference/org/xmlpull/v1/sax2/package-summary.html">org.xmlpull.v1.sax2</a></li>
+        </ul>
+
+        
+        <ul data-reference-resources>
+          
+          
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-16"><a href="../../../reference/android/os/CancellationSignal.OnCancelListener.html">CancellationSignal.OnCancelListener</a></li>
+          <li class="api apilevel-3"><a href="../../../reference/android/os/Handler.Callback.html">Handler.Callback</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/IBinder.html">IBinder</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/IBinder.DeathRecipient.html">IBinder.DeathRecipient</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/IInterface.html">IInterface</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/MessageQueue.IdleHandler.html">MessageQueue.IdleHandler</a></li>
+          <li class="api apilevel-23"><a href="../../../reference/android/os/MessageQueue.OnFileDescriptorEventListener.html">MessageQueue.OnFileDescriptorEventListener</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Parcelable.html">Parcelable</a></li>
+          <li class="api apilevel-13"><a href="../../../reference/android/os/Parcelable.ClassLoaderCreator.html">Parcelable.ClassLoaderCreator</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Parcelable.Creator.html">Parcelable.Creator</a></li>
+          <li class="api apilevel-19"><a href="../../../reference/android/os/ParcelFileDescriptor.OnCloseListener.html">ParcelFileDescriptor.OnCloseListener</a></li>
+          <li class="api apilevel-8"><a href="../../../reference/android/os/RecoverySystem.ProgressListener.html">RecoverySystem.ProgressListener</a></li>
+      </ul>
+    </li>
+          
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-3"><a href="../../../reference/android/os/AsyncTask.html">AsyncTask</a></li>
+          <li class="api apilevel-21"><a href="../../../reference/android/os/BaseBundle.html">BaseBundle</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/BatteryManager.html">BatteryManager</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Binder.html">Binder</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Build.html">Build</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Build.VERSION.html">Build.VERSION</a></li>
+          <li class="api apilevel-4"><a href="../../../reference/android/os/Build.VERSION_CODES.html">Build.VERSION_CODES</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Bundle.html">Bundle</a></li>
+          <li class="api apilevel-16"><a href="../../../reference/android/os/CancellationSignal.html">CancellationSignal</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/ConditionVariable.html">ConditionVariable</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/CountDownTimer.html">CountDownTimer</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/os/CpuUsageInfo.html">CpuUsageInfo</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Debug.html">Debug</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Debug.InstructionCount.html">Debug.InstructionCount</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Debug.MemoryInfo.html">Debug.MemoryInfo</a></li>
+          <li class="api apilevel-8"><a href="../../../reference/android/os/DropBoxManager.html">DropBoxManager</a></li>
+          <li class="api apilevel-8"><a href="../../../reference/android/os/DropBoxManager.Entry.html">DropBoxManager.Entry</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Environment.html">Environment</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/FileObserver.html">FileObserver</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Handler.html">Handler</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/HandlerThread.html">HandlerThread</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/os/HardwarePropertiesManager.html">HardwarePropertiesManager</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/os/LocaleList.html">LocaleList</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Looper.html">Looper</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/MemoryFile.html">MemoryFile</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Message.html">Message</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/MessageQueue.html">MessageQueue</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Messenger.html">Messenger</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Parcel.html">Parcel</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/ParcelFileDescriptor.html">ParcelFileDescriptor</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/ParcelFileDescriptor.AutoCloseInputStream.html">ParcelFileDescriptor.AutoCloseInputStream</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/ParcelFileDescriptor.AutoCloseOutputStream.html">ParcelFileDescriptor.AutoCloseOutputStream</a></li>
+          <li class="api apilevel-5"><a href="../../../reference/android/os/ParcelUuid.html">ParcelUuid</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/PatternMatcher.html">PatternMatcher</a></li>
+          <li class="api apilevel-21"><a href="../../../reference/android/os/PersistableBundle.html">PersistableBundle</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/PowerManager.html">PowerManager</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/PowerManager.WakeLock.html">PowerManager.WakeLock</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Process.html">Process</a></li>
+          <li class="api apilevel-8"><a href="../../../reference/android/os/RecoverySystem.html">RecoverySystem</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/RemoteCallbackList.html">RemoteCallbackList</a></li>
+          <li class="api apilevel-3"><a href="../../../reference/android/os/ResultReceiver.html">ResultReceiver</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/StatFs.html">StatFs</a></li>
+          <li class="api apilevel-9"><a href="../../../reference/android/os/StrictMode.html">StrictMode</a></li>
+          <li class="api apilevel-9"><a href="../../../reference/android/os/StrictMode.ThreadPolicy.html">StrictMode.ThreadPolicy</a></li>
+          <li class="api apilevel-9"><a href="../../../reference/android/os/StrictMode.ThreadPolicy.Builder.html">StrictMode.ThreadPolicy.Builder</a></li>
+          <li class="api apilevel-9"><a href="../../../reference/android/os/StrictMode.VmPolicy.html">StrictMode.VmPolicy</a></li>
+          <li class="api apilevel-9"><a href="../../../reference/android/os/StrictMode.VmPolicy.Builder.html">StrictMode.VmPolicy.Builder</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/SystemClock.html">SystemClock</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/TokenWatcher.html">TokenWatcher</a></li>
+          <li class="api apilevel-18"><a href="../../../reference/android/os/Trace.html">Trace</a></li>
+          <li class="api apilevel-17"><a href="../../../reference/android/os/UserHandle.html">UserHandle</a></li>
+          <li class="selected api apilevel-17"><a href="../../../reference/android/os/UserManager.html">UserManager</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/Vibrator.html">Vibrator</a></li>
+          <li class="api apilevel-9"><a href="../../../reference/android/os/WorkSource.html">WorkSource</a></li>
+      </ul>
+    </li>
+          
+    <li><h2>Enums</h2>
+      <ul>
+          <li class="api apilevel-3"><a href="../../../reference/android/os/AsyncTask.Status.html">AsyncTask.Status</a></li>
+      </ul>
+    </li>
+          
+    <li><h2>Exceptions</h2>
+      <ul>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/BadParcelableException.html">BadParcelableException</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/DeadObjectException.html">DeadObjectException</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/os/DeadSystemException.html">DeadSystemException</a></li>
+          <li class="api apilevel-24"><a href="../../../reference/android/os/FileUriExposedException.html">FileUriExposedException</a></li>
+          <li class="api apilevel-11"><a href="../../../reference/android/os/NetworkOnMainThreadException.html">NetworkOnMainThreadException</a></li>
+          <li class="api apilevel-16"><a href="../../../reference/android/os/OperationCanceledException.html">OperationCanceledException</a></li>
+          <li class="api apilevel-19"><a href="../../../reference/android/os/ParcelFileDescriptor.FileDescriptorDetachedException.html">ParcelFileDescriptor.FileDescriptorDetachedException</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/ParcelFormatException.html">ParcelFormatException</a></li>
+          <li class="api apilevel-1"><a href="../../../reference/android/os/RemoteException.html">RemoteException</a></li>
+          <li class="api apilevel-15"><a href="../../../reference/android/os/TransactionTooLargeException.html">TransactionTooLargeException</a></li>
+      </ul>
+    </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  
+
+      
+    </div>
+  
+
+        <ul id="dac-main-navigation" class="dac-nav-list dac-swap-section dac-left dac-no-anim">
+        <li class="dac-nav-item home">
+          <a class="dac-nav-link" href="../../../index.html">Home</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary about">
+            <li class="dac-nav-item versions">
+              <a class="dac-nav-link" href="../../../about/versions/marshmallow/index.html">Android</a>
+            </li>
+            <li class="dac-nav-item wear">
+              <a class="dac-nav-link" href="../../../wear/index.html">Wear</a>
+            </li>
+            <li class="dac-nav-item tv">
+              <a class="dac-nav-link" href="../../../tv/index.html">TV</a>
+            </li>
+            <li class="dac-nav-item auto">
+              <a class="dac-nav-link" href="../../../auto/index.html">Auto</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item design">
+          <a class="dac-nav-link" href="../../../design/index.html"
+             zh-tw-lang="設計"
+             zh-cn-lang="设计"
+             ru-lang="Проектирование"
+             ko-lang="디자인"
+             ja-lang="設計"
+             es-lang="Diseñar">Design</a>
+        </li>
+        <li class="dac-nav-item develop">
+          <a class="dac-nav-link" href="../../../develop/index.html"
+             zh-tw-lang="開發"
+             zh-cn-lang="开发"
+             ru-lang="Разработка"
+             ko-lang="개발"
+             ja-lang="開発"
+             es-lang="Desarrollar">Develop</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary develop">
+            <li class="dac-nav-item training">
+              <a class="dac-nav-link" href="../../../training/index.html"
+                 zh-tw-lang="訓練課程"
+                 zh-cn-lang="培训"
+                 ru-lang="Курсы"
+                 ko-lang="교육"
+                 ja-lang="トレーニング"
+                 es-lang="Capacitación">Training</a>
+            </li>
+            <li class="dac-nav-item guide">
+              <a class="dac-nav-link" href="../../../guide/index.html"
+                 zh-tw-lang="API 指南"
+                 zh-cn-lang="API 指南"
+                 ru-lang="Руководства по API"
+                 ko-lang="API 가이드"
+                 ja-lang="API ガイド"
+                 es-lang="Guías de la API">API Guides</a>
+            </li>
+            <li class="dac-nav-item reference">
+              <a class="dac-nav-link" href="../../../reference/packages.html"
+                 zh-tw-lang="參考資源"
+                 zh-cn-lang="参考"
+                 ru-lang="Справочник"
+                 ko-lang="참조문서"
+                 ja-lang="リファレンス"
+                 es-lang="Referencia">Reference</a>
+            </li>
+            <li class="dac-nav-item tools">
+              <a class="dac-nav-link" href="../../../sdk/index.html"
+                 zh-tw-lang="相關工具"
+                 zh-cn-lang="工具"
+                 ru-lang="Инструменты"
+                 ko-lang="도구"
+                 ja-lang="ツール"
+                 es-lang="Herramientas">Tools</a></li>
+            <li class="dac-nav-item google">
+              <a class="dac-nav-link" href="../../../google/index.html">Google Services</a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="dac-nav-item distribute">
+          <a class="dac-nav-link" href="../../../distribute/googleplay/index.html"
+             zh-tw-lang="發佈"
+             zh-cn-lang="分发"
+             ru-lang="Распространение"
+             ko-lang="배포"
+             ja-lang="配布"
+             es-lang="Distribuir">Distribute</a>
+          <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider"></i>
+          <ul class="dac-nav-secondary distribute">
+            <li class="dac-nav-item googleplay">
+              <a class="dac-nav-link" href="../../../distribute/googleplay/index.html">Google Play</a></li>
+            <li class="dac-nav-item essentials">
+              <a class="dac-nav-link" href="../../../distribute/essentials/index.html">Essentials</a></li>
+            <li class="dac-nav-item users">
+              <a class="dac-nav-link" href="../../../distribute/users/index.html">Get Users</a></li>
+            <li class="dac-nav-item engage">
+              <a class="dac-nav-link" href="../../../distribute/engage/index.html">Engage &amp; Retain</a></li>
+            <li class="dac-nav-item monetize">
+              <a class="dac-nav-link" href="../../../distribute/monetize/index.html">Earn</a>
+            </li>
+            <li class="dac-nav-item analyze">
+              <a class="dac-nav-link" href="../../../distribute/analyze/index.html">Analyze</a>
+            </li>
+            <li class="dac-nav-item stories">
+              <a class="dac-nav-link" href="../../../distribute/stories/index.html">Stories</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dac-nav-item preview">
+          <a class="dac-nav-link" href="../../../preview/index.html">Preview</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end navigation-->
+  
+
+<!-- Nav Setup -->
+<script>$('[data-dac-nav]').dacNav();</script>
+
+
+
+  
+    
+  <div class="wrap clearfix" id="body-content">
+
+  
+
+  
+  <div id="search-results" class="dac-search-results">
+    <div id="dac-search-results-history" class="dac-search-results-history">
+      <div class="wrap dac-search-results-history-wrap">
+        <div class="cols">
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Most visited</h2>
+            <div class="resource-flow-layout" data-history-query="history:most/visited" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+
+          <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+            <h2>Recently visited</h2>
+            <div class="resource-flow-layout cols" data-history-query="history:recent" data-allow-duplicates="true" data-maxresults="3" data-cardsizes="18x2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dac-search-results-content" class="dac-search-results-content">
+      <div class="dac-search-results-metadata wrap">
+        <div class="dac-search-results-for">
+          <h2>Results for <span id="search-results-for"></span></h2>
+        </div>
+
+        <div id="dac-search-results-hero"></div>
+
+        <div class="dac-search-results-hero cols">
+          <div id="dac-search-results-reference" class="col-3of6 col-tablet-1of2 col-mobile-1of1">
+            <div class="suggest-card reference no-display">
+              <ul class="dac-search-results-reference">
+              </ul>
+            </div>
+          </div>
+          <div id="dac-custom-search-results"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+<div id="naMessage"></div>
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a>
+  
+  
+
+</div>
+
+
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+  <a href="#constants">Constants</a>
+  
+
+
+
+
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+</div><!-- end api-info-block -->
+
+<div class="api apilevel-17" id="jd-content">
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<h1 class="api-title">UserManager</h1>
+<p>
+<code class="api-signature">
+  public
+  
+  
+  
+  class
+  UserManager
+</code>
+<br>
+
+
+<code class="api-signature">
+  
+    extends <a href="../../../reference/java/lang/Object.html">Object</a>
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+</p><table class="jd-inheritance-table">
+
+
+  <tr>
+    
+    <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../reference/java/lang/Object.html">java.lang.Object</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="1" class="jd-inheritance-class-cell">android.os.UserManager
+    </td>
+  </tr>
+  
+
+</table>
+  
+
+    
+
+<br><hr>
+
+
+  <p>Manages users and user details on a multi-user system. There are two major categories of
+ users: fully customizable users with their own login, and managed profiles that share a workspace
+ with a related user.
+ <p>
+ Users are different from accounts, which are managed by
+ <code><a href="../../../reference/android/accounts/AccountManager.html">AccountManager</a></code>. Each user can have their own set of accounts.
+ <p>
+ See <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE">ACTION_PROVISION_MANAGED_PROFILE</a></code> for more on managed profiles.
+</p>
+
+
+
+
+
+
+
+<h2 class="api-section">Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="responsive constants">
+<tr><th colspan="2"><h3>Constants</h3></th></tr>
+
+
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#ALLOW_PARENT_PROFILE_APP_LINKING">ALLOW_PARENT_PROFILE_APP_LINKING</a></code>
+          <p>Allows apps in the parent profile to handle web links from the managed profile.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_ADD_USER">DISALLOW_ADD_USER</a></code>
+          <p>Specifies if a user is disallowed from adding new users and
+ profiles.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_ADJUST_VOLUME">DISALLOW_ADJUST_VOLUME</a></code>
+          <p>Specifies if a user is disallowed from adjusting the master
+ volume.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_APPS_CONTROL">DISALLOW_APPS_CONTROL</a></code>
+          <p>Specifies if a user is disallowed from modifying
+ applications in Settings or launchers.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_BLUETOOTH">DISALLOW_CONFIG_BLUETOOTH</a></code>
+          <p>Specifies if a user is disallowed from configuring bluetooth.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_CELL_BROADCASTS">DISALLOW_CONFIG_CELL_BROADCASTS</a></code>
+          <p>Specifies if a user is disallowed from configuring cell
+ broadcasts.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_CREDENTIALS">DISALLOW_CONFIG_CREDENTIALS</a></code>
+          <p>Specifies if a user is disallowed from configuring user
+ credentials.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_MOBILE_NETWORKS">DISALLOW_CONFIG_MOBILE_NETWORKS</a></code>
+          <p>Specifies if a user is disallowed from configuring mobile
+ networks.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_TETHERING">DISALLOW_CONFIG_TETHERING</a></code>
+          <p>Specifies if a user is disallowed from configuring Tethering
+ & portable hotspots.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_VPN">DISALLOW_CONFIG_VPN</a></code>
+          <p>Specifies if a user is disallowed from configuring VPN.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CONFIG_WIFI">DISALLOW_CONFIG_WIFI</a></code>
+          <p>Specifies if a user is disallowed from changing Wi-Fi
+ access points.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CREATE_WINDOWS">DISALLOW_CREATE_WINDOWS</a></code>
+          <p>Specifies that windows besides app windows should not be
+ created.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_CROSS_PROFILE_COPY_PASTE">DISALLOW_CROSS_PROFILE_COPY_PASTE</a></code>
+          <p>Specifies if what is copied in the clipboard of this profile can
+ be pasted in related profiles.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_DATA_ROAMING">DISALLOW_DATA_ROAMING</a></code>
+          <p>Specifies if a user is not allowed to use cellular data when roaming.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_DEBUGGING_FEATURES">DISALLOW_DEBUGGING_FEATURES</a></code>
+          <p>Specifies if a user is disallowed from enabling or
+ accessing debugging features.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_FACTORY_RESET">DISALLOW_FACTORY_RESET</a></code>
+          <p>Specifies if a user is disallowed from factory resetting
+ from Settings.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_FUN">DISALLOW_FUN</a></code>
+          <p>Specifies if the user is not allowed to have fun.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_INSTALL_APPS">DISALLOW_INSTALL_APPS</a></code>
+          <p>Specifies if a user is disallowed from installing applications.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_INSTALL_UNKNOWN_SOURCES">DISALLOW_INSTALL_UNKNOWN_SOURCES</a></code>
+          <p>Specifies if a user is disallowed from enabling the
+ "Unknown Sources" setting, that allows installation of apps from unknown sources.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_MODIFY_ACCOUNTS">DISALLOW_MODIFY_ACCOUNTS</a></code>
+          <p>Specifies if a user is disallowed from adding and removing accounts, unless they are
+ <code><a href="../../../reference/android/accounts/AccountManager.html#addAccountExplicitly(android.accounts.Account, java.lang.String, android.os.Bundle)">programmatically</a></code> added by
+ Authenticator.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_MOUNT_PHYSICAL_MEDIA">DISALLOW_MOUNT_PHYSICAL_MEDIA</a></code>
+          <p>Specifies if a user is disallowed from mounting
+ physical external media.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_NETWORK_RESET">DISALLOW_NETWORK_RESET</a></code>
+          <p>Specifies if a user is disallowed from resetting network settings
+ from Settings.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-22" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_OUTGOING_BEAM">DISALLOW_OUTGOING_BEAM</a></code>
+          <p>Specifies if the user is not allowed to use NFC to beam out data from apps.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_OUTGOING_CALLS">DISALLOW_OUTGOING_CALLS</a></code>
+          <p>Specifies that the user is not allowed to make outgoing
+ phone calls.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_REMOVE_USER">DISALLOW_REMOVE_USER</a></code>
+          <p>When set on the primary user this specifies if the user can remove other users.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-23" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_SAFE_BOOT">DISALLOW_SAFE_BOOT</a></code>
+          <p>Specifies if the user is not allowed to reboot the device into safe boot mode.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_SET_USER_ICON">DISALLOW_SET_USER_ICON</a></code>
+          <p>Specifies if a user is not allowed to change their icon.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_SET_WALLPAPER">DISALLOW_SET_WALLPAPER</a></code>
+          <p>User restriction to disallow setting a wallpaper.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_SHARE_LOCATION">DISALLOW_SHARE_LOCATION</a></code>
+          <p>Specifies if a user is disallowed from turning on location sharing.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_SMS">DISALLOW_SMS</a></code>
+          <p>Specifies that the user is not allowed to send or receive
+ SMS messages.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_UNINSTALL_APPS">DISALLOW_UNINSTALL_APPS</a></code>
+          <p>Specifies if a user is disallowed from uninstalling applications.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_UNMUTE_MICROPHONE">DISALLOW_UNMUTE_MICROPHONE</a></code>
+          <p>Specifies if a user is disallowed from adjusting microphone
+ volume.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-18" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#DISALLOW_USB_FILE_TRANSFER">DISALLOW_USB_FILE_TRANSFER</a></code>
+          <p>Specifies if a user is disallowed from transferring files over
+ USB.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-21" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#ENSURE_VERIFY_APPS">ENSURE_VERIFY_APPS</a></code>
+          <p>Specifies if a user is disallowed from disabling application
+ verification.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-22" >
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#KEY_RESTRICTIONS_PENDING">KEY_RESTRICTIONS_PENDING</a></code>
+          <p>Application restriction key that is used to indicate the pending arrival
+ of real restrictions for the app.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#USER_CREATION_FAILED_NOT_PERMITTED">USER_CREATION_FAILED_NOT_PERMITTED</a></code>
+          <p>Error result indicating that this user is not allowed to add other users on this device.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+    <tr class="api apilevel-24" >
+        <td><code>int</code></td>
+        <td width="100%">
+          <code><a href="../../../reference/android/os/UserManager.html#USER_CREATION_FAILED_NO_MORE_USERS">USER_CREATION_FAILED_NO_MORE_USERS</a></code>
+          <p>Error result indicating that no more users can be created on this device.
+          
+    
+</p>
+        </td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="responsive methods">
+<tr><th colspan="2"><h3>Public methods</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        static
+        
+        
+        <a href="../../../reference/android/content/Intent.html">Intent</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#createUserCreationIntent(java.lang.String, java.lang.String, java.lang.String, android.os.PersistableBundle)">createUserCreationIntent</a>(<a href="../../../reference/java/lang/String.html">String</a> userName, <a href="../../../reference/java/lang/String.html">String</a> accountName, <a href="../../../reference/java/lang/String.html">String</a> accountType, <a href="../../../reference/android/os/PersistableBundle.html">PersistableBundle</a> accountOptions)
+      </code>
+      
+        <p>Returns an intent to create a user for the provided name and account name.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-18" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/os/Bundle.html">Bundle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getApplicationRestrictions(java.lang.String)">getApplicationRestrictions</a>(<a href="../../../reference/java/lang/String.html">String</a> packageName)
+      </code>
+      
+        <p>Returns a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> containing any saved application restrictions for this user, for the
+ given package name.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        long</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getSerialNumberForUser(android.os.UserHandle)">getSerialNumberForUser</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)
+      </code>
+      
+        <p>Return the serial number for a user.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserCount()">getUserCount</a>()
+      </code>
+      
+        <p>Return the number of users currently created on the device.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        long</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserCreationTime(android.os.UserHandle)">getUserCreationTime</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)
+      </code>
+      
+        <p>Returns creation time of the user or of a managed profile associated with the calling user.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/os/UserHandle.html">UserHandle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserForSerialNumber(long)">getUserForSerialNumber</a>(long serialNumber)
+      </code>
+      
+        <p>Return the user associated with a serial number previously
+ returned by <code><a href="../../../reference/android/os/UserManager.html#getSerialNumberForUser(android.os.UserHandle)">getSerialNumberForUser(UserHandle)</a></code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserName()">getUserName</a>()
+      </code>
+      
+        <p>Returns the user name of the user making this call.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/util/List.html">List</a>&lt;<a href="../../../reference/android/os/UserHandle.html">UserHandle</a>&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserProfiles()">getUserProfiles</a>()
+      </code>
+      
+        <p>Returns a list of UserHandles for profiles associated with the user that the calling process
+ is running on, including the user itself.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-18" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/os/Bundle.html">Bundle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions</a>()
+      </code>
+      
+        <p>Returns the user-wide restrictions imposed on this user.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-18" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/android/os/Bundle.html">Bundle</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#getUserRestrictions(android.os.UserHandle)">getUserRestrictions</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)
+      </code>
+      
+        <p>Returns the user-wide restrictions imposed on the user specified by <code>userHandle</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-21" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#hasUserRestriction(java.lang.String)">hasUserRestriction</a>(<a href="../../../reference/java/lang/String.html">String</a> restrictionKey)
+      </code>
+      
+        <p>Returns whether the current user has been disallowed from performing certain actions
+ or setting certain settings.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isQuietModeEnabled(android.os.UserHandle)">isQuietModeEnabled</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)
+      </code>
+      
+        <p>Returns whether the given profile is in quiet mode or not.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-23" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isSystemUser()">isSystemUser</a>()
+      </code>
+      
+        <p>Used to check if this process is running under the system user.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isUserAGoat()">isUserAGoat</a>()
+      </code>
+      
+        <p>Used to determine whether the user making this call is subject to
+ teleportations.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isUserRunning(android.os.UserHandle)">isUserRunning</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)
+      </code>
+      
+        <p>Return whether the given user is actively running.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-17" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isUserRunningOrStopping(android.os.UserHandle)">isUserRunningOrStopping</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)
+      </code>
+      
+        <p>Return whether the given user is actively running <em>or</em> stopping.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isUserUnlocked(android.os.UserHandle)">isUserUnlocked</a>(<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)
+      </code>
+      
+        <p>Return whether the given user is running in an "unlocked" state.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#isUserUnlocked()">isUserUnlocked</a>()
+      </code>
+      
+        <p>Return whether the calling user is running in an "unlocked" state.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-19" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#setRestrictionsChallenge(java.lang.String)">setRestrictionsChallenge</a>(<a href="../../../reference/java/lang/String.html">String</a> newPin)
+      </code>
+      
+        <p><em>
+      This method was deprecated
+      in API level 23.
+    The restrictions PIN functionality is no longer provided by the system.
+ This method is preserved for backwards compatibility reasons and always returns false.
+</em>
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-18" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#setUserRestriction(java.lang.String, boolean)">setUserRestriction</a>(<a href="../../../reference/java/lang/String.html">String</a> key, boolean value)
+      </code>
+      
+        <p><em>
+      This method was deprecated
+      in API level 21.
+    use <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(android.content.ComponentName, String)</a></code> or
+ <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(android.content.ComponentName, String)</a></code> instead.
+</em>
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-18" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#setUserRestrictions(android.os.Bundle, android.os.UserHandle)">setUserRestrictions</a>(<a href="../../../reference/android/os/Bundle.html">Bundle</a> restrictions, <a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)
+      </code>
+      
+        <p>This will no longer work.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-18" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#setUserRestrictions(android.os.Bundle)">setUserRestrictions</a>(<a href="../../../reference/android/os/Bundle.html">Bundle</a> restrictions)
+      </code>
+      
+        <p>This will no longer work.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-24" >
+  
+  
+    <td><code>
+        
+        
+        static
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/android/os/UserManager.html#supportsMultipleUsers()">supportsMultipleUsers</a>()
+      </code>
+      
+        <p>Returns whether this device supports multiple users with their own login and customizable
+ space.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="methods inhtable">
+<tr><th><h3>Inherited methods</h3></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="../../../reference/java/lang/Object.html">java.lang.Object</a>
+  
+</code>
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/Object.html">Object</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#clone()">clone</a>()
+      </code>
+      
+        <p>Creates and returns a copy of this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#equals(java.lang.Object)">equals</a>(<a href="../../../reference/java/lang/Object.html">Object</a> obj)
+      </code>
+      
+        <p>Indicates whether some other object is "equal to" this one.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#finalize()">finalize</a>()
+      </code>
+      
+        <p>Called by the garbage collector on an object when garbage collection
+ determines that there are no more references to the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="../../../reference/java/lang/Class.html">Class</a>&lt;?&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#getClass()">getClass</a>()
+      </code>
+      
+        <p>Returns the runtime class of this <code>Object</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#hashCode()">hashCode</a>()
+      </code>
+      
+        <p>Returns a hash code value for the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#notify()">notify</a>()
+      </code>
+      
+        <p>Wakes up a single thread that is waiting on this object's
+ monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll</a>()
+      </code>
+      
+        <p>Wakes up all threads that are waiting on this object's monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../../../reference/java/lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#toString()">toString</a>()
+      </code>
+      
+        <p>Returns a string representation of the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait(long, int)">wait</a>(long millis, int nanos)
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or
+ some other thread interrupts the current thread, or a certain
+ amount of real time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait(long)">wait</a>(long millis)
+      </code>
+      
+        <p>Causes the current thread to wait until either another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or a
+ specified amount of time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="../../../reference/java/lang/Object.html#wait()">wait</a>()
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="../../../reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="../../../reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2 class="api-section">Constants</h2>
+
+
+
+
+<A NAME="ALLOW_PARENT_PROFILE_APP_LINKING"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">ALLOW_PARENT_PROFILE_APP_LINKING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ALLOW_PARENT_PROFILE_APP_LINKING</pre>
+    
+    
+
+    
+  <p>Allows apps in the parent profile to handle web links from the managed profile.
+
+ This user restriction has an effect only in a managed profile.
+ If set:
+ Intent filters of activities in the parent profile with action
+ <code><a href="../../../reference/android/content/Intent.html#ACTION_VIEW">ACTION_VIEW</a></code>,
+ category <code><a href="../../../reference/android/content/Intent.html#CATEGORY_BROWSABLE">CATEGORY_BROWSABLE</a></code>, scheme http or https, and which
+ define a host can handle intents from the managed profile.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "allow_parent_profile_app_linking"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_ADD_USER"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_ADD_USER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_ADD_USER</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from adding new users and
+ profiles. This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect on secondary users and managed profiles since only the
+ primary user can add other users.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_add_user"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_ADJUST_VOLUME"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_ADJUST_VOLUME</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_ADJUST_VOLUME</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from adjusting the master
+ volume. If set, the master volume will be muted. This can only be set by device owners
+ and profile owners on the primary user. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_adjust_volume"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_APPS_CONTROL"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_APPS_CONTROL</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_APPS_CONTROL</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from modifying
+ applications in Settings or launchers. The following actions will not be allowed when this
+ restriction is enabled:
+ <li>uninstalling apps</li>
+ <li>disabling apps</li>
+ <li>clearing app caches</li>
+ <li>clearing app data</li>
+ <li>force stopping apps</li>
+ <li>clearing app defaults</li>
+ <p>
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_control_apps"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_BLUETOOTH"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_CONFIG_BLUETOOTH</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_BLUETOOTH</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from configuring bluetooth.
+ This does <em>not</em> restrict the user from turning bluetooth on or off.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect in a managed profile.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_bluetooth"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_CELL_BROADCASTS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_CONFIG_CELL_BROADCASTS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_CELL_BROADCASTS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from configuring cell
+ broadcasts. This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect on secondary users and managed profiles since only the
+ primary user can configure cell broadcasts.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_cell_broadcasts"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_CREDENTIALS"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_CONFIG_CREDENTIALS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_CREDENTIALS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from configuring user
+ credentials. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_credentials"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_MOBILE_NETWORKS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_CONFIG_MOBILE_NETWORKS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_MOBILE_NETWORKS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from configuring mobile
+ networks. This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect on secondary users and managed profiles since only the
+ primary user can configure mobile networks.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_mobile_networks"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_TETHERING"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_CONFIG_TETHERING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_TETHERING</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from configuring Tethering
+ & portable hotspots. This can only be set by device owners and profile owners on the
+ primary user. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_tethering"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_VPN"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_CONFIG_VPN</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_VPN</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from configuring VPN.
+ The default value is <code>false</code>.
+ This restriction has an effect in a managed profile only from
+ <code><a href="../../../reference/android/os/Build.VERSION_CODES.html#M">M</a></code>
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_vpn"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CONFIG_WIFI"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_CONFIG_WIFI</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CONFIG_WIFI</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from changing Wi-Fi
+ access points. The default value is <code>false</code>.
+ <p>This restriction has no effect in a managed profile.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_config_wifi"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CREATE_WINDOWS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_CREATE_WINDOWS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CREATE_WINDOWS</pre>
+    
+    
+
+    
+  <p>Specifies that windows besides app windows should not be
+ created. This will block the creation of the following types of windows.
+ <li><code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#TYPE_TOAST">TYPE_TOAST</a></code></li>
+ <li><code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#TYPE_PHONE">TYPE_PHONE</a></code></li>
+ <li><code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#TYPE_PRIORITY_PHONE">TYPE_PRIORITY_PHONE</a></code></li>
+ <li><code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#TYPE_SYSTEM_ALERT">TYPE_SYSTEM_ALERT</a></code></li>
+ <li><code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#TYPE_SYSTEM_ERROR">TYPE_SYSTEM_ERROR</a></code></li>
+ <li><code><a href="../../../reference/android/view/WindowManager.LayoutParams.html#TYPE_SYSTEM_OVERLAY">TYPE_SYSTEM_OVERLAY</a></code></li>
+
+ <p>This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_create_windows"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_CROSS_PROFILE_COPY_PASTE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_CROSS_PROFILE_COPY_PASTE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_CROSS_PROFILE_COPY_PASTE</pre>
+    
+    
+
+    
+  <p>Specifies if what is copied in the clipboard of this profile can
+ be pasted in related profiles. Does not restrict if the clipboard of related profiles can be
+ pasted in this profile.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_cross_profile_copy_paste"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_DATA_ROAMING"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">DISALLOW_DATA_ROAMING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_DATA_ROAMING</pre>
+    
+    
+
+    
+  <p>Specifies if a user is not allowed to use cellular data when roaming. This can only be set by
+ device owners. The default value is <code>false</code>.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_data_roaming"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_DEBUGGING_FEATURES"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_DEBUGGING_FEATURES</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_DEBUGGING_FEATURES</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from enabling or
+ accessing debugging features. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_debugging_features"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_FACTORY_RESET"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_FACTORY_RESET</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_FACTORY_RESET</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from factory resetting
+ from Settings. This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect on secondary users and managed profiles since only the
+ primary user can factory reset the device.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_factory_reset"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_FUN"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">DISALLOW_FUN</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_FUN</pre>
+    
+    
+
+    
+  <p>Specifies if the user is not allowed to have fun. In some cases, the
+ device owner may wish to prevent the user from experiencing amusement or
+ joy while using the device. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_fun"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_INSTALL_APPS"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_INSTALL_APPS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_INSTALL_APPS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from installing applications.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_install_apps"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_INSTALL_UNKNOWN_SOURCES"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_INSTALL_UNKNOWN_SOURCES</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_INSTALL_UNKNOWN_SOURCES</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from enabling the
+ "Unknown Sources" setting, that allows installation of apps from unknown sources.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_install_unknown_sources"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_MODIFY_ACCOUNTS"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_MODIFY_ACCOUNTS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_MODIFY_ACCOUNTS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from adding and removing accounts, unless they are
+ <code><a href="../../../reference/android/accounts/AccountManager.html#addAccountExplicitly(android.accounts.Account, java.lang.String, android.os.Bundle)">programmatically</a></code> added by
+ Authenticator.
+ The default value is <code>false</code>.
+
+ <p>From <code><a href="../../../reference/android/os/Build.VERSION_CODES.html#N">N</a></code> a profile or device owner app can still
+ use <code><a href="../../../reference/android/accounts/AccountManager.html">AccountManager</a></code> APIs to add or remove accounts when account
+ management is disallowed.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_modify_accounts"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_MOUNT_PHYSICAL_MEDIA"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_MOUNT_PHYSICAL_MEDIA</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_MOUNT_PHYSICAL_MEDIA</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from mounting
+ physical external media. This can only be set by device owners and profile owners on the
+ primary user. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_physical_media"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_NETWORK_RESET"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">DISALLOW_NETWORK_RESET</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_NETWORK_RESET</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from resetting network settings
+ from Settings. This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect on secondary users and managed profiles since only the
+ primary user can reset the network settings of the device.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_network_reset"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_OUTGOING_BEAM"></A>
+
+<div class="api apilevel-22">
+    <h3 class="api-name">DISALLOW_OUTGOING_BEAM</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 22</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_OUTGOING_BEAM</pre>
+    
+    
+
+    
+  <p>Specifies if the user is not allowed to use NFC to beam out data from apps.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_outgoing_beam"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_OUTGOING_CALLS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_OUTGOING_CALLS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_OUTGOING_CALLS</pre>
+    
+    
+
+    
+  <p>Specifies that the user is not allowed to make outgoing
+ phone calls. Emergency calls are still permitted.
+ The default value is <code>false</code>.
+ <p>This restriction has no effect on managed profiles.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_outgoing_calls"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_REMOVE_USER"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_REMOVE_USER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_REMOVE_USER</pre>
+    
+    
+
+    
+  <p>When set on the primary user this specifies if the user can remove other users.
+ When set on a secondary user, this specifies if the user can remove itself.
+ This restriction has no effect on managed profiles.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_remove_user"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_SAFE_BOOT"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">DISALLOW_SAFE_BOOT</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_SAFE_BOOT</pre>
+    
+    
+
+    
+  <p>Specifies if the user is not allowed to reboot the device into safe boot mode.
+ This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_safe_boot"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_SET_USER_ICON"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">DISALLOW_SET_USER_ICON</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_SET_USER_ICON</pre>
+    
+    
+
+    
+  <p>Specifies if a user is not allowed to change their icon. Device owner and profile owner
+ can set this restriction. When it is set by device owner, only the target user will be
+ affected. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_set_user_icon"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_SET_WALLPAPER"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">DISALLOW_SET_WALLPAPER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_SET_WALLPAPER</pre>
+    
+    
+
+    
+  <p>User restriction to disallow setting a wallpaper. Profile owner and device owner
+ are able to set wallpaper regardless of this restriction.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_set_wallpaper"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_SHARE_LOCATION"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_SHARE_LOCATION</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_SHARE_LOCATION</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from turning on location sharing.
+ The default value is <code>false</code>.
+ <p>In a managed profile, location sharing always reflects the primary user's setting, but
+ can be overridden and forced off by setting this restriction to true in the managed profile.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_share_location"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_SMS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_SMS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_SMS</pre>
+    
+    
+
+    
+  <p>Specifies that the user is not allowed to send or receive
+ SMS messages. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_sms"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_UNINSTALL_APPS"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_UNINSTALL_APPS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_UNINSTALL_APPS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from uninstalling applications.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_uninstall_apps"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_UNMUTE_MICROPHONE"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">DISALLOW_UNMUTE_MICROPHONE</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_UNMUTE_MICROPHONE</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from adjusting microphone
+ volume. If set, the microphone will be muted. This can only be set by device owners
+ and profile owners on the primary user. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_unmute_microphone"
+      
+    
+</div>
+
+
+
+<A NAME="DISALLOW_USB_FILE_TRANSFER"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">DISALLOW_USB_FILE_TRANSFER</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> DISALLOW_USB_FILE_TRANSFER</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from transferring files over
+ USB. This can only be set by device owners and profile owners on the primary user.
+ The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "no_usb_file_transfer"
+      
+    
+</div>
+
+
+
+<A NAME="ENSURE_VERIFY_APPS"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">ENSURE_VERIFY_APPS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> ENSURE_VERIFY_APPS</pre>
+    
+    
+
+    
+  <p>Specifies if a user is disallowed from disabling application
+ verification. The default value is <code>false</code>.
+
+ <p>Key for user restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(ComponentName, String)</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#getUserRestrictions()">getUserRestrictions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "ensure_verify_apps"
+      
+    
+</div>
+
+
+
+<A NAME="KEY_RESTRICTIONS_PENDING"></A>
+
+<div class="api apilevel-22">
+    <h3 class="api-name">KEY_RESTRICTIONS_PENDING</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 22</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> KEY_RESTRICTIONS_PENDING</pre>
+    
+    
+
+    
+  <p>Application restriction key that is used to indicate the pending arrival
+ of real restrictions for the app.
+
+ <p>
+ Applications that support restrictions should check for the presence of this key.
+ A <code>true</code> value indicates that restrictions may be applied in the near
+ future but are not available yet. It is the responsibility of any
+ management application that sets this flag to update it when the final
+ restrictions are enforced.
+
+ <p>Key for application restrictions.
+ <p>Type: Boolean</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#setApplicationRestrictions(android.content.ComponentName, java.lang.String, android.os.Bundle)">setApplicationRestrictions(android.content.ComponentName, String, Bundle)</a></code></li><li><code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#getApplicationRestrictions(android.content.ComponentName, java.lang.String)">getApplicationRestrictions(android.content.ComponentName, String)</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          "restrictions_pending"
+      
+    
+</div>
+
+
+
+<A NAME="USER_CREATION_FAILED_NOT_PERMITTED"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">USER_CREATION_FAILED_NOT_PERMITTED</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int USER_CREATION_FAILED_NOT_PERMITTED</pre>
+    
+    
+
+    
+  <p>Error result indicating that this user is not allowed to add other users on this device.
+ This is a result code returned from the activity created by the intent
+ <code><a href="../../../reference/android/os/UserManager.html#createUserCreationIntent(java.lang.String, java.lang.String, java.lang.String, android.os.PersistableBundle)">createUserCreationIntent(String, String, String, PersistableBundle)</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          1
+          (0x00000001)
+      
+    
+</div>
+
+
+
+<A NAME="USER_CREATION_FAILED_NO_MORE_USERS"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">USER_CREATION_FAILED_NO_MORE_USERS</h3>
+    <div class="api-level">
+      
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int USER_CREATION_FAILED_NO_MORE_USERS</pre>
+    
+    
+
+    
+  <p>Error result indicating that no more users can be created on this device.
+ This is a result code returned from the activity created by the intent
+ <code><a href="../../../reference/android/os/UserManager.html#createUserCreationIntent(java.lang.String, java.lang.String, java.lang.String, android.os.PersistableBundle)">createUserCreationIntent(String, String, String, PersistableBundle)</a></code>.
+</p>
+
+    
+      <p>Constant Value:
+      
+          2
+          (0x00000002)
+      
+    
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2 class="api-section">Public methods</h2>
+
+
+
+<A NAME="createUserCreationIntent(java.lang.String, java.lang.String, java.lang.String, android.os.PersistableBundle)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">createUserCreationIntent</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/content/Intent.html">Intent</a> createUserCreationIntent (<a href="../../../reference/java/lang/String.html">String</a> userName, 
+                <a href="../../../reference/java/lang/String.html">String</a> accountName, 
+                <a href="../../../reference/java/lang/String.html">String</a> accountType, 
+                <a href="../../../reference/android/os/PersistableBundle.html">PersistableBundle</a> accountOptions)</pre>
+    
+    
+
+    
+  <p>Returns an intent to create a user for the provided name and account name. The name
+ and account name will be used when the setup process for the new user is started.
+ <p>
+ The intent should be launched using startActivityForResult and the return result will
+ indicate if the user consented to adding a new user and if the operation succeeded. Any
+ errors in creating the user will be returned in the result code. If the user cancels the
+ request, the return result will be <code><a href="../../../reference/android/app/Activity.html#RESULT_CANCELED">RESULT_CANCELED</a></code>. On success, the
+ result code will be <code><a href="../../../reference/android/app/Activity.html#RESULT_OK">RESULT_OK</a></code>.
+ <p>
+ Use <code><a href="../../../reference/android/os/UserManager.html#supportsMultipleUsers()">supportsMultipleUsers()</a></code> to first check if the device supports this operation
+ at all.
+ <p>
+ The new user is created but not initialized. After switching into the user for the first
+ time, the preferred user name and account information are used by the setup process for that
+ user.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>userName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          Optional name to assign to the user.</td>
+      </tr>
+      <tr>
+        <td><code>accountName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          Optional account name that will be used by the setup wizard to initialize
+                    the user.</td>
+      </tr>
+      <tr>
+        <td><code>accountType</code></td>
+        <td width="100%">
+          <code>String</code>:
+          Optional account type for the account to be created. This is required
+                    if the account name is specified.</td>
+      </tr>
+      <tr>
+        <td><code>accountOptions</code></td>
+        <td width="100%">
+          <code>PersistableBundle</code>:
+          Optional bundle of data to be passed in during account creation in the
+                       new user via <code><a href="../../../reference/android/accounts/AccountManager.html#addAccount(java.lang.String, java.lang.String, java.lang.String[], android.os.Bundle, android.app.Activity, android.accounts.AccountManagerCallback<android.os.Bundle>, android.os.Handler)">addAccount(String, String, String[], Bundle, android.app.Activity, android.accounts.AccountManagerCallback, Handler)</a></code>.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/content/Intent.html">Intent</a></code></td>
+        <td width="100%">An Intent that can be launched from an Activity.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/os/UserManager.html#USER_CREATION_FAILED_NOT_PERMITTED">USER_CREATION_FAILED_NOT_PERMITTED</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#USER_CREATION_FAILED_NO_MORE_USERS">USER_CREATION_FAILED_NO_MORE_USERS</a></code></li><li><code><a href="../../../reference/android/os/UserManager.html#supportsMultipleUsers()">supportsMultipleUsers()</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="getApplicationRestrictions(java.lang.String)"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">getApplicationRestrictions</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/os/Bundle.html">Bundle</a> getApplicationRestrictions (<a href="../../../reference/java/lang/String.html">String</a> packageName)</pre>
+    
+    
+
+    
+  <p>Returns a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> containing any saved application restrictions for this user, for the
+ given package name. Only an application with this package name can call this method.
+
+ <p>The returned <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> consists of key-value pairs, as defined by the application,
+ where the types of values may be:
+ <ul>
+ <li><code>boolean</code>
+ <li><code>int</code>
+ <li><code>String</code> or <code>String[]</code>
+ <li>From <code><a href="../../../reference/android/os/Build.VERSION_CODES.html#M">M</a></code>, <code>Bundle</code> or <code>Bundle[]</code>
+ </ul></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>packageName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the package name of the calling application</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code></td>
+        <td width="100%">a <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code> with the restrictions for that package, or an empty <code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code>
+ if there are no saved restrictions.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/os/UserManager.html#KEY_RESTRICTIONS_PENDING">KEY_RESTRICTIONS_PENDING</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="getSerialNumberForUser(android.os.UserHandle)"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">getSerialNumberForUser</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+long getSerialNumberForUser (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)</pre>
+    
+    
+
+    
+  <p>Return the serial number for a user.  This is a device-unique
+ number assigned to that user; if the user is deleted and then a new
+ user created, the new users will not be given the same serial number.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>user</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          The user whose serial number is to be retrieved.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>long</code></td>
+        <td width="100%">The serial number of the given user; returns -1 if the
+ given UserHandle does not exist.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/os/UserManager.html#getUserForSerialNumber(long)">getUserForSerialNumber(long)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="getUserCount()"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">getUserCount</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int getUserCount ()</pre>
+    
+    
+
+    
+  <p>Return the number of users currently created on the device.
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>int</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getUserCreationTime(android.os.UserHandle)"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">getUserCreationTime</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+long getUserCreationTime (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)</pre>
+    
+    
+
+    
+  <p>Returns creation time of the user or of a managed profile associated with the calling user.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>userHandle</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          user handle of the user or a managed profile associated with the
+                   calling user.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>long</code></td>
+        <td width="100%">creation time in milliseconds since Epoch time.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getUserForSerialNumber(long)"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">getUserForSerialNumber</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> getUserForSerialNumber (long serialNumber)</pre>
+    
+    
+
+    
+  <p>Return the user associated with a serial number previously
+ returned by <code><a href="../../../reference/android/os/UserManager.html#getSerialNumberForUser(android.os.UserHandle)">getSerialNumberForUser(UserHandle)</a></code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>serialNumber</code></td>
+        <td width="100%">
+          <code>long</code>:
+          The serial number of the user that is being
+ retrieved.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/os/UserHandle.html">UserHandle</a></code></td>
+        <td width="100%">Return the user associated with the serial number, or null
+ if there is not one.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/os/UserManager.html#getSerialNumberForUser(android.os.UserHandle)">getSerialNumberForUser(UserHandle)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="getUserName()"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">getUserName</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/lang/String.html">String</a> getUserName ()</pre>
+    
+    
+
+    
+  <p>Returns the user name of the user making this call.  This call is only
+ available to applications on the system image; it requires the
+ MANAGE_USERS permission.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/java/lang/String.html">String</a></code></td>
+        <td width="100%">the user name
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getUserProfiles()"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">getUserProfiles</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/java/util/List.html">List</a>&lt;<a href="../../../reference/android/os/UserHandle.html">UserHandle</a>&gt; getUserProfiles ()</pre>
+    
+    
+
+    
+  <p>Returns a list of UserHandles for profiles associated with the user that the calling process
+ is running on, including the user itself.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/java/util/List.html">List</a>&lt;<a href="../../../reference/android/os/UserHandle.html">UserHandle</a>&gt;</code></td>
+        <td width="100%">A non-empty list of UserHandles associated with the calling user.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getUserRestrictions()"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">getUserRestrictions</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/os/Bundle.html">Bundle</a> getUserRestrictions ()</pre>
+    
+    
+
+    
+  <p>Returns the user-wide restrictions imposed on this user.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code></td>
+        <td width="100%">a Bundle containing all the restrictions.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="getUserRestrictions(android.os.UserHandle)"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">getUserRestrictions</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+<a href="../../../reference/android/os/Bundle.html">Bundle</a> getUserRestrictions (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)</pre>
+    
+    
+
+    
+  <p>Returns the user-wide restrictions imposed on the user specified by <code>userHandle</code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>userHandle</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          the UserHandle of the user for whom to retrieve the restrictions.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../../../reference/android/os/Bundle.html">Bundle</a></code></td>
+        <td width="100%">a Bundle containing all the restrictions.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="hasUserRestriction(java.lang.String)"></A>
+
+<div class="api apilevel-21">
+    <h3 class="api-name">hasUserRestriction</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 21</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean hasUserRestriction (<a href="../../../reference/java/lang/String.html">String</a> restrictionKey)</pre>
+    
+    
+
+    
+  <p>Returns whether the current user has been disallowed from performing certain actions
+ or setting certain settings.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>restrictionKey</code></td>
+        <td width="100%">
+          <code>String</code>:
+          The string key representing the restriction.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><code>true</code> if the current user has the given restriction, <code>false</code> otherwise.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isQuietModeEnabled(android.os.UserHandle)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">isQuietModeEnabled</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isQuietModeEnabled (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)</pre>
+    
+    
+
+    
+  <p>Returns whether the given profile is in quiet mode or not.
+ Notes: Quiet mode is only supported for managed profiles.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>userHandle</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          The user handle of the profile to be queried.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">true if the profile is in quiet mode, false otherwise.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isSystemUser()"></A>
+
+<div class="api apilevel-23">
+    <h3 class="api-name">isSystemUser</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 23</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isSystemUser ()</pre>
+    
+    
+
+    
+  <p>Used to check if this process is running under the system user. The system user
+ is the initial user that is implicitly created on first boot and hosts most of the
+ system services.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">whether this process is running under the system user.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isUserAGoat()"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">isUserAGoat</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isUserAGoat ()</pre>
+    
+    
+
+    
+  <p>Used to determine whether the user making this call is subject to
+ teleportations.
+
+ <p>As of <code><a href="../../../reference/android/os/Build.VERSION_CODES.html#LOLLIPOP">LOLLIPOP</a></code>, this method can
+ now automatically identify goats using advanced goat recognition technology.</p></p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">Returns true if the user making this call is a goat.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isUserRunning(android.os.UserHandle)"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">isUserRunning</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isUserRunning (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)</pre>
+    
+    
+
+    
+  <p>Return whether the given user is actively running.  This means that
+ the user is in the "started" state, not "stopped" -- it is currently
+ allowed to run code through scheduled alarms, receiving broadcasts,
+ etc.  A started user may be either the current foreground user or a
+ background user; the result here does not distinguish between the two.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>user</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          The user to retrieve the running state for.
+</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isUserRunningOrStopping(android.os.UserHandle)"></A>
+
+<div class="api apilevel-17">
+    <h3 class="api-name">isUserRunningOrStopping</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 17</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isUserRunningOrStopping (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)</pre>
+    
+    
+
+    
+  <p>Return whether the given user is actively running <em>or</em> stopping.
+ This is like <code><a href="../../../reference/android/os/UserManager.html#isUserRunning(android.os.UserHandle)">isUserRunning(UserHandle)</a></code>, but will also return
+ true if the user had been running but is in the process of being stopped
+ (but is not yet fully stopped, and still running some code).</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>user</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          The user to retrieve the running state for.
+</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="isUserUnlocked(android.os.UserHandle)"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">isUserUnlocked</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isUserUnlocked (<a href="../../../reference/android/os/UserHandle.html">UserHandle</a> user)</pre>
+    
+    
+
+    
+  <p>Return whether the given user is running in an "unlocked" state.
+ <p>
+ On devices with direct boot, a user is unlocked only after they've
+ entered their credentials (such as a lock pattern or PIN). On devices
+ without direct boot, a user is unlocked as soon as it starts.
+ <p>
+ When a user is locked, only device-protected data storage is available.
+ When a user is unlocked, both device-protected and credential-protected
+ private app data storage is available.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>user</code></td>
+        <td width="100%">
+          <code>UserHandle</code>:
+          to retrieve the unlocked state for.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/content/Intent.html#ACTION_USER_UNLOCKED">ACTION_USER_UNLOCKED</a></code></li><li><code><a href="../../../reference/android/content/Context.html#createDeviceProtectedStorageContext()">createDeviceProtectedStorageContext()</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="isUserUnlocked()"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">isUserUnlocked</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean isUserUnlocked ()</pre>
+    
+    
+
+    
+  <p>Return whether the calling user is running in an "unlocked" state.
+ <p>
+ On devices with direct boot, a user is unlocked only after they've
+ entered their credentials (such as a lock pattern or PIN). On devices
+ without direct boot, a user is unlocked as soon as it starts.
+ <p>
+ When a user is locked, only device-protected data storage is available.
+ When a user is unlocked, both device-protected and credential-protected
+ private app data storage is available.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../reference/android/content/Intent.html#ACTION_USER_UNLOCKED">ACTION_USER_UNLOCKED</a></code></li><li><code><a href="../../../reference/android/content/Context.html#createDeviceProtectedStorageContext()">createDeviceProtectedStorageContext()</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="setRestrictionsChallenge(java.lang.String)"></A>
+
+<div class="api apilevel-19">
+    <h3 class="api-name">setRestrictionsChallenge</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 19</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean setRestrictionsChallenge (<a href="../../../reference/java/lang/String.html">String</a> newPin)</pre>
+    
+    
+
+    <p>
+  <p class="caution"><strong>
+      This method was deprecated
+      in API level 23.</strong><br/>
+    The restrictions PIN functionality is no longer provided by the system.
+ This method is preserved for backwards compatibility reasons and always returns false.
+
+  </p>
+  <p>Sets a new challenge PIN for restrictions. This is only for use by pre-installed
+ apps and requires the MANAGE_USERS permission.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>newPin</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the PIN to use for challenge dialogs.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">Returns true if the challenge PIN was set successfully.</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="setUserRestriction(java.lang.String, boolean)"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">setUserRestriction</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void setUserRestriction (<a href="../../../reference/java/lang/String.html">String</a> key, 
+                boolean value)</pre>
+    
+    
+
+    <p>
+  <p class="caution"><strong>
+      This method was deprecated
+      in API level 21.</strong><br/>
+    use <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(android.content.ComponentName, String)</a></code> or
+ <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#clearUserRestriction(android.content.ComponentName, java.lang.String)">clearUserRestriction(android.content.ComponentName, String)</a></code> instead.
+
+  </p>
+  <p>Sets the value of a specific restriction.
+ Requires the MANAGE_USERS permission.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>key</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the key of the restriction</td>
+      </tr>
+      <tr>
+        <td><code>value</code></td>
+        <td width="100%">
+          <code>boolean</code>:
+          the value for the restriction</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="setUserRestrictions(android.os.Bundle, android.os.UserHandle)"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">setUserRestrictions</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void setUserRestrictions (<a href="../../../reference/android/os/Bundle.html">Bundle</a> restrictions, 
+                <a href="../../../reference/android/os/UserHandle.html">UserHandle</a> userHandle)</pre>
+    
+    
+
+    
+  <p>This will no longer work.  Device owners and profile owners should use
+ <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code> instead.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>restrictions</code></td>
+        <td width="100%">
+          <code>Bundle</code>
+          <!-- no parameter comment --></td>
+      </tr>
+      <tr>
+        <td><code>userHandle</code></td>
+        <td width="100%">
+          <code>UserHandle</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="setUserRestrictions(android.os.Bundle)"></A>
+
+<div class="api apilevel-18">
+    <h3 class="api-name">setUserRestrictions</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 18</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void setUserRestrictions (<a href="../../../reference/android/os/Bundle.html">Bundle</a> restrictions)</pre>
+    
+    
+
+    
+  <p>This will no longer work.  Device owners and profile owners should use
+ <code><a href="../../../reference/android/app/admin/DevicePolicyManager.html#addUserRestriction(android.content.ComponentName, java.lang.String)">addUserRestriction(ComponentName, String)</a></code> instead.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>restrictions</code></td>
+        <td width="100%">
+          <code>Bundle</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="supportsMultipleUsers()"></A>
+
+<div class="api apilevel-24">
+    <h3 class="api-name">supportsMultipleUsers</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="../../../guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 24</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean supportsMultipleUsers ()</pre>
+    
+    
+
+    
+  <p>Returns whether this device supports multiple users with their own login and customizable
+ space.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">whether the device supports multiple users.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</div><!-- end jd-content -->
+
+
+
+
+
+<div class="wrap">
+  <div class="dac-footer">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" id="newsletter" data-modal-toggle="newsletter" href="javascript:;">Get news &amp; tips <span
+          class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i></span></a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</a>
+          <a class="dac-footer-contact-link" href="/support.html">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-button-social dac-youtube dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><i class="dac-sprite dac-youtube"></i></a>
+          <a class="dac-button-social dac-gplus dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers"><i class="dac-sprite dac-gplus"></i></a>
+          <a class="dac-button-social dac-twitter dac-footer-social-link" href="https://twitter.com/AndroidDev"><i class="dac-sprite dac-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+
+    
+      <p class="dac-footer-copyright">
+        
+  Except as noted, this content is licensed under <a
+  href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
+  For details and restrictions, see the <a href="../../../license.html">
+  Content License</a>.
+
+      </p>
+      <p class="dac-footer-build">
+        
+  
+    Android 6.0&nbsp;r1 &mdash;
+  
+  <script src="../../../timestamp.js" type="text/javascript"></script>
+  <script>document.write(BUILD_TIMESTAMP)</script>
+
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="/about/android.html">About Android</a>
+      <a href="/auto/index.html">Auto</a>
+      <a href="/tv/index.html">TV</a>
+      <a href="/wear/index.html">Wear</a>
+      <a href="/legal.html">Legal</a>
+
+      <span id="language" class="locales">
+        <select name="language" onchange="changeLangPref(this.value, true)">
+          <option value="en" selected="selected">English</option>
+          <option value="es">Español</option>
+          <option value="in">Bahasa Indonesia</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt-br">Português Brasileiro</option>
+          <option value="ru">Русский</option>
+          <option value="vi">tiếng Việt</option>
+          <option value="zh-cn">中文（简体)</option>
+          <option value="zh-tw">中文（繁體)</option>
+        </select>
+      </span>
+    </p>
+  </div>
+</div>
+<!-- end footer -->
+
+
+
+  
+
+
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.title"></h2>
+            <p class="dac-modal-header-subtitle" data-t="newsletter.requiredHint"></p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.successTitle">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <input type="hidden" name="entry.935454734" data-newsletter-language>
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel" data-t="newsletter.name">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel" data-t="newsletter.email">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel" data-t="newsletter.company">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel" data-t="newsletter.appUrl">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend"><span data-t="newsletter.business.label">Which best describes your business:</span><span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label" data-t="newsletter.business.apps">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label" data-t="newsletter.business.games">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label" data-t="newsletter.business.both">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside"><span data-t="newsletter.confirmMailingList"></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside"><span data-t="newsletter.privacyPolicy" data-t-html></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message" data-t="newsletter.successDetails"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end newsletter modal -->
+
+<!-- start reset language header modal -->
+<div data-modal="langform" class="dac-modal" id="langform">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title"></h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+            <fieldset class="dac-form-fieldset">
+              <div class="cols">
+                <div class="col-2of2 langform-leftCol">
+                  <p id="resetLangText"></p>
+                  <p id="resetLangCta"></p>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+              <button class="button dac-primary dac-modal-action lang yes" data-t="newsletter.resetLangButtonYes" data-modal-toggle></button>
+              <button class="button dac-primary dac-modal-action lang no" data-t="newsletter.resetLangButtonNo" data-modal-toggle></button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- end langreset modal -->
+
+
+</div> <!-- end body-content --> 
+
+
+
+
+<script src="https://developer.android.com/ytblogger_lists_unified.js" defer></script>
+<script src="/jd_lists_unified_en.js?v=17" defer></script>
+<script src="/reference/lists.js?v=17" defer></script>
+<script src="/reference/gcm_lists.js?v=17" defer></script>
+<script src="/reference/gms_lists.js?v=17" defer></script>
+<script>
+  // Load localized metadata.
+  (function(lang) {
+    if (lang === 'en') { return; }
+
+    // Write it to the document so it gets evaluated before DOMContentReady.
+    document.write('<script src="/jd_lists_unified_' + lang + '.js?v=14" defer></' + 'script>');
+  })(getLangPref())
+</script>
+
+
+</body>
+</html>
