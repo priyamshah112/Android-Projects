@@ -19,3 +19,7 @@ Basic Android App Projects
 - Music4Lyf is a webview App of a website.
 - Locator App uses GoogleMap, to understand usage of 3rd Party Libraries.
 - Service App are for learning Background and Foreground Service.
+- Notification App is to understand Notification Service in Android.
+- UIAPP is just UI Pages built using xml to understand Animation.
+
+### This repo is a simple extension of learning android by building small hand on projects. You can contribute and add your own apps and improvise it.
